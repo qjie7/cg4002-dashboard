@@ -1,0 +1,8 @@
+.videocarousel {
+  font-family: sans-serif;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 20em;
+  /* height: 100vh; */
+}

@@ -1,0 +1,10 @@
+[
+  {"danceMove": "Dab", "position1":1, "position2":2, "position3":3},
+  {"danceMove": "Elbow-Kick", "position1":2, "position2":1, "position3":3},
+  {"danceMove": "Gun", "position1":2, "position2":3, "position3":1},
+  {"danceMove": "Hair", "position1":3, "position2":1, "position3":2},
+  {"danceMove": "Listen", "position1":3, "position2":2, "position3":1},
+  {"danceMove": "Point-High", "position1":1, "position2":2, "position3":3},
+  {"danceMove": "Side-Pump", "position1":3, "position2":2, "position3":1},
+  {"danceMove": "Wipe-Table", "position1":1, "position2":3, "position3":2}
+]
