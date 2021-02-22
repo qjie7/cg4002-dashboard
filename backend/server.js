@@ -78,11 +78,13 @@ const mongoose = require('mongoose')
 const cron = require('node-cron')
 const app = express()
 const server = require('http').createServer(app)
+
 const io = require('socket.io')(server, {
   transports: ['websocket', 'polling'],
 })
 
 const DummyData = require('./models/dummy_data')
+const VideoCount = require('./models/video_count')
 const DummySensorData = require('./data/dummySensor.json')
 const testLogData = require('./data/test_log.json')
 const { getRandomData, getTestLogData } = require('./data_generator')
@@ -102,6 +104,53 @@ io.on('connection', (socket) => {
   setInterval(() => {
     socket.emit('test_log', getTestLogData(testLogData))
   }, 10000)
+
+  // socket.on('video_click', (danceMove) => {
+  //   //console.log(danceMove)
+  //   switch (danceMove) {
+  //     case 'elbowkick':
+  //       // code block
+  //       const filter = { name: 'elbowkick' }
+  //       VideoCount.findOneAndUpdate(
+  //         filter,
+  //         { $inc: { count: 1 } },
+  //         { new: true, upsert: true },
+  //         function (err) {
+  //           if (err) {
+  //             console.log(err)
+  //           } else {
+  //             console.log('added elbowkick count')
+  //           }
+  //         }
+  //       )
+
+  //       break
+  //     // case 'elbowkick':
+  //     //   // code block
+  //     //   break
+  //     // case 'gun':
+  //     //   // code block
+  //     //   break
+  //     // case 'hair':
+  //     //   // code block
+  //     //   break
+  //     // case 'listen':
+  //     //   // code block
+  //     //   break
+  //     // case 'pointhigh':
+  //     //   // code block
+  //     //   break
+  //     // case 'sidepump':
+  //     //   // code block
+  //     //   break
+  //     // case 'wipetable':
+  //     //   // code block
+  //     //   break
+
+  //     // default:
+  //     // // code block
+  //   }
+  // })
 })
 
 //start the server

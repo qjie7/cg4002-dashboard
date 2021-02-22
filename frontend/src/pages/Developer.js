@@ -24,7 +24,6 @@ import {
 import Button from '@material-ui/core/Button'
 import SimpleCard from '../components/SimpleCard/SimpleCard'
 import BasicTable from '../components/BasicTable/BasicTable'
-import CircularProgressWithLabel from '../components/CircularProgressWithLabel/CircularProgressWithLabel'
 
 const socket = io('http://localhost:3000', {
   transports: ['websocket', 'polling'],
