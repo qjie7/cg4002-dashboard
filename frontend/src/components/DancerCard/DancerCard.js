@@ -15,7 +15,8 @@ function DancerCard(props) {
           }}
           className='card-image'
           style={{
-            background: `url(${props.userImage})`,
+            // background: `url(${props.userImage})`,
+            background: `url(https://source.unsplash.com/${props.userImage}/640x426)`,
             backgroundSize: 'cover',
           }}
         >

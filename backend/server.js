@@ -75,8 +75,24 @@
 
 const express = require('express')
 const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
 const cron = require('node-cron')
+const HttpError = require('./models/HttpError')
+const authenticateRoutes = require('./routes/authenticate-route')
+
 const app = express()
+app.use(bodyParser.json())
+
+app.use('/authenticate/password', authenticateRoutes)
+
+app.use((error, req, res, next) => {
+  if (res.headerSent) {
+    return next(error)
+  }
+  res.status(error.code || 500)
+  res.json({ message: error.message || 'An unknown error occurred!' })
+})
+
 const server = require('http').createServer(app)
 
 const io = require('socket.io')(server, {
@@ -84,7 +100,7 @@ const io = require('socket.io')(server, {
 })
 
 const DummyData = require('./models/dummy_data')
-const VideoCount = require('./models/video_count')
+
 const DummySensorData = require('./data/dummySensor.json')
 const testLogData = require('./data/test_log.json')
 const { getRandomData, getTestLogData } = require('./data_generator')

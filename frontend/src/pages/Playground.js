@@ -10,9 +10,7 @@ import { useEffect, useState } from 'react'
 import io from 'socket.io-client'
 import Button from '@material-ui/core/Button'
 import BasicTable from '../components/BasicTable/BasicTable'
-import player1Image from '../images/Paula.png'
-import player2Image from '../images/Cristian.png'
-import player3Image from '../images/Claudia.png'
+
 import classNames from 'classnames'
 
 const useStyles = makeStyles((theme) => ({
@@ -30,12 +28,12 @@ function Playground() {
   const classes = useStyles()
   const [danceMove, setDanceMove] = useState('Dab')
   const [position, setPosition] = useState([1, 2, 3])
-  const [testLog, setTestLog] = useState({
-    danceMove: 'Dab',
-    position1: 1,
-    position2: 2,
-    position3: 3,
-  })
+  // const [testLog, setTestLog] = useState({
+  //   danceMove: 'Dab',
+  //   position1: 1,
+  //   position2: 2,
+  //   position3: 3,
+  // })
   const [correctness, setCorrectness] = useState(false)
   // const [p1Position, setP1Position] = useState(1)
   // const [p2Position, setP2Position] = useState(2)
@@ -57,9 +55,9 @@ function Playground() {
         setDanceMove(newData.danceMove)
         setPosition(newData.position)
       })
-      socket.on('test_log', (newData) => {
-        setTestLog(newData)
-      })
+      // socket.on('test_log', (newData) => {
+      //   setTestLog(newData)
+      // })
 
       // socket.on('new_data', (newData) => {
       //   setDanceMove(newData.danceMove)
@@ -74,27 +72,27 @@ function Playground() {
     }
   }, [connection])
 
-  useEffect(() => {
-    if (
-      position1 === testLog.position1 &&
-      position2 === testLog.position2 &&
-      position3 === testLog.position3 &&
-      currentDanceMove === testLog.danceMove
-    ) {
-      setCorrectness(true)
-    } else {
-      setCorrectness(false)
-    }
-  })
-  console.log(position1)
-  console.log(position2)
-  console.log(position3)
-  console.log(testLog.position1)
-  console.log(testLog.position2)
-  console.log(testLog.position3)
-  console.log(currentDanceMove)
-  console.log(testLog.danceMove)
-  console.log(correctness)
+  // useEffect(() => {
+  //   if (
+  //     position1 === testLog.position1 &&
+  //     position2 === testLog.position2 &&
+  //     position3 === testLog.position3 &&
+  //     currentDanceMove === testLog.danceMove
+  //   ) {
+  //     setCorrectness(true)
+  //   } else {
+  //     setCorrectness(false)
+  //   }
+  // })
+  // console.log(position1)
+  // console.log(position2)
+  // console.log(position3)
+  // console.log(testLog.position1)
+  // console.log(testLog.position2)
+  // console.log(testLog.position3)
+  // console.log(currentDanceMove)
+  // console.log(testLog.danceMove)
+  // console.log(correctness)
 
   return (
     <>
@@ -103,25 +101,25 @@ function Playground() {
           <DancerCard
             name='Paula'
             position={position[0]}
-            userImage={player1Image}
+            userImage='6CgkUjUl4og'
             danceMove={danceMove}
           />
         </Grid>
 
         <Grid item>
           <DancerCard
-            name='Cristian'
+            name='Robinson'
             position={position[1]}
-            userImage={player2Image}
+            userImage='sibVwORYqs0'
             danceMove={danceMove}
           />
         </Grid>
 
         <Grid item>
           <DancerCard
-            name='Claudia'
+            name='Erik'
             position={position[2]}
-            userImage={player3Image}
+            userImage='d2MSDujJl2g'
             danceMove={danceMove}
           />
         </Grid>
@@ -161,7 +159,7 @@ function Playground() {
           </motion.div>
         </AnimateSharedLayout> */}
 
-        <Typography variant='h3'>Test Log Received</Typography>
+        {/* <Typography variant='h3'>Test Log Received</Typography>
 
         <Grid item style={{ justifyItems: 'center' }}>
           <BasicTable
@@ -171,7 +169,7 @@ function Playground() {
             position3={testLog.position3}
             correctness={correctness}
           />
-        </Grid>
+        </Grid> */}
       </Grid>
 
       <Grid container justify='center'>

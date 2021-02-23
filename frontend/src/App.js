@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   BrowserRouter as Router,
   Route,
@@ -9,11 +9,14 @@ import Playground from './pages/Playground'
 import Dancebase from './pages/Dancebase'
 import Progress from './pages/Progress'
 import Developer from './pages/Developer'
+import Authenticate from './pages/Authenticate'
 import Sidebar from './components/Sidebar/Sidebar'
 import Grid from '@material-ui/core/Grid'
 import './App.css'
 
 const App = () => {
+  const [access, setAccess] = useState(false)
+
   return (
     <Router>
       <Grid container>
@@ -35,8 +38,12 @@ const App = () => {
             </Route>
 
             <Route path='/developer' exact>
-              <Developer />
+              {access ? <Developer /> : <Authenticate access={setAccess} />}
             </Route>
+
+            {/* <Route path='/authenticate' exact>
+              <Authenticate access={setAccess} />
+            </Route> */}
 
             <Redirect to='/' />
           </Switch>
