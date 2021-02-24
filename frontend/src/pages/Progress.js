@@ -11,12 +11,26 @@ const useStyles = makeStyles({
     justifyContent: 'space-around',
     marginTop: 120,
   },
+  heading: {
+    fontSize: '4.5em',
+    letterSpacing: '-1px',
+    backgroundColor: '#503e9d',
+    color: 'white',
+  },
 })
 
 function Progress() {
   const classes = useStyles()
   return (
     <>
+      <Grid container justify='center'>
+        <Grid item xs={12}>
+          <Typography variant='h3' align='center' className={classes.heading}>
+            {' '}
+            Dance Ground
+          </Typography>
+        </Grid>
+      </Grid>
       <Grid container direction='column'>
         <Grid container item>
           <Grid item xs={6}>

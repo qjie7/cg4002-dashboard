@@ -25,6 +25,12 @@ const useStyles = makeStyles((theme) => ({
     zIndex: theme.zIndex.drawer + 1,
     color: '#fff',
   },
+  heading: {
+    fontSize: '4.5em',
+    letterSpacing: '-1px',
+    backgroundColor: '#503e9d',
+    color: 'white',
+  },
 }))
 
 const socket = io('http://localhost:3000', {
@@ -104,6 +110,15 @@ function Playground() {
 
   return (
     <>
+      <Grid container justify='center'>
+        <Grid item xs={12}>
+          <Typography variant='h3' align='center' className={classes.heading}>
+            {' '}
+            Dance Ground
+          </Typography>
+        </Grid>
+      </Grid>
+
       <Grid container justify='center'>
         <Grid item>
           <DancerCard

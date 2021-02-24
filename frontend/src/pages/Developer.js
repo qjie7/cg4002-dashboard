@@ -84,6 +84,12 @@ const useStyles = makeStyles((theme) => ({
     zIndex: theme.zIndex.drawer + 1,
     color: '#fff',
   },
+  heading: {
+    fontSize: '4.5em',
+    letterSpacing: '-1px',
+    backgroundColor: '#503e9d',
+    color: 'white',
+  },
 }))
 
 export default function Developer(props) {
@@ -119,6 +125,7 @@ export default function Developer(props) {
   const [connection, setConnection] = useState(false)
   // const [termination, setTermination] = useState(false)
   // const [connection, setConnection] = useState(0)
+
   const handleConnection = () => {
     connection ? setConnection(false) : setConnection(true)
 
@@ -250,6 +257,14 @@ export default function Developer(props) {
   console.log(correctness)
   return (
     <>
+      <Grid container justify='center'>
+        <Grid item xs={12}>
+          <Typography variant='h3' align='center' className={classes.heading}>
+            {' '}
+            Developer Mode
+          </Typography>
+        </Grid>
+      </Grid>
       <div className={classes.root}>
         <AppBar position='static' color='default'>
           <Tabs
