@@ -25,6 +25,8 @@ import {
 import Button from '@material-ui/core/Button'
 import SimpleCard from '../components/SimpleCard/SimpleCard'
 import BasicTable from '../components/BasicTable/BasicTable'
+import Backdrop from '@material-ui/core/Backdrop'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 const socket = io('http://localhost:3000', {
   transports: ['websocket', 'polling'],
@@ -77,6 +79,10 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     paddingRight: 33,
     width: '100px',
+  },
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
   },
 }))
 
@@ -523,6 +529,12 @@ export default function Developer(props) {
         >
           {connection ? <p>DISCONNECT</p> : <p>CONNECT</p>}
         </Button>
+        <Backdrop
+          className={classes.backdrop}
+          open={connection ? !socket.connected : false}
+        >
+          <CircularProgress color='inherit' />
+        </Backdrop>
       </Grid>
     </>
   )
