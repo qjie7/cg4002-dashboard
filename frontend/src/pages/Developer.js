@@ -7,6 +7,7 @@ import Tab from '@material-ui/core/Tab'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 import { Grid } from '@material-ui/core'
+import CustomizedSnackbars from '../components/CustomizedSnackbars/CustomizedSnackbars'
 
 import io from 'socket.io-client'
 import { useEffect, useState } from 'react'
@@ -72,11 +73,17 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     paddingRight: 33,
   },
+  logout: {
+    margin: theme.spacing(1),
+    paddingRight: 33,
+    width: '100px',
+  },
 }))
 
-export default function Developer() {
+export default function Developer(props) {
   const classes = useStyles()
   const [value, setValue] = React.useState(0)
+  const { access } = props
 
   const [p1LeftAData, setP1LeftAData] = useState([])
   const [data, setData] = useState([])
@@ -108,6 +115,12 @@ export default function Developer() {
   // const [connection, setConnection] = useState(0)
   const handleConnection = () => {
     connection ? setConnection(false) : setConnection(true)
+
+    console.log('clicked')
+  }
+
+  const handleAccess = () => {
+    access(false)
   }
 
   // const handleTermination = () => {
@@ -246,7 +259,18 @@ export default function Developer() {
             <Tab label='Player 2' {...a11yProps(1)} />
             <Tab label='Player 3' {...a11yProps(2)} />
             <Tab label='Offline Analytics' {...a11yProps(3)} />
-            {/* <Tab label='Dance Move' {...a11yProps(4)} /> */}
+            {/* <Tab label='Log Out' {...a11yProps(6)}></Tab> */}
+            <Grid container justify='flex-end'>
+              <Button
+                variant='contained'
+                color='secondary'
+                onClick={handleAccess}
+                className={classes.logout}
+              >
+                Log out
+              </Button>
+              {/* <CustomizedSnackbars access={access} /> */}
+            </Grid>
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>

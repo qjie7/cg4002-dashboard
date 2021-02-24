@@ -38,7 +38,11 @@ const App = () => {
             </Route>
 
             <Route path='/developer' exact>
-              {access ? <Developer /> : <Authenticate access={setAccess} />}
+              {access ? (
+                <Developer access={setAccess} />
+              ) : (
+                <Authenticate access={setAccess} />
+              )}
             </Route>
 
             {/* <Route path='/authenticate' exact>

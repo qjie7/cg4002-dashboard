@@ -7,7 +7,7 @@ const validatePassword = async (req, res, next) => {
 
   const passwordObj = await passwordData.find({})
   let passwordDB = passwordObj[0].password
-  console.log(typeof passwordDB)
+  // console.log(typeof passwordDB)
 
   let password = parseInt(req.body.password)
 

@@ -141,28 +141,6 @@ io.on('connection', (socket) => {
   //       )
 
   //       break
-  //     // case 'elbowkick':
-  //     //   // code block
-  //     //   break
-  //     // case 'gun':
-  //     //   // code block
-  //     //   break
-  //     // case 'hair':
-  //     //   // code block
-  //     //   break
-  //     // case 'listen':
-  //     //   // code block
-  //     //   break
-  //     // case 'pointhigh':
-  //     //   // code block
-  //     //   break
-  //     // case 'sidepump':
-  //     //   // code block
-  //     //   break
-  //     // case 'wipetable':
-  //     //   // code block
-  //     //   break
-
   //     // default:
   //     // // code block
   //   }
