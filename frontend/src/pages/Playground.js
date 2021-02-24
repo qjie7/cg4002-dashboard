@@ -10,13 +10,20 @@ import { useEffect, useState } from 'react'
 import io from 'socket.io-client'
 import Button from '@material-ui/core/Button'
 import BasicTable from '../components/BasicTable/BasicTable'
-
+import Snackbar from '@material-ui/core/Snackbar'
 import classNames from 'classnames'
+
+import Backdrop from '@material-ui/core/Backdrop'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 const useStyles = makeStyles((theme) => ({
   margin: {
     margin: theme.spacing(1),
     paddingRight: 33,
+  },
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
   },
 }))
 
@@ -28,6 +35,7 @@ function Playground() {
   const classes = useStyles()
   const [danceMove, setDanceMove] = useState('Dab')
   const [position, setPosition] = useState([1, 2, 3])
+
   // const [testLog, setTestLog] = useState({
   //   danceMove: 'Dab',
   //   position1: 1,
@@ -182,6 +190,12 @@ function Playground() {
           >
             {connection ? <p>END</p> : <p>START</p>}
           </Button>
+          <Backdrop
+            className={classes.backdrop}
+            open={connection ? !socket.connected : false}
+          >
+            <CircularProgress color='inherit' />
+          </Backdrop>
         </Grid>
       </Grid>
     </>
