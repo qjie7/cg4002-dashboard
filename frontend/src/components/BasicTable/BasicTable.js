@@ -32,8 +32,8 @@ export default function BasicTable(props) {
           <TableRow>
             <TableCell align='center'>Dance Move</TableCell>
             <TableCell align='center'>Paula's Position</TableCell>
-            <TableCell align='center'>Cristian's Position</TableCell>
-            <TableCell align='center'>Claudia's Position</TableCell>
+            <TableCell align='center'>Robinson's Position</TableCell>
+            <TableCell align='center'>Erik's Position</TableCell>
             <TableCell align='center'>Matching Status</TableCell>
           </TableRow>
         </TableHead>

@@ -491,10 +491,10 @@ export default function Developer(props) {
                 <SimpleCard player='Paula' danceMove={danceMove} />
               </Grid>
               <Grid item>
-                <SimpleCard player='Cristian' danceMove={danceMove} />
+                <SimpleCard player='Robinson' danceMove={danceMove} />
               </Grid>
               <Grid item>
-                <SimpleCard player='Claudia' danceMove={danceMove} />
+                <SimpleCard player='Erik' danceMove={danceMove} />
               </Grid>
             </Grid>
           </Grid>

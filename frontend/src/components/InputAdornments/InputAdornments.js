@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    marginTop: '100px',
+    marginTop: '10px',
   },
   margin: {
     margin: theme.spacing(1),
@@ -37,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
   textField: {
     width: '70ch',
+    marginLeft: '60px',
   },
   button: {
     width: '100%',
