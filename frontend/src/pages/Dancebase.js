@@ -1,7 +1,5 @@
 import React from 'react'
 import { Grid, makeStyles, Typography } from '@material-ui/core'
-import MediaCard from '../components/MediaCard/MediaCard'
-import SearchBar from '../components/SearchBar/SearchBar'
 import VideoCarousel from '../components/VideoCarousel/VideoCarousel'
 
 const useStyles = makeStyles((theme) => ({

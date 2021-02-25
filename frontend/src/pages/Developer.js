@@ -103,6 +103,9 @@ export default function Developer(props) {
 
   const [p1LeftAData, setP1LeftAData] = useState([])
   const [data, setData] = useState([])
+  const [data2, setData2] = useState([])
+  const [data3, setData3] = useState([])
+
   // const [p1LeftGData, setP1LeftGData] = useState([])
   // const [p1RightAData, setP1RightAData] = useState([])
   // const [p1RightGData, setP1RightGData] = useState([])
@@ -165,8 +168,14 @@ export default function Developer(props) {
         setData((currentData) => [...currentData, newData])
         setPosition(newData.position)
         setDanceMove(newData.danceMove)
-        // setP1DanceMove(newData.danceMove)
-        // setP1Position(newData.position)
+      })
+
+      socket.on('new_data2', (newData) => {
+        setData2((currentData) => [...currentData, newData])
+      })
+
+      socket.on('new_data3', (newData) => {
+        setData3((currentData) => [...currentData, newData])
       })
 
       socket.on('test_log', (newData) => {
@@ -218,6 +227,8 @@ export default function Developer(props) {
     } else {
       // socket.emit('end')
       socket.off('new_data')
+      socket.off('new_data2')
+      socket.off('new_data3')
       // socket.off('p1LeftG')
       // socket.off('p1RightA')
       // socket.off('p1RightG')
@@ -361,7 +372,7 @@ export default function Developer(props) {
                     <Line type='monotone' dataKey='zAxis' stroke='#000982' />
                   </LineChart>
 
-                  <LineChart width={500} height={300} data={data}>
+                  <LineChart width={500} height={300} data={data2}>
                     <CartesianGrid strokeDasharray='3 3' />
                     <Tooltip />
                     <Legend />
@@ -382,7 +393,7 @@ export default function Developer(props) {
               <Grid item>
                 <div>
                   <h1>(Right) MPU </h1>
-                  <LineChart width={500} height={300} data={data}>
+                  <LineChart width={500} height={300} data={data3}>
                     <CartesianGrid strokeDasharray='3 3' />
                     <Tooltip />
                     <Legend />

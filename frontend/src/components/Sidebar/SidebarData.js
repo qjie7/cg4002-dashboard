@@ -6,7 +6,7 @@ import { MdDeveloperBoard } from 'react-icons/md'
 
 export const SidebarData = [
   {
-    path: '/',
+    path: '/playground',
     icon: <FaPlayCircle size='2x' />,
     className: 'sidebar-icon tooltip ',
     toolTipText: 'PlayGround',

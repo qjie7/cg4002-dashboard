@@ -100,6 +100,8 @@ const io = require('socket.io')(server, {
 })
 
 const DummyData = require('./models/dummy_data')
+const DummyData2 = require('./models/dummy_data2')
+const DummyData3 = require('./models/dummy_data3')
 
 const DummySensorData = require('./data/dummySensor.json')
 const testLogData = require('./data/test_log.json')
@@ -172,12 +174,48 @@ setInterval(() => {
     position: getRandomData(DummySensorData).position,
   })
 
+  let data2 = new DummyData2({
+    xAxis: getRandomData(DummySensorData).xAxis,
+    yAxis: getRandomData(DummySensorData).yAxis,
+    zAxis: getRandomData(DummySensorData).zAxis,
+    danceMove: getRandomData(DummySensorData).danceMove,
+    position: getRandomData(DummySensorData).position,
+  })
+
+  let data3 = new DummyData3({
+    xAxis: getRandomData(DummySensorData).xAxis,
+    yAxis: getRandomData(DummySensorData).yAxis,
+    zAxis: getRandomData(DummySensorData).zAxis,
+    danceMove: getRandomData(DummySensorData).danceMove,
+    position: getRandomData(DummySensorData).position,
+  })
+
   data.save((err) => {
     if (err) {
       console.log(err)
     } else {
       console.log(
         `A new dummy data has been saved to Database: ${DummyData.db.name} | Collection:${DummyData.collection.collectionName}`
+      )
+    }
+  })
+
+  data2.save((err) => {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log(
+        `A new dummy data has been saved to Database: ${DummyData2.db.name} | Collection:${DummyData2.collection.collectionName}`
+      )
+    }
+  })
+
+  data3.save((err) => {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log(
+        `A new dummy data has been saved to Database: ${DummyData3.db.name} | Collection:${DummyData3.collection.collectionName}`
       )
     }
   })
@@ -188,6 +226,8 @@ connection.once('open', () => {
 
   console.log('Setting change streams')
   const dummyChangeStream = connection.collection('dummydatas').watch()
+  const dummyChangeStream2 = connection.collection('dummydata2').watch()
+  const dummyChangeStream3 = connection.collection('dummydata3').watch()
 
   dummyChangeStream.on('change', (change) => {
     switch (change.operationType) {
@@ -202,6 +242,48 @@ connection.once('open', () => {
         }
 
         io.emit('new_data', data)
+        break
+
+      // case 'delete':
+      //   io.of('/api/socket').emit('deletedThought', change.documentKey._id)
+      //   break
+    }
+  })
+
+  dummyChangeStream2.on('change', (change) => {
+    switch (change.operationType) {
+      case 'insert':
+        const data2 = {
+          _id: change.fullDocument._id,
+          xAxis: change.fullDocument.xAxis,
+          yAxis: change.fullDocument.yAxis,
+          zAxis: change.fullDocument.zAxis,
+          danceMove: change.fullDocument.danceMove,
+          position: change.fullDocument.position,
+        }
+
+        io.emit('new_data2', data2)
+        break
+
+      // case 'delete':
+      //   io.of('/api/socket').emit('deletedThought', change.documentKey._id)
+      //   break
+    }
+  })
+
+  dummyChangeStream3.on('change', (change) => {
+    switch (change.operationType) {
+      case 'insert':
+        const data3 = {
+          _id: change.fullDocument._id,
+          xAxis: change.fullDocument.xAxis,
+          yAxis: change.fullDocument.yAxis,
+          zAxis: change.fullDocument.zAxis,
+          danceMove: change.fullDocument.danceMove,
+          position: change.fullDocument.position,
+        }
+
+        io.emit('new_data3', data3)
         break
 
       // case 'delete':

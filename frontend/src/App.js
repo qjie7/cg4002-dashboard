@@ -5,6 +5,7 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom'
+import Home from './pages/Home'
 import Playground from './pages/Playground'
 import Dancebase from './pages/Dancebase'
 import Progress from './pages/Progress'
@@ -27,6 +28,9 @@ const App = () => {
         <Grid item container xs={11}>
           <Switch>
             <Route path='/' exact>
+              <Home />
+            </Route>
+            <Route path='/playground' exact>
               <Playground />
             </Route>
             <Route path='/dancebase' exact>

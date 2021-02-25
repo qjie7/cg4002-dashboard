@@ -59,7 +59,7 @@ import InputAdornments from '../components/InputAdornments/InputAdornments'
 import logo from '../images/logo_dev_transparent.png'
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(2),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
