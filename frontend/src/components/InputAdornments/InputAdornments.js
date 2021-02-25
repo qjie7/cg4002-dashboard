@@ -89,7 +89,7 @@ export default function InputAdornments(props) {
 
     // ..code to submit form to backend here...
     axios
-      .post('/authenticate/password', values)
+      .post('/api/login', values)
       .then((response) => {
         access(response.data)
         setAccessStatus(response.data)

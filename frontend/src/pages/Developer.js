@@ -28,6 +28,10 @@ import BasicTable from '../components/BasicTable/BasicTable'
 import Backdrop from '@material-ui/core/Backdrop'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
+import IconButton from '@material-ui/core/IconButton'
+import { FaPlay, FaPause } from 'react-icons/fa'
+import { IconContext } from 'react-icons'
+import MuiTooltip from '@material-ui/core/Tooltip'
 const socket = io('http://localhost:3000', {
   transports: ['websocket', 'polling'],
 })
@@ -73,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
   },
   margin: {
     margin: theme.spacing(1),
-    paddingRight: 33,
+    paddingRight: 20,
   },
   logout: {
     margin: theme.spacing(1),
@@ -282,6 +286,44 @@ export default function Developer(props) {
             <Tab label='Offline Analytics' {...a11yProps(3)} />
             {/* <Tab label='Log Out' {...a11yProps(6)}></Tab> */}
             <Grid container justify='flex-end'>
+              <MuiTooltip title='Connect/Disconnect'>
+                <IconButton
+                  aria-label='connect'
+                  className={classes.margin}
+                  size='large'
+                  onClick={handleConnection}
+                >
+                  {connection ? (
+                    <IconContext.Provider
+                      value={{ color: 'red', className: 'global-class-name' }}
+                    >
+                      <FaPause size={30} />
+                    </IconContext.Provider>
+                  ) : (
+                    <IconContext.Provider
+                      value={{ color: 'green', className: 'global-class-name' }}
+                    >
+                      <FaPlay size={30} />
+                    </IconContext.Provider>
+                  )}
+                </IconButton>
+              </MuiTooltip>
+
+              {/* <Button
+                variant='contained'
+                color='secondary'
+                onClick={handleConnection}
+                
+              >
+                {connection ? <p>DISCONNECT</p> : <p>CONNECT</p>}
+              </Button> */}
+              <Backdrop
+                className={classes.backdrop}
+                open={connection ? !socket.connected : false}
+              >
+                <CircularProgress color='inherit' />
+              </Backdrop>
+
               <Button
                 variant='contained'
                 color='secondary'
@@ -296,27 +338,41 @@ export default function Developer(props) {
         </AppBar>
         <TabPanel value={value} index={0}>
           <>
-            <Grid container justify='space-around'>
+            <Grid container justify='space-between'>
               <Grid item>
                 <div>
                   <h1>(Left) MPU </h1>
+
                   <LineChart width={500} height={300} data={data}>
                     <CartesianGrid strokeDasharray='3 3' />
                     <Tooltip />
                     <Legend />
                     <XAxis dataKey='time' />
-                    <YAxis />
+                    <YAxis
+                      label={{
+                        value: 'Accelerometer',
+                        angle: -90,
+                        position: 'middleLeft',
+                      }}
+                    />
 
                     <Line type='monotone' dataKey='xAxis' stroke='#820000' />
                     <Line type='monotone' dataKey='yAxis' stroke='#118200' />
                     <Line type='monotone' dataKey='zAxis' stroke='#000982' />
                   </LineChart>
+
                   <LineChart width={500} height={300} data={data}>
                     <CartesianGrid strokeDasharray='3 3' />
                     <Tooltip />
                     <Legend />
                     <XAxis dataKey='time' />
-                    <YAxis />
+                    <YAxis
+                      label={{
+                        value: 'Gyrometer',
+                        angle: -90,
+                        position: 'middleLeft',
+                      }}
+                    />
                     <Line type='monotone' dataKey='xAxis' stroke='#820000' />
                     <Line type='monotone' dataKey='yAxis' stroke='#118200' />
                     <Line type='monotone' dataKey='zAxis' stroke='#000982' />
@@ -331,7 +387,13 @@ export default function Developer(props) {
                     <Tooltip />
                     <Legend />
                     <XAxis dataKey='time' />
-                    <YAxis />
+                    <YAxis
+                      label={{
+                        value: 'Accelerometer',
+                        angle: -90,
+                        position: 'middleLeft',
+                      }}
+                    />
 
                     <Line type='monotone' dataKey='xAxis' stroke='#820000' />
                     <Line type='monotone' dataKey='yAxis' stroke='#118200' />
@@ -342,7 +404,13 @@ export default function Developer(props) {
                     <Tooltip />
                     <Legend />
                     <XAxis dataKey='time' />
-                    <YAxis />
+                    <YAxis
+                      label={{
+                        value: 'Gyrometer',
+                        angle: -90,
+                        position: 'middleLeft',
+                      }}
+                    />
                     <Line type='monotone' dataKey='xAxis' stroke='#820000' />
                     <Line type='monotone' dataKey='yAxis' stroke='#118200' />
                     <Line type='monotone' dataKey='zAxis' stroke='#000982' />
@@ -354,7 +422,7 @@ export default function Developer(props) {
         </TabPanel>
         <TabPanel value={value} index={1}>
           <>
-            <Grid container justify='space-around'>
+            <Grid container justify='space-between'>
               <Grid item>
                 <div>
                   <h1>(Left) MPU </h1>
@@ -363,7 +431,13 @@ export default function Developer(props) {
                     <Tooltip />
                     <Legend />
                     <XAxis dataKey='time' />
-                    <YAxis />
+                    <YAxis
+                      label={{
+                        value: 'Accelerometer',
+                        angle: -90,
+                        position: 'middleLeft',
+                      }}
+                    />
 
                     <Line type='monotone' dataKey='xAxis' stroke='#820000' />
                     <Line type='monotone' dataKey='yAxis' stroke='#118200' />
@@ -374,7 +448,13 @@ export default function Developer(props) {
                     <Tooltip />
                     <Legend />
                     <XAxis dataKey='time' />
-                    <YAxis />
+                    <YAxis
+                      label={{
+                        value: 'Gyrometer',
+                        angle: -90,
+                        position: 'middleLeft',
+                      }}
+                    />
                     <Line type='monotone' dataKey='xAxis' stroke='#820000' />
                     <Line type='monotone' dataKey='yAxis' stroke='#118200' />
                     <Line type='monotone' dataKey='zAxis' stroke='#000982' />
@@ -389,7 +469,13 @@ export default function Developer(props) {
                     <Tooltip />
                     <Legend />
                     <XAxis dataKey='time' />
-                    <YAxis />
+                    <YAxis
+                      label={{
+                        value: 'Accelerometer',
+                        angle: -90,
+                        position: 'middleLeft',
+                      }}
+                    />
 
                     <Line type='monotone' dataKey='xAxis' stroke='#820000' />
                     <Line type='monotone' dataKey='yAxis' stroke='#118200' />
@@ -400,7 +486,13 @@ export default function Developer(props) {
                     <Tooltip />
                     <Legend />
                     <XAxis dataKey='time' />
-                    <YAxis />
+                    <YAxis
+                      label={{
+                        value: 'Gyrometer',
+                        angle: -90,
+                        position: 'middleLeft',
+                      }}
+                    />
                     <Line type='monotone' dataKey='xAxis' stroke='#820000' />
                     <Line type='monotone' dataKey='yAxis' stroke='#118200' />
                     <Line type='monotone' dataKey='zAxis' stroke='#000982' />
@@ -412,7 +504,7 @@ export default function Developer(props) {
         </TabPanel>
         <TabPanel value={value} index={2}>
           <>
-            <Grid container justify='space-around'>
+            <Grid container justify='space-between'>
               <Grid item>
                 <div>
                   <h1>(Left) MPU </h1>
@@ -421,7 +513,13 @@ export default function Developer(props) {
                     <Tooltip />
                     <Legend />
                     <XAxis dataKey='time' />
-                    <YAxis />
+                    <YAxis
+                      label={{
+                        value: 'Accelerometer',
+                        angle: -90,
+                        position: 'middleLeft',
+                      }}
+                    />
 
                     <Line type='monotone' dataKey='xAxis' stroke='#820000' />
                     <Line type='monotone' dataKey='yAxis' stroke='#118200' />
@@ -432,7 +530,13 @@ export default function Developer(props) {
                     <Tooltip />
                     <Legend />
                     <XAxis dataKey='time' />
-                    <YAxis />
+                    <YAxis
+                      label={{
+                        value: 'Gyrometer',
+                        angle: -90,
+                        position: 'middleLeft',
+                      }}
+                    />
                     <Line type='monotone' dataKey='xAxis' stroke='#820000' />
                     <Line type='monotone' dataKey='yAxis' stroke='#118200' />
                     <Line type='monotone' dataKey='zAxis' stroke='#000982' />
@@ -447,7 +551,13 @@ export default function Developer(props) {
                     <Tooltip />
                     <Legend />
                     <XAxis dataKey='time' />
-                    <YAxis />
+                    <YAxis
+                      label={{
+                        value: 'Accelerometer',
+                        angle: -90,
+                        position: 'middleLeft',
+                      }}
+                    />
 
                     <Line type='monotone' dataKey='xAxis' stroke='#820000' />
                     <Line type='monotone' dataKey='yAxis' stroke='#118200' />
@@ -458,7 +568,13 @@ export default function Developer(props) {
                     <Tooltip />
                     <Legend />
                     <XAxis dataKey='time' />
-                    <YAxis />
+                    <YAxis
+                      label={{
+                        value: 'Gyrometer',
+                        angle: -90,
+                        position: 'middleLeft',
+                      }}
+                    />
                     <Line type='monotone' dataKey='xAxis' stroke='#820000' />
                     <Line type='monotone' dataKey='yAxis' stroke='#118200' />
                     <Line type='monotone' dataKey='zAxis' stroke='#000982' />
@@ -535,7 +651,7 @@ export default function Developer(props) {
           Item Seven
         </TabPanel>
       </div>
-      <Grid container justify='center'>
+      {/* <Grid container justify='center'>
         <Button
           variant='contained'
           color='secondary'
@@ -550,7 +666,7 @@ export default function Developer(props) {
         >
           <CircularProgress color='inherit' />
         </Backdrop>
-      </Grid>
+      </Grid> */}
     </>
   )
 }

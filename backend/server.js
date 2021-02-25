@@ -83,7 +83,7 @@ const authenticateRoutes = require('./routes/authenticate-route')
 const app = express()
 app.use(bodyParser.json())
 
-app.use('/authenticate/password', authenticateRoutes)
+app.use('/api/login', authenticateRoutes)
 
 app.use((error, req, res, next) => {
   if (res.headerSent) {

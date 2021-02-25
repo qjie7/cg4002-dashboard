@@ -5,6 +5,33 @@ import './VideoCarousel.css'
 import ReactPlayer from 'react-player'
 import BarChart from '../BarChart/BarChart'
 import { useState, useEffect } from 'react'
+import Tooltip from '@material-ui/core/Tooltip'
+
+import {
+  createMuiTheme,
+  MuiThemeProvider,
+  withStyles,
+} from '@material-ui/core/styles'
+
+const defaultTheme = createMuiTheme()
+const theme = createMuiTheme({
+  overrides: {
+    MuiTooltip: {
+      tooltip: {
+        fontSize: '2em',
+        color: 'white',
+        backgroundColor: '#503e9d',
+      },
+      arrow: {
+        fontSize: 20,
+        color: '#4A4A4A',
+        '&::before': {
+          backgroundColor: '#503e9d',
+        },
+      },
+    },
+  },
+})
 
 const breakPoints = [
   { width: 1, itemsToShow: 1 },
@@ -113,64 +140,101 @@ function VideoCarousel() {
     if (wipeTableValue) setWipeTableCount(wipeTableValue)
   }, [])
 
-  // // Just to show you the localStorage Value
-  // console.log(localStorage.getItem('count'))
-
   return (
     <>
-      <div className='videocarousel'>
-        <Carousel breakPoints={breakPoints}>
-          <Item>
-            <ReactPlayer
-              url='https://www.youtube.com/embed/19GptZzhhjM'
-              onEnded={increaseElbowKickCount}
-            />{' '}
-          </Item>
-          <Item>
-            <ReactPlayer
-              url='https://www.youtube.com/embed/hPFdDhZzwKM'
-              onEnded={increaseDabCount}
-            />{' '}
-          </Item>
-          <Item>
-            <ReactPlayer
-              url='https://www.youtube.com/embed/l1ApsUn-6Pw'
-              onEnded={increaseGunCount}
-            />{' '}
-          </Item>
-          <Item>
-            <ReactPlayer
-              url='https://www.youtube.com/embed/0Mp4zz-33Ow'
-              onEnded={increaseHairCount}
-            />{' '}
-          </Item>
+      <MuiThemeProvider theme={defaultTheme}>
+        <div className='videocarousel'>
+          <Carousel breakPoints={breakPoints} itemPadding={[10, 10]}>
+            <MuiThemeProvider theme={theme}>
+              <Tooltip title='Elbow Kick' arrow>
+                <Item>
+                  <ReactPlayer
+                    url='https://www.youtube.com/embed/19GptZzhhjM'
+                    onEnded={increaseElbowKickCount}
+                  />{' '}
+                </Item>
+              </Tooltip>
+            </MuiThemeProvider>
 
-          <Item>
-            <ReactPlayer
-              url='https://www.youtube.com/embed/Kx3pUsL0hyo'
-              onEnded={increaseListenCount}
-            />{' '}
-          </Item>
-          <Item>
-            <ReactPlayer
-              url='https://www.youtube.com/embed/WMoRZ0K7qFw'
-              onEnded={increasePointHighCount}
-            />{' '}
-          </Item>
-          <Item>
-            <ReactPlayer
-              url='https://www.youtube.com/embed/CDT-FrxOqXw'
-              onEnded={increaseSidePumpCount}
-            />{' '}
-          </Item>
-          <Item>
-            <ReactPlayer
-              url='https://www.youtube.com/embed/iTQs6-rYasY'
-              onEnded={increaseWipeTableCount}
-            />{' '}
-          </Item>
-        </Carousel>
-      </div>
+            <MuiThemeProvider theme={theme}>
+              <Tooltip title='Dab' arrow>
+                <Item>
+                  <ReactPlayer
+                    url='https://www.youtube.com/embed/hPFdDhZzwKM'
+                    onEnded={increaseDabCount}
+                  />{' '}
+                </Item>
+              </Tooltip>
+            </MuiThemeProvider>
+
+            <MuiThemeProvider theme={theme}>
+              <Tooltip title='Gun' arrow>
+                <Item>
+                  <ReactPlayer
+                    url='https://www.youtube.com/embed/l1ApsUn-6Pw'
+                    onEnded={increaseGunCount}
+                  />{' '}
+                </Item>
+              </Tooltip>
+            </MuiThemeProvider>
+
+            <MuiThemeProvider theme={theme}>
+              <Tooltip title='Hair' arrow>
+                <Item>
+                  <ReactPlayer
+                    url='https://www.youtube.com/embed/0Mp4zz-33Ow'
+                    onEnded={increaseHairCount}
+                  />{' '}
+                </Item>
+              </Tooltip>
+            </MuiThemeProvider>
+
+            <MuiThemeProvider theme={theme}>
+              <Tooltip title='Listen' arrow>
+                <Item>
+                  <ReactPlayer
+                    url='https://www.youtube.com/embed/Kx3pUsL0hyo'
+                    onEnded={increaseListenCount}
+                  />{' '}
+                </Item>
+              </Tooltip>
+            </MuiThemeProvider>
+
+            <MuiThemeProvider theme={theme}>
+              <Tooltip title='Point High' arrow>
+                <Item>
+                  <ReactPlayer
+                    url='https://www.youtube.com/embed/WMoRZ0K7qFw'
+                    onEnded={increasePointHighCount}
+                  />{' '}
+                </Item>
+              </Tooltip>
+            </MuiThemeProvider>
+
+            <MuiThemeProvider theme={theme}>
+              <Tooltip title='Side Pump' arrow>
+                <Item>
+                  <ReactPlayer
+                    url='https://www.youtube.com/embed/CDT-FrxOqXw'
+                    onEnded={increaseSidePumpCount}
+                  />{' '}
+                </Item>
+              </Tooltip>
+            </MuiThemeProvider>
+
+            <MuiThemeProvider theme={theme}>
+              <Tooltip title='Wipe Table' arrow>
+                <Item>
+                  <ReactPlayer
+                    url='https://www.youtube.com/embed/iTQs6-rYasY'
+                    onEnded={increaseWipeTableCount}
+                  />{' '}
+                </Item>
+              </Tooltip>
+            </MuiThemeProvider>
+          </Carousel>
+        </div>
+      </MuiThemeProvider>
 
       <BarChart
         elbowKickCount={elbowKickCount}

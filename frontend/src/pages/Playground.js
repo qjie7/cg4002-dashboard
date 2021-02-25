@@ -86,28 +86,6 @@ function Playground() {
     }
   }, [connection])
 
-  // useEffect(() => {
-  //   if (
-  //     position1 === testLog.position1 &&
-  //     position2 === testLog.position2 &&
-  //     position3 === testLog.position3 &&
-  //     currentDanceMove === testLog.danceMove
-  //   ) {
-  //     setCorrectness(true)
-  //   } else {
-  //     setCorrectness(false)
-  //   }
-  // })
-  // console.log(position1)
-  // console.log(position2)
-  // console.log(position3)
-  // console.log(testLog.position1)
-  // console.log(testLog.position2)
-  // console.log(testLog.position3)
-  // console.log(currentDanceMove)
-  // console.log(testLog.danceMove)
-  // console.log(correctness)
-
   return (
     <>
       <Grid container justify='center'>
@@ -146,53 +124,6 @@ function Playground() {
             danceMove={danceMove}
           />
         </Grid>
-
-        {/* <AnimateSharedLayout>
-          <motion.div
-            drag
-            dragElastic={0.2}
-            dragMomentum={false}
-            layout
-            layoutId
-            className={classes.player1}
-          >
-            <DancerCard name='Jack' status='Ready' />
-          </motion.div>
-
-          <motion.div
-            drag
-            dragElastic={0.2}
-            dragMomentum={false}
-            layout
-            layoutId
-            className={classes.player2}
-          >
-            <DancerCard name='Chris' status='Ready' />
-          </motion.div>
-
-          <motion.div
-            drag
-            dragElastic={0.2}
-            dragMomentum={false}
-            layout
-            layoutId
-            className={classes.player3}
-          >
-            <DancerCard name='Vincent' status='' />
-          </motion.div>
-        </AnimateSharedLayout> */}
-
-        {/* <Typography variant='h3'>Test Log Received</Typography>
-
-        <Grid item style={{ justifyItems: 'center' }}>
-          <BasicTable
-            danceMove={testLog.danceMove}
-            position1={testLog.position1}
-            position2={testLog.position2}
-            position3={testLog.position3}
-            correctness={correctness}
-          />
-        </Grid> */}
       </Grid>
 
       <Grid container justify='center'>
