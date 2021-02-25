@@ -1,11 +1,12 @@
 .sidebar-menu {
   background-color: #503e9d;
-  width: 120px;
+  width: 137px;
   height: 100vh;
   display: flex;
   justify-content: center;
   position: fixed;
   top: 0;
+  left: 0;
 }
 
 .sidebar-icon {

@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '4.5em',
     letterSpacing: '-1px',
     backgroundColor: '#503e9d',
+    top: '0px',
     color: 'white',
   },
 }))
@@ -88,7 +89,7 @@ function Playground() {
 
   return (
     <>
-      <Grid container justify='center'>
+      <Grid container justify='center' style={{ marginTop: '-10px' }}>
         <Grid item xs={12}>
           <Typography variant='h3' align='center' className={classes.heading}>
             {' '}

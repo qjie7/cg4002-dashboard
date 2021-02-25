@@ -80,7 +80,7 @@ export default function Authenticate(props) {
 
   return (
     <>
-      <Grid container justify='center'>
+      <Grid container justify='center' style={{ marginTop: '-10px' }}>
         <Grid item xs={12}>
           <Typography variant='h3' align='center' className={classes.heading}>
             {' '}
