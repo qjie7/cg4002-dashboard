@@ -3,6 +3,7 @@ import { Grid, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import Cartoon from '../components/Cartoon/Cartoon'
 import SpeechBubble from '../components/SpeechBubble/SpeechBubble'
+import './Home.css'
 const useStyles = makeStyles((theme) => ({
   root: {},
   heading: {
@@ -21,6 +22,10 @@ function Home() {
 
   return (
     <>
+      <div class='bg'></div>
+      <div class='bg bg2'></div>
+      <div class='bg bg3'></div>
+
       <Grid container justify='center' style={{ marginTop: '-10px' }}>
         <Grid item xs={12}>
           <Typography variant='h3' align='center' className={classes.heading}>

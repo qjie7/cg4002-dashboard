@@ -1,13 +1,13 @@
 .speech-bubble {
   position: relative;
-  background: #503e9d;
+  background: rgba(255, 255, 255, 0.8);
   border-radius: 0.4em;
-  color: white;
+  color: rgb(0, 0, 0);
   left: 200px;
   top: 50px;
   animation: 3.8s fadeIn;
   animation-fill-mode: forwards;
-
+  box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.25);
   visibility: hidden;
 }
 
@@ -33,7 +33,7 @@
   width: 0;
   height: 0;
   border: 20px solid transparent;
-  border-top-color: #503e9d;
+  border-top-color: rgba(255, 255, 255, 0.8);
   border-bottom: 0;
   border-left: 0;
   margin-left: -10px;
