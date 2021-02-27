@@ -101,37 +101,15 @@ export default function Developer(props) {
   const [value, setValue] = React.useState(0)
   const { access } = props
 
-  const [p1LeftAData, setP1LeftAData] = useState([])
   const [data, setData] = useState([])
   const [data2, setData2] = useState([])
   const [data3, setData3] = useState([])
 
-  // const [p1LeftGData, setP1LeftGData] = useState([])
-  // const [p1RightAData, setP1RightAData] = useState([])
-  // const [p1RightGData, setP1RightGData] = useState([])
-
-  // const [p2LeftAData, setP2LeftAData] = useState([])
-  // const [p2LeftGData, setP2LeftGData] = useState([])
-  // const [p2RightAData, setP2RightAData] = useState([])
-  // const [p2RightGData, setP2RightGData] = useState([])
-
-  // const [p3LeftAData, setP3LeftAData] = useState([])
-  // const [p3LeftGData, setP3LeftGData] = useState([])
-  // const [p3RightAData, setP3RightAData] = useState([])
-  // const [p3RightGData, setP3RightGData] = useState([])
   const [danceMove, setDanceMove] = useState('Dab')
-  // const [p1DanceMove, setP1DanceMove] = useState('Neutral')
-  // const [p2DanceMove, setP2DanceMove] = useState('Neutral')
-  // const [p3DanceMove, setP3DanceMove] = useState('Neutral')
 
   const [position, setPosition] = useState([1, 2, 3])
-  // const [p1Position, setP1Position] = useState(1)
-  // const [p2Position, setP2Position] = useState(2)
-  // const [p3Position, setP3Position] = useState(3)
 
   const [connection, setConnection] = useState(false)
-  // const [termination, setTermination] = useState(false)
-  // const [connection, setConnection] = useState(0)
 
   const handleConnection = () => {
     connection ? setConnection(false) : setConnection(true)
@@ -142,10 +120,6 @@ export default function Developer(props) {
   const handleAccess = () => {
     access(false)
   }
-
-  // const handleTermination = () => {
-  //   termination ? setTermination(false) : setTermination(true)
-  // }
 
   const handleChange = (event, newValue) => {
     setValue(newValue)
@@ -181,78 +155,12 @@ export default function Developer(props) {
       socket.on('test_log', (newData) => {
         setTestLog(newData)
       })
-
-      // socket.on('p1LeftG', (newData) => {
-      //   setP1LeftGData((currentData) => [...currentData, newData])
-      // })
-
-      // socket.on('p1RightA', (newData) => {
-      //   setP1RightAData((currentData) => [...currentData, newData])
-      // })
-      // socket.on('p1RightG', (newData) => {
-      //   setP1RightGData((currentData) => [...currentData, newData])
-      // })
-
-      // socket.on('p2LeftA', (newData) => {
-      //   setP2Position(newData.position)
-      //   setP2DanceMove(newData.danceMove)
-      //   setP2LeftAData((currentData) => [...currentData, newData])
-      // })
-      // socket.on('p2LeftG', (newData) => {
-      //   setP2LeftGData((currentData) => [...currentData, newData])
-      // })
-
-      // socket.on('p2RightA', (newData) => {
-      //   setP2RightAData((currentData) => [...currentData, newData])
-      // })
-      // socket.on('p2RightG', (newData) => {
-      //   setP2RightGData((currentData) => [...currentData, newData])
-      // })
-
-      // socket.on('p3LeftA', (newData) => {
-      //   setP3Position(newData.position)
-      //   setP3DanceMove(newData.danceMove)
-      //   setP3LeftAData((currentData) => [...currentData, newData])
-      // })
-      // socket.on('p3LeftG', (newData) => {
-      //   setP3LeftGData((currentData) => [...currentData, newData])
-      // })
-
-      // socket.on('p3RightA', (newData) => {
-      //   setP3RightAData((currentData) => [...currentData, newData])
-      // })
-      // socket.on('p3RightG', (newData) => {
-      //   setP3RightGData((currentData) => [...currentData, newData])
-      // })
     } else {
-      // socket.emit('end')
-      socket.off('new_data')
-      socket.off('new_data2')
-      socket.off('new_data3')
-      // socket.off('p1LeftG')
-      // socket.off('p1RightA')
-      // socket.off('p1RightG')
-      // socket.off('p2LeftA')
-      // socket.off('p2LeftG')
-      // socket.off('p2RightA')
-      // socket.off('p2RightG')
-      // socket.off('p3LeftA')
-      // socket.off('p3LeftG')
-      // socket.off('p3RightA')
-      // socket.off('p3RightG')
-      // socket.disconnect()
-      // socket.close('p1LeftA')
-      // socket.close('p1LeftG')
-      // socket.close('p1RightA')
-      // socket.close('p1RightG')
-      // socket.close('p2LeftA')
-      // socket.close('p2LeftG')
-      // socket.close('p2RightA')
-      // socket.close('p2RightG')
-      // socket.close('p3LeftA')
-      // socket.close('p3LeftG')
-      // socket.close('p3RightA')
-      // socket.close('p3RightG')
+      // socket.off('new_data')
+      // socket.off('new_data2')
+      // socket.off('new_data3')
+      socket.offAny()
+      //socket.close()
     }
   }, [connection])
 
@@ -295,7 +203,7 @@ export default function Developer(props) {
             <Tab label='Player 2' {...a11yProps(1)} />
             <Tab label='Player 3' {...a11yProps(2)} />
             <Tab label='Offline Analytics' {...a11yProps(3)} />
-            {/* <Tab label='Log Out' {...a11yProps(6)}></Tab> */}
+
             <Grid container justify='flex-end'>
               <MuiTooltip title='Connect/Disconnect'>
                 <IconButton
@@ -320,14 +228,6 @@ export default function Developer(props) {
                 </IconButton>
               </MuiTooltip>
 
-              {/* <Button
-                variant='contained'
-                color='secondary'
-                onClick={handleConnection}
-                
-              >
-                {connection ? <p>DISCONNECT</p> : <p>CONNECT</p>}
-              </Button> */}
               <Backdrop
                 className={classes.backdrop}
                 open={connection ? !socket.connected : false}
@@ -640,21 +540,7 @@ export default function Developer(props) {
             </Grid>
           </Grid>
         </TabPanel>
-        <TabPanel value={value} index={4}>
-          {/* <Grid container style={{ marginTop: '200px' }}>
-            <Grid container item justify='center'>
-              <Grid item>
-                <SimpleCard player='Player 1' danceMove={danceMove} />
-              </Grid>
-              <Grid item>
-                <SimpleCard player='Player 2' danceMove={danceMove} />
-              </Grid>
-              <Grid item>
-                <SimpleCard player='Player 3' danceMove={danceMove} />
-              </Grid>
-            </Grid>
-          </Grid> */}
-        </TabPanel>
+        <TabPanel value={value} index={4}></TabPanel>
         <TabPanel value={value} index={5}>
           Item Six
         </TabPanel>
@@ -662,22 +548,6 @@ export default function Developer(props) {
           Item Seven
         </TabPanel>
       </div>
-      {/* <Grid container justify='center'>
-        <Button
-          variant='contained'
-          color='secondary'
-          onClick={handleConnection}
-          className={classes.margin}
-        >
-          {connection ? <p>DISCONNECT</p> : <p>CONNECT</p>}
-        </Button>
-        <Backdrop
-          className={classes.backdrop}
-          open={connection ? !socket.connected : false}
-        >
-          <CircularProgress color='inherit' />
-        </Backdrop>
-      </Grid> */}
     </>
   )
 }

@@ -1,0 +1,41 @@
+.speech-bubble {
+  position: relative;
+  background: #503e9d;
+  border-radius: 0.4em;
+  color: white;
+  left: 200px;
+  top: 50px;
+  animation: 3.8s fadeIn;
+  animation-fill-mode: forwards;
+
+  visibility: hidden;
+}
+
+.ele:hover {
+  background-color: #123;
+}
+
+@keyframes fadeIn {
+  99% {
+    visibility: hidden;
+  }
+
+  100% {
+    visibility: visible;
+  }
+}
+
+.speech-bubble:after {
+  content: '';
+  position: absolute;
+  bottom: 100;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border: 20px solid transparent;
+  border-top-color: #503e9d;
+  border-bottom: 0;
+  border-left: 0;
+  margin-left: -10px;
+  margin-bottom: -20px;
+}

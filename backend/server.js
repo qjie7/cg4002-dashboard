@@ -116,10 +116,12 @@ io.on('connection', (socket) => {
 
   socket.on('disconnect', () => {
     console.log('socket.io: Client disconnected: ', socket.id)
+    clearInterval(dbInterval)
+    clearInterval(testInterval)
   })
 
   // Emitting events to the frontend
-  setInterval(() => {
+  let testInterval = setInterval(() => {
     socket.emit('test_log', getTestLogData(testLogData))
   }, 10000)
 
@@ -165,7 +167,7 @@ mongoose.connect(
 
 // Simulating the transfer of data into database
 // and update in real time of any changes to the database
-setInterval(() => {
+let dbInterval = setInterval(() => {
   let data = new DummyData({
     xAxis: getRandomData(DummySensorData).xAxis,
     yAxis: getRandomData(DummySensorData).yAxis,

@@ -12,9 +12,11 @@ import Button from '@material-ui/core/Button'
 import BasicTable from '../components/BasicTable/BasicTable'
 import Snackbar from '@material-ui/core/Snackbar'
 import classNames from 'classnames'
-
+import styled from 'styled-components'
+import { Modal } from '../components/Modal/Modal'
 import Backdrop from '@material-ui/core/Backdrop'
 import CircularProgress from '@material-ui/core/CircularProgress'
+import FormDialog from '../components/FormDialog/FormDialog'
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -34,6 +36,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50px;
+  bottom: 50px;
+`
+
 const socket = io('http://localhost:3000', {
   transports: ['websocket', 'polling'],
 })
@@ -43,27 +54,74 @@ function Playground() {
   const [danceMove, setDanceMove] = useState('Dab')
   const [position, setPosition] = useState([1, 2, 3])
 
-  // const [testLog, setTestLog] = useState({
-  //   danceMove: 'Dab',
-  //   position1: 1,
-  //   position2: 2,
-  //   position3: 3,
-  // })
-  const [correctness, setCorrectness] = useState(false)
-  // const [p1Position, setP1Position] = useState(1)
-  // const [p2Position, setP2Position] = useState(2)
-  // const [p3Position, setP3Position] = useState(3)
+  // const [correctness, setCorrectness] = useState(false)
 
-  // const [p1DanceMove, setP1DanceMove] = useState('')
-  // const [p2DanceMove, setP2DanceMove] = useState('')
-  // const [p3DanceMove, setP3DanceMove] = useState('')
+  const [showModal, setShowModal] = useState(false)
+
+  const openModal = () => {
+    setShowModal((prev) => !prev)
+  }
   const [connection, setConnection] = useState(false)
 
   const handleConnection = () => {
     connection ? setConnection(false) : setConnection(true)
+    connection ? setShowModal(true) : setShowModal(false)
   }
-  let [position1, position2, position3] = position
-  let currentDanceMove = danceMove
+
+  const [open, setOpen] = React.useState(false)
+  const handleClickOpen = () => {
+    setOpen(true)
+  }
+  const handleClose = () => {
+    setOpen(false)
+  }
+
+  const [open2, setOpen2] = React.useState(false)
+  const handleClickOpen2 = () => {
+    setOpen2(true)
+  }
+  const handleClose2 = () => {
+    setOpen2(false)
+  }
+
+  const [open3, setOpen3] = React.useState(false)
+  const handleClickOpen3 = () => {
+    setOpen3(true)
+  }
+  const handleClose3 = () => {
+    setOpen3(false)
+  }
+
+  function handleLeaderNameChange(e) {
+    // setLeader(e.target.value)
+    console.log(e.target.value)
+    localStorage.setItem('leaderName', e.target.value)
+  }
+
+  function handleMember1NameChange(e) {
+    // setLeader(e.target.value)
+    console.log(e.target.value)
+    localStorage.setItem('member1Name', e.target.value)
+  }
+
+  function handleMember2NameChange(e) {
+    // setLeader(e.target.value)
+    console.log(e.target.value)
+    localStorage.setItem('member2Name', e.target.value)
+  }
+
+  const [groupName, setGroupName] = useState('Group Name')
+  const [leaderName, setLeaderName] = useState('Leader Name')
+  const [member1Name, setMember1Name] = useState('Member 1 Name')
+  const [member2Name, setMember2Name] = useState('Member 2 Name')
+
+  useEffect(() => {
+    setGroupName(localStorage.getItem('groupName'))
+    setLeaderName(localStorage.getItem('leaderName'))
+    setMember1Name(localStorage.getItem('member1Name'))
+    setMember2Name(localStorage.getItem('member2Name'))
+  })
+
   useEffect(() => {
     if (connection) {
       socket.on('new_data', (newData) => {
@@ -83,46 +141,72 @@ function Playground() {
       //   setPosition(newData.position)
       // })
     } else {
+      // socket.off('new_data')
       socket.off('new_data')
+      // socket.disconnect('new_data')
     }
   }, [connection])
 
   return (
     <>
+      <FormDialog
+        handleClickOpen={handleClickOpen}
+        handleClose={handleClose}
+        open={open}
+        setOpen={setOpen}
+        handleNameChange={handleMember1NameChange}
+      />
+
+      <FormDialog
+        handleClickOpen={handleClickOpen2}
+        handleClose={handleClose2}
+        open={open2}
+        setOpen={setOpen2}
+        handleNameChange={handleLeaderNameChange}
+      />
+
+      <FormDialog
+        handleClickOpen={handleClickOpen3}
+        handleClose={handleClose3}
+        open={open3}
+        setOpen={setOpen3}
+        handleNameChange={handleMember2NameChange}
+      />
       <Grid container justify='center' style={{ marginTop: '-10px' }}>
         <Grid item xs={12}>
           <Typography variant='h3' align='center' className={classes.heading}>
-            {' '}
-            Dance Ground
+            {groupName}
           </Typography>
         </Grid>
       </Grid>
 
       <Grid container justify='center'>
-        <Grid item>
+        <Grid item onClick={handleClickOpen}>
           <DancerCard
-            name='Paula'
+            name={member1Name}
             position={position[0]}
             userImage='6CgkUjUl4og'
             danceMove={danceMove}
           />
         </Grid>
 
-        <Grid item>
+        <Grid item onClick={handleClickOpen2}>
           <DancerCard
-            name='Robinson'
+            name={leaderName}
             position={position[1]}
             userImage='sibVwORYqs0'
             danceMove={danceMove}
+            role='Leader'
           />
         </Grid>
 
-        <Grid item>
+        <Grid item onClick={handleClickOpen3}>
           <DancerCard
-            name='Erik'
+            name={member2Name}
             position={position[2]}
             userImage='d2MSDujJl2g'
             danceMove={danceMove}
+            role='Member 2'
           />
         </Grid>
       </Grid>
@@ -137,6 +221,9 @@ function Playground() {
           >
             {connection ? <p>END</p> : <p>START</p>}
           </Button>
+          <Container>
+            <Modal showModal={showModal} setShowModal={setShowModal} />
+          </Container>
           <Backdrop
             className={classes.backdrop}
             open={connection ? !socket.connected : false}

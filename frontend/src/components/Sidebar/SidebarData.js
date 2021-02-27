@@ -9,7 +9,7 @@ export const SidebarData = [
     path: '/playground',
     icon: <FaPlayCircle size='2x' />,
     className: 'sidebar-icon tooltip ',
-    toolTipText: 'PlayGround',
+    toolTipText: 'Dance Ground',
   },
   {
     path: '/dancebase',
