@@ -1,78 +1,3 @@
-// const express = require('express')
-// const bodyParser = require('body-parser')
-// const os = require('os-utils')
-// const server = require('http').createServer()
-// const io = require('socket.io')(server, {
-//   transports: ['websocket', 'polling'],
-// })
-
-// const dummyData = require('./data/dummySensor.json')
-
-// const app = express()
-
-// // listen to connections from frontend
-
-// io.on('connection', (socket) => {
-//   if (socket.connected) {
-//     console.log('Socket Connected!')
-//   }
-
-//   // socket.on('disconnect', function (reason) {
-//   //   if (reason === "io server disconnect") {
-//   //     // the disconnection was initiated by the server, you need to reconnect manually
-//   //     socket.connect();
-//   //   }
-//   //   console.log('disconnected')
-//   // })
-
-//   // Emitting events to the frontend
-//   setInterval(() => {
-//     socket.emit('p1LeftA', getRandomData(dummyData, 1))
-
-//     socket.emit('p1LeftG', getRandomData(dummyData))
-
-//     socket.emit('p1RightA', getRandomData(dummyData))
-
-//     socket.emit('p1RightG', getRandomData(dummyData))
-
-//     socket.emit('p2LeftA', getRandomData(dummyData, 2))
-
-//     socket.emit('p2LeftG', getRandomData(dummyData))
-
-//     socket.emit('p2RightA', getRandomData(dummyData))
-
-//     socket.emit('p2RightG', getRandomData(dummyData))
-
-//     socket.emit('p3LeftA', getRandomData(dummyData, 3))
-
-//     socket.emit('p3LeftG', getRandomData(dummyData))
-
-//     socket.emit('p3RightA', getRandomData(dummyData))
-
-//     socket.emit('p3RightG', getRandomData(dummyData))
-
-//     socket.emit('player1', getRandomData(dummyData, 1))
-//     socket.emit('player2', getRandomData(dummyData, 2))
-//     socket.emit('player3', getRandomData(dummyData, 3))
-//   }, 1000)
-// })
-
-// // app.use(danceBaseRoutes)
-// // app.use('/developer', developerRoutes)
-
-// // app.use((error, req, res, next) => {
-// //   if (res.headerSent) {
-// //     return next(error)
-// //   }
-// //   res.status(error.code || 500)
-// //   res.json({ message: error.message || 'An unknown error occurred!' })
-// // })
-
-// //start our web server and socket.io server listening
-// server.listen(3000, function () {
-//   console.log('listening to requests from localhost:3000')
-// })
-
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
@@ -99,9 +24,10 @@ const io = require('socket.io')(server, {
   transports: ['websocket', 'polling'],
 })
 
-const DummyData = require('./models/dummy_data')
-const DummyData2 = require('./models/dummy_data2')
-const DummyData3 = require('./models/dummy_data3')
+const Data = require('./models/data')
+// const DummyData = require('./models/dummy_data')
+// const DummyData2 = require('./models/dummy_data2')
+// const DummyData3 = require('./models/dummy_data3')
 
 const DummySensorData = require('./data/dummySensor.json')
 const testLogData = require('./data/test_log.json')
@@ -164,30 +90,72 @@ mongoose.connect(
     useFindAndModify: false,
   }
 )
-
 // Simulating the transfer of data into database
 // and update in real time of any changes to the database
 let dbInterval = setInterval(() => {
-  let data = new DummyData({
-    xAxis: getRandomData(DummySensorData).xAxis,
-    yAxis: getRandomData(DummySensorData).yAxis,
-    zAxis: getRandomData(DummySensorData).zAxis,
-    danceMove: getRandomData(DummySensorData).danceMove,
-    position: getRandomData(DummySensorData).position,
-  })
+  let data = new Data({
+    // Member 1 Left
+    xAxisMemberOneLeftA: getRandomData(DummySensorData).xAxis,
+    yAxisMemberOneLeftA: getRandomData(DummySensorData).yAxis,
+    zAxisMemberOneLeftA: getRandomData(DummySensorData).zAxis,
 
-  let data2 = new DummyData2({
-    xAxis: getRandomData(DummySensorData).xAxis,
-    yAxis: getRandomData(DummySensorData).yAxis,
-    zAxis: getRandomData(DummySensorData).zAxis,
-    danceMove: getRandomData(DummySensorData).danceMove,
-    position: getRandomData(DummySensorData).position,
-  })
+    xAxisMemberOneLeftG: getRandomData(DummySensorData).xAxis,
+    yAxisMemberOneLeftG: getRandomData(DummySensorData).yAxis,
+    zAxisMemberOneLeftG: getRandomData(DummySensorData).zAxis,
 
-  let data3 = new DummyData3({
-    xAxis: getRandomData(DummySensorData).xAxis,
-    yAxis: getRandomData(DummySensorData).yAxis,
-    zAxis: getRandomData(DummySensorData).zAxis,
+    // Member 1 Right
+    xAxisMemberOneRightA: getRandomData(DummySensorData).xAxis,
+    yAxisMemberOneRightA: getRandomData(DummySensorData).yAxis,
+    zAxisMemberOneRightA: getRandomData(DummySensorData).zAxis,
+
+    xAxisMemberOneRightG: getRandomData(DummySensorData).xAxis,
+    yAxisMemberOneRightG: getRandomData(DummySensorData).yAxis,
+    zAxisMemberOneRightG: getRandomData(DummySensorData).zAxis,
+
+    // Leader Left
+    xAxisLeaderLeftA: getRandomData(DummySensorData).xAxis,
+    yAxisLeaderLeftA: getRandomData(DummySensorData).yAxis,
+    zAxisLeaderLeftA: getRandomData(DummySensorData).zAxis,
+
+    xAxisLeaderLeftG: getRandomData(DummySensorData).xAxis,
+    yAxisLeaderLeftG: getRandomData(DummySensorData).yAxis,
+    zAxisLeaderLeftG: getRandomData(DummySensorData).zAxis,
+
+    // Leader Right
+    xAxisLeaderRightA: getRandomData(DummySensorData).xAxis,
+    yAxisLeaderRightA: getRandomData(DummySensorData).yAxis,
+    zAxisLeaderRightA: getRandomData(DummySensorData).zAxis,
+
+    xAxisLeaderRightG: getRandomData(DummySensorData).xAxis,
+    yAxisLeaderRightG: getRandomData(DummySensorData).yAxis,
+    zAxisLeaderRightG: getRandomData(DummySensorData).zAxis,
+
+    // Member 2 Left
+    xAxisMemberTwoLeftA: getRandomData(DummySensorData).xAxis,
+    yAxisMemberTwoLeftA: getRandomData(DummySensorData).yAxis,
+    zAxisMemberTwoLeftA: getRandomData(DummySensorData).zAxis,
+
+    xAxisMemberTwoLeftG: getRandomData(DummySensorData).xAxis,
+    yAxisMemberTwoLeftG: getRandomData(DummySensorData).yAxis,
+    zAxisMemberTwoLeftG: getRandomData(DummySensorData).zAxis,
+
+    // Member 2 Right
+    xAxisMemberTwoRightA: getRandomData(DummySensorData).xAxis,
+    yAxisMemberTwoRightA: getRandomData(DummySensorData).yAxis,
+    zAxisMemberTwoRightA: getRandomData(DummySensorData).zAxis,
+
+    xAxisMemberTwoRightG: getRandomData(DummySensorData).xAxis,
+    yAxisMemberTwoRightG: getRandomData(DummySensorData).yAxis,
+    zAxisMemberTwoRightG: getRandomData(DummySensorData).zAxis,
+
+    // EMG
+    xAxisEMG: getRandomData(DummySensorData).xAxis,
+    yAxisEMG: getRandomData(DummySensorData).yAxis,
+    zAxisEMG: getRandomData(DummySensorData).zAxis,
+    // xAxis: getRandomData(DummySensorData).xAxis,
+    // yAxis: getRandomData(DummySensorData).yAxis,
+    // zAxis: getRandomData(DummySensorData).zAxis,
+    time: getRandomData(DummySensorData).time,
     danceMove: getRandomData(DummySensorData).danceMove,
     position: getRandomData(DummySensorData).position,
   })
@@ -197,48 +165,150 @@ let dbInterval = setInterval(() => {
       console.log(err)
     } else {
       console.log(
-        `A new dummy data has been saved to Database: ${DummyData.db.name} | Collection:${DummyData.collection.collectionName}`
-      )
-    }
-  })
-
-  data2.save((err) => {
-    if (err) {
-      console.log(err)
-    } else {
-      console.log(
-        `A new dummy data has been saved to Database: ${DummyData2.db.name} | Collection:${DummyData2.collection.collectionName}`
-      )
-    }
-  })
-
-  data3.save((err) => {
-    if (err) {
-      console.log(err)
-    } else {
-      console.log(
-        `A new dummy data has been saved to Database: ${DummyData3.db.name} | Collection:${DummyData3.collection.collectionName}`
+        `A new dummy data has been saved to Database: ${Data.db.name} | Collection:${Data.collection.collectionName}`
       )
     }
   })
 }, 5000)
 
+// // Simulating the transfer of data into database
+// // and update in real time of any changes to the database
+// let dbInterval = setInterval(() => {
+//   let data = new DummyData({
+//     xAxis: getRandomData(DummySensorData).xAxis,
+//     yAxis: getRandomData(DummySensorData).yAxis,
+//     zAxis: getRandomData(DummySensorData).zAxis,
+//     danceMove: getRandomData(DummySensorData).danceMove,
+//     position: getRandomData(DummySensorData).position,
+//   })
+
+//   let data2 = new DummyData2({
+//     xAxis: getRandomData(DummySensorData).xAxis,
+//     yAxis: getRandomData(DummySensorData).yAxis,
+//     zAxis: getRandomData(DummySensorData).zAxis,
+//     danceMove: getRandomData(DummySensorData).danceMove,
+//     position: getRandomData(DummySensorData).position,
+//   })
+
+//   let data3 = new DummyData3({
+//     xAxis: getRandomData(DummySensorData).xAxis,
+//     yAxis: getRandomData(DummySensorData).yAxis,
+//     zAxis: getRandomData(DummySensorData).zAxis,
+//     danceMove: getRandomData(DummySensorData).danceMove,
+//     position: getRandomData(DummySensorData).position,
+//   })
+
+//   data.save((err) => {
+//     if (err) {
+//       console.log(err)
+//     } else {
+//       console.log(
+//         `A new dummy data has been saved to Database: ${DummyData.db.name} | Collection:${DummyData.collection.collectionName}`
+//       )
+//     }
+//   })
+
+//   data2.save((err) => {
+//     if (err) {
+//       console.log(err)
+//     } else {
+//       console.log(
+//         `A new dummy data has been saved to Database: ${DummyData2.db.name} | Collection:${DummyData2.collection.collectionName}`
+//       )
+//     }
+//   })
+
+//   data3.save((err) => {
+//     if (err) {
+//       console.log(err)
+//     } else {
+//       console.log(
+//         `A new dummy data has been saved to Database: ${DummyData3.db.name} | Collection:${DummyData3.collection.collectionName}`
+//       )
+//     }
+//   })
+// }, 5000)
+
 connection.once('open', () => {
   console.log('MongoDB database connected')
 
   console.log('Setting change streams')
-  const dummyChangeStream = connection.collection('dummydatas').watch()
-  const dummyChangeStream2 = connection.collection('dummydata2').watch()
-  const dummyChangeStream3 = connection.collection('dummydata3').watch()
 
-  dummyChangeStream.on('change', (change) => {
+  const dataChangeStream = connection.collection('datas').watch()
+  // const dummyChangeStream = connection.collection('dummydatas').watch()
+  // const dummyChangeStream2 = connection.collection('dummydata2').watch()
+  // const dummyChangeStream3 = connection.collection('dummydata3').watch()
+
+  dataChangeStream.on('change', (change) => {
     switch (change.operationType) {
       case 'insert':
         const data = {
           _id: change.fullDocument._id,
-          xAxis: change.fullDocument.xAxis,
-          yAxis: change.fullDocument.yAxis,
-          zAxis: change.fullDocument.zAxis,
+          // Member 1 Left
+          xAxisMemberOneLeftA: change.fullDocument.xAxisMemberOneLeftA,
+          yAxisMemberOneLeftA: change.fullDocument.yAxisMemberOneLeftA,
+          zAxisMemberOneLeftA: change.fullDocument.zAxisMemberOneLeftA,
+
+          xAxisMemberOneLeftG: change.fullDocument.xAxisMemberOneLeftG,
+          yAxisMemberOneLeftG: change.fullDocument.yAxisMemberOneLeftG,
+          zAxisMemberOneLeftG: change.fullDocument.zAxisMemberOneLeftG,
+
+          // Member 1 Right
+          xAxisMemberOneRightA: change.fullDocument.xAxisMemberOneRightA,
+          yAxisMemberOneRightA: change.fullDocument.yAxisMemberOneRightA,
+          zAxisMemberOneRightA: change.fullDocument.zAxisMemberOneRightA,
+
+          xAxisMemberOneRightG: change.fullDocument.xAxisMemberOneRightG,
+          yAxisMemberOneRightG: change.fullDocument.yAxisMemberOneRightG,
+          zAxisMemberOneRightG: change.fullDocument.zAxisMemberOneRightG,
+
+          // Leader Left
+          xAxisLeaderLeftA: change.fullDocument.xAxisLeaderLeftA,
+          yAxisLeaderLeftA: change.fullDocument.yAxisLeaderLeftA,
+          zAxisLeaderLeftA: change.fullDocument.zAxisLeaderLeftA,
+
+          xAxisLeaderLeftG: change.fullDocument.xAxisLeaderLeftG,
+          yAxisLeaderLeftG: change.fullDocument.yAxisLeaderLeftG,
+          zAxisLeaderLeftG: change.fullDocument.zAxisLeaderLeftG,
+
+          // Leader Right
+          xAxisLeaderRightA: change.fullDocument.xAxisLeaderRightA,
+          yAxisLeaderRightA: change.fullDocument.yAxisLeaderRightA,
+          zAxisLeaderRightA: change.fullDocument.zAxisLeaderRightA,
+
+          xAxisLeaderRightG: change.fullDocument.xAxisLeaderRightG,
+          yAxisLeaderRightG: change.fullDocument.yAxisLeaderRightG,
+          zAxisLeaderRightG: change.fullDocument.zAxisLeaderRightG,
+
+          // Member 2 Left
+          xAxisMemberTwoLeftA: change.fullDocument.xAxisMemberTwoLeftA,
+          yAxisMemberTwoLeftA: change.fullDocument.yAxisMemberTwoLeftA,
+          zAxisMemberTwoLeftA: change.fullDocument.zAxisMemberTwoLeftA,
+
+          xAxisMemberTwoLeftG: change.fullDocument.xAxisMemberTwoLeftG,
+          yAxisMemberTwoLeftG: change.fullDocument.yAxisMemberTwoLeftG,
+          zAxisMemberTwoLeftG: change.fullDocument.zAxisMemberTwoLeftG,
+
+          // Member 2 Right
+          xAxisMemberTwoRightA: change.fullDocument.xAxisMemberTwoRightA,
+          yAxisMemberTwoRightA: change.fullDocument.yAxisMemberTwoRightA,
+          zAxisMemberTwoRightA: change.fullDocument.zAxisMemberTwoRightA,
+
+          xAxisMemberTwoRightG: change.fullDocument.xAxisMemberTwoRightG,
+          yAxisMemberTwoRightG: change.fullDocument.yAxisMemberTwoRightG,
+          zAxisMemberTwoRightG: change.fullDocument.zAxisMemberTwoRightG,
+
+          // EMG
+          xAxisEMG: change.fullDocument.xAxisEMG,
+          yAxisEMG: change.fullDocument.yAxisEMG,
+          zAxisEMG: change.fullDocument.zAxisEMG,
+          // xAxis: getRandomData(DummySensorData).xAxis,
+          // yAxis: getRandomData(DummySensorData).yAxis,
+          // zAxis: getRandomData(DummySensorData).zAxis,
+          time: change.fullDocument.time,
+          // xAxis: change.fullDocument.xAxis,
+          // yAxis: change.fullDocument.yAxis,
+          // zAxis: change.fullDocument.zAxis,
           danceMove: change.fullDocument.danceMove,
           position: change.fullDocument.position,
         }
@@ -252,47 +322,68 @@ connection.once('open', () => {
     }
   })
 
-  dummyChangeStream2.on('change', (change) => {
-    switch (change.operationType) {
-      case 'insert':
-        const data2 = {
-          _id: change.fullDocument._id,
-          xAxis: change.fullDocument.xAxis,
-          yAxis: change.fullDocument.yAxis,
-          zAxis: change.fullDocument.zAxis,
-          danceMove: change.fullDocument.danceMove,
-          position: change.fullDocument.position,
-        }
+  // dummyChangeStream.on('change', (change) => {
+  //   switch (change.operationType) {
+  //     case 'insert':
+  //       const data = {
+  //         _id: change.fullDocument._id,
+  //         xAxis: change.fullDocument.xAxis,
+  //         yAxis: change.fullDocument.yAxis,
+  //         zAxis: change.fullDocument.zAxis,
+  //         danceMove: change.fullDocument.danceMove,
+  //         position: change.fullDocument.position,
+  //       }
 
-        io.emit('new_data2', data2)
-        break
+  //       io.emit('new_data', data)
+  //       break
 
-      // case 'delete':
-      //   io.of('/api/socket').emit('deletedThought', change.documentKey._id)
-      //   break
-    }
-  })
+  //     // case 'delete':
+  //     //   io.of('/api/socket').emit('deletedThought', change.documentKey._id)
+  //     //   break
+  //   }
+  // })
 
-  dummyChangeStream3.on('change', (change) => {
-    switch (change.operationType) {
-      case 'insert':
-        const data3 = {
-          _id: change.fullDocument._id,
-          xAxis: change.fullDocument.xAxis,
-          yAxis: change.fullDocument.yAxis,
-          zAxis: change.fullDocument.zAxis,
-          danceMove: change.fullDocument.danceMove,
-          position: change.fullDocument.position,
-        }
+  // dummyChangeStream2.on('change', (change) => {
+  //   switch (change.operationType) {
+  //     case 'insert':
+  //       const data2 = {
+  //         _id: change.fullDocument._id,
+  //         xAxis: change.fullDocument.xAxis,
+  //         yAxis: change.fullDocument.yAxis,
+  //         zAxis: change.fullDocument.zAxis,
+  //         danceMove: change.fullDocument.danceMove,
+  //         position: change.fullDocument.position,
+  //       }
 
-        io.emit('new_data3', data3)
-        break
+  //       io.emit('new_data2', data2)
+  //       break
 
-      // case 'delete':
-      //   io.of('/api/socket').emit('deletedThought', change.documentKey._id)
-      //   break
-    }
-  })
+  //     // case 'delete':
+  //     //   io.of('/api/socket').emit('deletedThought', change.documentKey._id)
+  //     //   break
+  //   }
+  // })
+
+  // dummyChangeStream3.on('change', (change) => {
+  //   switch (change.operationType) {
+  //     case 'insert':
+  //       const data3 = {
+  //         _id: change.fullDocument._id,
+  //         xAxis: change.fullDocument.xAxis,
+  //         yAxis: change.fullDocument.yAxis,
+  //         zAxis: change.fullDocument.zAxis,
+  //         danceMove: change.fullDocument.danceMove,
+  //         position: change.fullDocument.position,
+  //       }
+
+  //       io.emit('new_data3', data3)
+  //       break
+
+  //     // case 'delete':
+  //     //   io.of('/api/socket').emit('deletedThought', change.documentKey._id)
+  //     //   break
+  //   }
+  // })
 })
 
 // //schedule deletion of dummydatas at midnight

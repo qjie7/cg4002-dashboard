@@ -139,27 +139,28 @@ export default function Developer(props) {
   useEffect(() => {
     if (connection) {
       socket.on('new_data', (newData) => {
+        console.log(newData)
         setData((currentData) => [...currentData, newData])
         setPosition(newData.position)
         setDanceMove(newData.danceMove)
       })
 
-      socket.on('new_data2', (newData) => {
-        setData2((currentData) => [...currentData, newData])
-      })
+      // socket.on('new_data2', (newData) => {
+      //   setData2((currentData) => [...currentData, newData])
+      // })
 
-      socket.on('new_data3', (newData) => {
-        setData3((currentData) => [...currentData, newData])
-      })
+      // socket.on('new_data3', (newData) => {
+      //   setData3((currentData) => [...currentData, newData])
+      // })
 
       socket.on('test_log', (newData) => {
         setTestLog(newData)
       })
     } else {
-      // socket.off('new_data')
+      socket.off('new_data')
       // socket.off('new_data2')
       // socket.off('new_data3')
-      socket.offAny()
+      // socket.offAny()
       //socket.close()
     }
   }, [connection])
@@ -177,7 +178,7 @@ export default function Developer(props) {
     }
   })
 
-  console.log(correctness)
+  // console.log(correctness)
   return (
     <>
       <Grid container justify='center' style={{ marginTop: '-10px' }}>
@@ -199,9 +200,9 @@ export default function Developer(props) {
             scrollButtons='auto'
             aria-label='scrollable auto tabs example'
           >
-            <Tab label='Player 1' {...a11yProps(0)} />
-            <Tab label='Player 2' {...a11yProps(1)} />
-            <Tab label='Player 3' {...a11yProps(2)} />
+            <Tab label='Member 1' {...a11yProps(0)} />
+            <Tab label='Leader' {...a11yProps(1)} />
+            <Tab label='Member 2' {...a11yProps(2)} />
             <Tab label='Offline Analytics' {...a11yProps(3)} />
 
             <Grid container justify='flex-end'>
@@ -267,12 +268,25 @@ export default function Developer(props) {
                       }}
                     />
 
-                    <Line type='monotone' dataKey='xAxis' stroke='#820000' />
-                    <Line type='monotone' dataKey='yAxis' stroke='#118200' />
-                    <Line type='monotone' dataKey='zAxis' stroke='#000982' />
+                    <Line
+                      type='monotone'
+                      dataKey='xAxisMemberOneLeftA'
+                      stroke='#820000'
+                    />
+                    <Line
+                      type='monotone'
+                      dataKey='yAxisMemberOneLeftA'
+                      stroke='#118200'
+                    />
+                    <Line
+                      type='monotone'
+                      dataKey='zAxisMemberOneLeftA'
+                      stroke='#000982'
+                    />
                   </LineChart>
 
-                  <LineChart width={500} height={300} data={data2}>
+                  {/* <LineChart width={500} height={300} data={data2}> */}
+                  <LineChart width={500} height={300} data={data}>
                     <CartesianGrid strokeDasharray='3 3' />
                     <Tooltip />
                     <Legend />
@@ -284,16 +298,29 @@ export default function Developer(props) {
                         position: 'middleLeft',
                       }}
                     />
-                    <Line type='monotone' dataKey='xAxis' stroke='#820000' />
-                    <Line type='monotone' dataKey='yAxis' stroke='#118200' />
-                    <Line type='monotone' dataKey='zAxis' stroke='#000982' />
+                    <Line
+                      type='monotone'
+                      dataKey='xAxisMemberOneLeftG'
+                      stroke='#820000'
+                    />
+                    <Line
+                      type='monotone'
+                      dataKey='yAxisMemberOneLeftG'
+                      stroke='#118200'
+                    />
+                    <Line
+                      type='monotone'
+                      dataKey='zAxisMemberOneLeftG'
+                      stroke='#000982'
+                    />
                   </LineChart>
                 </div>
               </Grid>
               <Grid item>
                 <div>
                   <h1>(Right) MPU </h1>
-                  <LineChart width={500} height={300} data={data3}>
+                  {/* <LineChart width={500} height={300} data={data3}> */}
+                  <LineChart width={500} height={300} data={data}>
                     <CartesianGrid strokeDasharray='3 3' />
                     <Tooltip />
                     <Legend />
@@ -306,9 +333,21 @@ export default function Developer(props) {
                       }}
                     />
 
-                    <Line type='monotone' dataKey='xAxis' stroke='#820000' />
-                    <Line type='monotone' dataKey='yAxis' stroke='#118200' />
-                    <Line type='monotone' dataKey='zAxis' stroke='#000982' />
+                    <Line
+                      type='monotone'
+                      dataKey='xAxisMemberOneRightA'
+                      stroke='#820000'
+                    />
+                    <Line
+                      type='monotone'
+                      dataKey='yAxisMemberOneRightA'
+                      stroke='#118200'
+                    />
+                    <Line
+                      type='monotone'
+                      dataKey='zAxisMemberOneRightA'
+                      stroke='#000982'
+                    />
                   </LineChart>
                   <LineChart width={500} height={300} data={data}>
                     <CartesianGrid strokeDasharray='3 3' />
@@ -322,9 +361,21 @@ export default function Developer(props) {
                         position: 'middleLeft',
                       }}
                     />
-                    <Line type='monotone' dataKey='xAxis' stroke='#820000' />
-                    <Line type='monotone' dataKey='yAxis' stroke='#118200' />
-                    <Line type='monotone' dataKey='zAxis' stroke='#000982' />
+                    <Line
+                      type='monotone'
+                      dataKey='xAxisMemberOneRightG'
+                      stroke='#820000'
+                    />
+                    <Line
+                      type='monotone'
+                      dataKey='yAxisMemberOneRightG'
+                      stroke='#118200'
+                    />
+                    <Line
+                      type='monotone'
+                      dataKey='zAxisMemberOneRightG'
+                      stroke='#000982'
+                    />
                   </LineChart>
                 </div>
               </Grid>
@@ -350,9 +401,21 @@ export default function Developer(props) {
                       }}
                     />
 
-                    <Line type='monotone' dataKey='xAxis' stroke='#820000' />
-                    <Line type='monotone' dataKey='yAxis' stroke='#118200' />
-                    <Line type='monotone' dataKey='zAxis' stroke='#000982' />
+                    <Line
+                      type='monotone'
+                      dataKey='xAxisLeaderLeftA'
+                      stroke='#820000'
+                    />
+                    <Line
+                      type='monotone'
+                      dataKey='yAxisLeaderLeftA'
+                      stroke='#118200'
+                    />
+                    <Line
+                      type='monotone'
+                      dataKey='zAxisLeaderLeftA'
+                      stroke='#000982'
+                    />
                   </LineChart>
                   <LineChart width={500} height={300} data={data}>
                     <CartesianGrid strokeDasharray='3 3' />
@@ -366,9 +429,21 @@ export default function Developer(props) {
                         position: 'middleLeft',
                       }}
                     />
-                    <Line type='monotone' dataKey='xAxis' stroke='#820000' />
-                    <Line type='monotone' dataKey='yAxis' stroke='#118200' />
-                    <Line type='monotone' dataKey='zAxis' stroke='#000982' />
+                    <Line
+                      type='monotone'
+                      dataKey='xAxisLeaderLeftG'
+                      stroke='#820000'
+                    />
+                    <Line
+                      type='monotone'
+                      dataKey='yAxisLeaderLeftG'
+                      stroke='#118200'
+                    />
+                    <Line
+                      type='monotone'
+                      dataKey='zAxisLeaderLeftG'
+                      stroke='#000982'
+                    />
                   </LineChart>
                 </div>
               </Grid>
@@ -388,9 +463,21 @@ export default function Developer(props) {
                       }}
                     />
 
-                    <Line type='monotone' dataKey='xAxis' stroke='#820000' />
-                    <Line type='monotone' dataKey='yAxis' stroke='#118200' />
-                    <Line type='monotone' dataKey='zAxis' stroke='#000982' />
+                    <Line
+                      type='monotone'
+                      dataKey='xAxisLeaderRightA'
+                      stroke='#820000'
+                    />
+                    <Line
+                      type='monotone'
+                      dataKey='yAxisLeaderRightA'
+                      stroke='#118200'
+                    />
+                    <Line
+                      type='monotone'
+                      dataKey='zAxisLeaderRightA'
+                      stroke='#000982'
+                    />
                   </LineChart>
                   <LineChart width={500} height={300} data={data}>
                     <CartesianGrid strokeDasharray='3 3' />
@@ -404,9 +491,21 @@ export default function Developer(props) {
                         position: 'middleLeft',
                       }}
                     />
-                    <Line type='monotone' dataKey='xAxis' stroke='#820000' />
-                    <Line type='monotone' dataKey='yAxis' stroke='#118200' />
-                    <Line type='monotone' dataKey='zAxis' stroke='#000982' />
+                    <Line
+                      type='monotone'
+                      dataKey='xAxisLeaderRightG'
+                      stroke='#820000'
+                    />
+                    <Line
+                      type='monotone'
+                      dataKey='yAxisLeaderRightG'
+                      stroke='#118200'
+                    />
+                    <Line
+                      type='monotone'
+                      dataKey='zAxisLeaderRightG'
+                      stroke='#000982'
+                    />
                   </LineChart>
                 </div>
               </Grid>
@@ -432,9 +531,21 @@ export default function Developer(props) {
                       }}
                     />
 
-                    <Line type='monotone' dataKey='xAxis' stroke='#820000' />
-                    <Line type='monotone' dataKey='yAxis' stroke='#118200' />
-                    <Line type='monotone' dataKey='zAxis' stroke='#000982' />
+                    <Line
+                      type='monotone'
+                      dataKey='xAxisMemberTwoLeftA'
+                      stroke='#820000'
+                    />
+                    <Line
+                      type='monotone'
+                      dataKey='yAxisMemberTwoLeftA'
+                      stroke='#118200'
+                    />
+                    <Line
+                      type='monotone'
+                      dataKey='zAxisMemberTwoLeftA'
+                      stroke='#000982'
+                    />
                   </LineChart>
                   <LineChart width={500} height={300} data={data}>
                     <CartesianGrid strokeDasharray='3 3' />
@@ -448,9 +559,21 @@ export default function Developer(props) {
                         position: 'middleLeft',
                       }}
                     />
-                    <Line type='monotone' dataKey='xAxis' stroke='#820000' />
-                    <Line type='monotone' dataKey='yAxis' stroke='#118200' />
-                    <Line type='monotone' dataKey='zAxis' stroke='#000982' />
+                    <Line
+                      type='monotone'
+                      dataKey='xAxisMemberTwoLeftG'
+                      stroke='#820000'
+                    />
+                    <Line
+                      type='monotone'
+                      dataKey='yAxisMemberTwoLeftG'
+                      stroke='#118200'
+                    />
+                    <Line
+                      type='monotone'
+                      dataKey='zAxisMemberTwoLeftG'
+                      stroke='#000982'
+                    />
                   </LineChart>
                 </div>
               </Grid>
@@ -470,9 +593,21 @@ export default function Developer(props) {
                       }}
                     />
 
-                    <Line type='monotone' dataKey='xAxis' stroke='#820000' />
-                    <Line type='monotone' dataKey='yAxis' stroke='#118200' />
-                    <Line type='monotone' dataKey='zAxis' stroke='#000982' />
+                    <Line
+                      type='monotone'
+                      dataKey='xAxisMemberTwoRightA'
+                      stroke='#820000'
+                    />
+                    <Line
+                      type='monotone'
+                      dataKey='yAxisMemberTwoRightA'
+                      stroke='#118200'
+                    />
+                    <Line
+                      type='monotone'
+                      dataKey='zAxisMemberTwoRightA'
+                      stroke='#000982'
+                    />
                   </LineChart>
                   <LineChart width={500} height={300} data={data}>
                     <CartesianGrid strokeDasharray='3 3' />
@@ -486,9 +621,21 @@ export default function Developer(props) {
                         position: 'middleLeft',
                       }}
                     />
-                    <Line type='monotone' dataKey='xAxis' stroke='#820000' />
-                    <Line type='monotone' dataKey='yAxis' stroke='#118200' />
-                    <Line type='monotone' dataKey='zAxis' stroke='#000982' />
+                    <Line
+                      type='monotone'
+                      dataKey='xAxisMemberTwoRightG'
+                      stroke='#820000'
+                    />
+                    <Line
+                      type='monotone'
+                      dataKey='yAxisMemberTwoRightG'
+                      stroke='#118200'
+                    />
+                    <Line
+                      type='monotone'
+                      dataKey='zAxisMemberTwoRightG'
+                      stroke='#000982'
+                    />
                   </LineChart>
                 </div>
               </Grid>
