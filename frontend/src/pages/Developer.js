@@ -203,7 +203,8 @@ export default function Developer(props) {
             <Tab label='Member 1' {...a11yProps(0)} />
             <Tab label='Leader' {...a11yProps(1)} />
             <Tab label='Member 2' {...a11yProps(2)} />
-            <Tab label='Offline Analytics' {...a11yProps(3)} />
+            <Tab label='EMG' {...a11yProps(3)} />
+            <Tab label='Offline Analytics' {...a11yProps(4)} />
 
             <Grid container justify='flex-end'>
               <MuiTooltip title='Connect/Disconnect'>
@@ -272,16 +273,19 @@ export default function Developer(props) {
                       type='monotone'
                       dataKey='xAxisMemberOneLeftA'
                       stroke='#820000'
+                      isAnimationActive={false}
                     />
                     <Line
                       type='monotone'
                       dataKey='yAxisMemberOneLeftA'
                       stroke='#118200'
+                      isAnimationActive={false}
                     />
                     <Line
                       type='monotone'
                       dataKey='zAxisMemberOneLeftA'
                       stroke='#000982'
+                      isAnimationActive={false}
                     />
                   </LineChart>
 
@@ -302,16 +306,19 @@ export default function Developer(props) {
                       type='monotone'
                       dataKey='xAxisMemberOneLeftG'
                       stroke='#820000'
+                      isAnimationActive={false}
                     />
                     <Line
                       type='monotone'
                       dataKey='yAxisMemberOneLeftG'
                       stroke='#118200'
+                      isAnimationActive={false}
                     />
                     <Line
                       type='monotone'
                       dataKey='zAxisMemberOneLeftG'
                       stroke='#000982'
+                      isAnimationActive={false}
                     />
                   </LineChart>
                 </div>
@@ -337,16 +344,19 @@ export default function Developer(props) {
                       type='monotone'
                       dataKey='xAxisMemberOneRightA'
                       stroke='#820000'
+                      isAnimationActive={false}
                     />
                     <Line
                       type='monotone'
                       dataKey='yAxisMemberOneRightA'
                       stroke='#118200'
+                      isAnimationActive={false}
                     />
                     <Line
                       type='monotone'
                       dataKey='zAxisMemberOneRightA'
                       stroke='#000982'
+                      isAnimationActive={false}
                     />
                   </LineChart>
                   <LineChart width={500} height={300} data={data}>
@@ -365,16 +375,19 @@ export default function Developer(props) {
                       type='monotone'
                       dataKey='xAxisMemberOneRightG'
                       stroke='#820000'
+                      isAnimationActive={false}
                     />
                     <Line
                       type='monotone'
                       dataKey='yAxisMemberOneRightG'
                       stroke='#118200'
+                      isAnimationActive={false}
                     />
                     <Line
                       type='monotone'
                       dataKey='zAxisMemberOneRightG'
                       stroke='#000982'
+                      isAnimationActive={false}
                     />
                   </LineChart>
                 </div>
@@ -405,16 +418,19 @@ export default function Developer(props) {
                       type='monotone'
                       dataKey='xAxisLeaderLeftA'
                       stroke='#820000'
+                      isAnimationActive={false}
                     />
                     <Line
                       type='monotone'
                       dataKey='yAxisLeaderLeftA'
                       stroke='#118200'
+                      isAnimationActive={false}
                     />
                     <Line
                       type='monotone'
                       dataKey='zAxisLeaderLeftA'
                       stroke='#000982'
+                      isAnimationActive={false}
                     />
                   </LineChart>
                   <LineChart width={500} height={300} data={data}>
@@ -433,16 +449,19 @@ export default function Developer(props) {
                       type='monotone'
                       dataKey='xAxisLeaderLeftG'
                       stroke='#820000'
+                      isAnimationActive={false}
                     />
                     <Line
                       type='monotone'
                       dataKey='yAxisLeaderLeftG'
                       stroke='#118200'
+                      isAnimationActive={false}
                     />
                     <Line
                       type='monotone'
                       dataKey='zAxisLeaderLeftG'
                       stroke='#000982'
+                      isAnimationActive={false}
                     />
                   </LineChart>
                 </div>
@@ -467,16 +486,19 @@ export default function Developer(props) {
                       type='monotone'
                       dataKey='xAxisLeaderRightA'
                       stroke='#820000'
+                      isAnimationActive={false}
                     />
                     <Line
                       type='monotone'
                       dataKey='yAxisLeaderRightA'
                       stroke='#118200'
+                      isAnimationActive={false}
                     />
                     <Line
                       type='monotone'
                       dataKey='zAxisLeaderRightA'
                       stroke='#000982'
+                      isAnimationActive={false}
                     />
                   </LineChart>
                   <LineChart width={500} height={300} data={data}>
@@ -495,16 +517,19 @@ export default function Developer(props) {
                       type='monotone'
                       dataKey='xAxisLeaderRightG'
                       stroke='#820000'
+                      isAnimationActive={false}
                     />
                     <Line
                       type='monotone'
                       dataKey='yAxisLeaderRightG'
                       stroke='#118200'
+                      isAnimationActive={false}
                     />
                     <Line
                       type='monotone'
                       dataKey='zAxisLeaderRightG'
                       stroke='#000982'
+                      isAnimationActive={false}
                     />
                   </LineChart>
                 </div>
@@ -535,16 +560,19 @@ export default function Developer(props) {
                       type='monotone'
                       dataKey='xAxisMemberTwoLeftA'
                       stroke='#820000'
+                      isAnimationActive={false}
                     />
                     <Line
                       type='monotone'
                       dataKey='yAxisMemberTwoLeftA'
                       stroke='#118200'
+                      isAnimationActive={false}
                     />
                     <Line
                       type='monotone'
                       dataKey='zAxisMemberTwoLeftA'
                       stroke='#000982'
+                      isAnimationActive={false}
                     />
                   </LineChart>
                   <LineChart width={500} height={300} data={data}>
@@ -563,16 +591,19 @@ export default function Developer(props) {
                       type='monotone'
                       dataKey='xAxisMemberTwoLeftG'
                       stroke='#820000'
+                      isAnimationActive={false}
                     />
                     <Line
                       type='monotone'
                       dataKey='yAxisMemberTwoLeftG'
                       stroke='#118200'
+                      isAnimationActive={false}
                     />
                     <Line
                       type='monotone'
                       dataKey='zAxisMemberTwoLeftG'
                       stroke='#000982'
+                      isAnimationActive={false}
                     />
                   </LineChart>
                 </div>
@@ -602,11 +633,13 @@ export default function Developer(props) {
                       type='monotone'
                       dataKey='yAxisMemberTwoRightA'
                       stroke='#118200'
+                      isAnimationActive={false}
                     />
                     <Line
                       type='monotone'
                       dataKey='zAxisMemberTwoRightA'
                       stroke='#000982'
+                      isAnimationActive={false}
                     />
                   </LineChart>
                   <LineChart width={500} height={300} data={data}>
@@ -625,16 +658,19 @@ export default function Developer(props) {
                       type='monotone'
                       dataKey='xAxisMemberTwoRightG'
                       stroke='#820000'
+                      isAnimationActive={false}
                     />
                     <Line
                       type='monotone'
                       dataKey='yAxisMemberTwoRightG'
                       stroke='#118200'
+                      isAnimationActive={false}
                     />
                     <Line
                       type='monotone'
                       dataKey='zAxisMemberTwoRightG'
                       stroke='#000982'
+                      isAnimationActive={false}
                     />
                   </LineChart>
                 </div>
@@ -643,6 +679,39 @@ export default function Developer(props) {
           </>
         </TabPanel>
         <TabPanel value={value} index={3}>
+          <LineChart width={500} height={300} data={data}>
+            <CartesianGrid strokeDasharray='3 3' />
+            <Tooltip />
+            <Legend />
+            <XAxis dataKey='time' />
+            <YAxis
+              label={{
+                value: 'EMG',
+                angle: -90,
+                position: 'middleLeft',
+              }}
+            />
+            <Line
+              type='monotone'
+              dataKey='xAxisEMG'
+              stroke='#820000'
+              isAnimationActive={false}
+            />
+            <Line
+              type='monotone'
+              dataKey='yAxisEMG'
+              stroke='#118200'
+              isAnimationActive={false}
+            />
+            <Line
+              type='monotone'
+              dataKey='zAxisEMG'
+              stroke='#000982'
+              isAnimationActive={false}
+            />
+          </LineChart>
+        </TabPanel>
+        <TabPanel value={value} index={4}>
           <Typography variant='h3'>Test Log Received</Typography>
 
           <Grid item style={{ justifyItems: 'center' }}>
@@ -687,7 +756,6 @@ export default function Developer(props) {
             </Grid>
           </Grid>
         </TabPanel>
-        <TabPanel value={value} index={4}></TabPanel>
         <TabPanel value={value} index={5}>
           Item Six
         </TabPanel>
