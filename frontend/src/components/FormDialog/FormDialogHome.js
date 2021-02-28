@@ -8,6 +8,7 @@ import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import { Typography } from '@material-ui/core'
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 export default function FormDialog(props) {
   // const [open, setOpen] = React.useState(false);
 
@@ -72,9 +73,9 @@ export default function FormDialog(props) {
           <DialogContentText>
             {`I guess you are here to improve your group dance performance? `}
           </DialogContentText>
-          <DialogContentText>{`Am I right? :P `}</DialogContentText>
+
           <DialogContentText>
-            {`Alright! Before you start, why not let me know your dance group name :D`}
+            {`Alright! Before you start, why not let me know your dance group name if you have yet to do so :D`}
           </DialogContentText>
           <TextField
             autoFocus
@@ -132,9 +133,11 @@ export default function FormDialog(props) {
           <Button onClick={props.handleClose} color='primary'>
             Cancel
           </Button>
-          <Button onClick={props.handleClose} color='primary'>
-            Confirm
-          </Button>
+          <Link to='/playground'>
+            <Button onClick={props.handleClose} color='primary'>
+              Confirm
+            </Button>
+          </Link>
         </DialogActions>
       </Dialog>
     </div>

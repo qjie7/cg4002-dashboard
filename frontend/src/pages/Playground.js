@@ -181,32 +181,38 @@ function Playground() {
       </Grid>
 
       <Grid container justify='center'>
-        <Grid item onClick={handleClickOpen}>
+        {/* <Grid item onClick={handleClickOpen}> */}
+        <Grid item>
           <DancerCard
             name={member1Name}
             position={position[0]}
             userImage='6CgkUjUl4og'
             danceMove={danceMove}
+            handleClickOpen={handleClickOpen}
           />
         </Grid>
 
-        <Grid item onClick={handleClickOpen2}>
+        {/* <Grid item onClick={handleClickOpen2}> */}
+        <Grid item>
           <DancerCard
             name={leaderName}
             position={position[1]}
             userImage='sibVwORYqs0'
             danceMove={danceMove}
             role='Leader'
+            handleClickOpen={handleClickOpen2}
           />
         </Grid>
 
-        <Grid item onClick={handleClickOpen3}>
+        {/* <Grid item onClick={handleClickOpen3}> */}
+        <Grid item>
           <DancerCard
             name={member2Name}
             position={position[2]}
             userImage='d2MSDujJl2g'
             danceMove={danceMove}
             role='Member 2'
+            handleClickOpen={handleClickOpen3}
           />
         </Grid>
       </Grid>

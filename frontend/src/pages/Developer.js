@@ -117,6 +117,16 @@ export default function Developer(props) {
     console.log('clicked')
   }
 
+  const [leaderName, setLeaderName] = useState('Leader Name')
+  const [member1Name, setMember1Name] = useState('Member 1 Name')
+  const [member2Name, setMember2Name] = useState('Member 2 Name')
+
+  useEffect(() => {
+    setLeaderName(localStorage.getItem('leaderName'))
+    setMember1Name(localStorage.getItem('member1Name'))
+    setMember2Name(localStorage.getItem('member2Name'))
+  })
+
   const handleAccess = () => {
     access(false)
   }
@@ -270,18 +280,21 @@ export default function Developer(props) {
                     />
 
                     <Line
+                      name='x'
                       type='monotone'
                       dataKey='xAxisMemberOneLeftA'
                       stroke='#820000'
                       isAnimationActive={false}
                     />
                     <Line
+                      name='y'
                       type='monotone'
                       dataKey='yAxisMemberOneLeftA'
                       stroke='#118200'
                       isAnimationActive={false}
                     />
                     <Line
+                      name='z'
                       type='monotone'
                       dataKey='zAxisMemberOneLeftA'
                       stroke='#000982'
@@ -303,18 +316,21 @@ export default function Developer(props) {
                       }}
                     />
                     <Line
+                      name='x'
                       type='monotone'
                       dataKey='xAxisMemberOneLeftG'
                       stroke='#820000'
                       isAnimationActive={false}
                     />
                     <Line
+                      name='y'
                       type='monotone'
                       dataKey='yAxisMemberOneLeftG'
                       stroke='#118200'
                       isAnimationActive={false}
                     />
                     <Line
+                      name='z'
                       type='monotone'
                       dataKey='zAxisMemberOneLeftG'
                       stroke='#000982'
@@ -341,18 +357,21 @@ export default function Developer(props) {
                     />
 
                     <Line
+                      name='x'
                       type='monotone'
                       dataKey='xAxisMemberOneRightA'
                       stroke='#820000'
                       isAnimationActive={false}
                     />
                     <Line
+                      name='y'
                       type='monotone'
                       dataKey='yAxisMemberOneRightA'
                       stroke='#118200'
                       isAnimationActive={false}
                     />
                     <Line
+                      name='z'
                       type='monotone'
                       dataKey='zAxisMemberOneRightA'
                       stroke='#000982'
@@ -372,18 +391,21 @@ export default function Developer(props) {
                       }}
                     />
                     <Line
+                      name='x'
                       type='monotone'
                       dataKey='xAxisMemberOneRightG'
                       stroke='#820000'
                       isAnimationActive={false}
                     />
                     <Line
+                      name='y'
                       type='monotone'
                       dataKey='yAxisMemberOneRightG'
                       stroke='#118200'
                       isAnimationActive={false}
                     />
                     <Line
+                      name='z'
                       type='monotone'
                       dataKey='zAxisMemberOneRightG'
                       stroke='#000982'
@@ -415,18 +437,21 @@ export default function Developer(props) {
                     />
 
                     <Line
+                      name='x'
                       type='monotone'
                       dataKey='xAxisLeaderLeftA'
                       stroke='#820000'
                       isAnimationActive={false}
                     />
                     <Line
+                      name='y'
                       type='monotone'
                       dataKey='yAxisLeaderLeftA'
                       stroke='#118200'
                       isAnimationActive={false}
                     />
                     <Line
+                      name='z'
                       type='monotone'
                       dataKey='zAxisLeaderLeftA'
                       stroke='#000982'
@@ -446,18 +471,21 @@ export default function Developer(props) {
                       }}
                     />
                     <Line
+                      name='x'
                       type='monotone'
                       dataKey='xAxisLeaderLeftG'
                       stroke='#820000'
                       isAnimationActive={false}
                     />
                     <Line
+                      name='y'
                       type='monotone'
                       dataKey='yAxisLeaderLeftG'
                       stroke='#118200'
                       isAnimationActive={false}
                     />
                     <Line
+                      name='z'
                       type='monotone'
                       dataKey='zAxisLeaderLeftG'
                       stroke='#000982'
@@ -483,18 +511,21 @@ export default function Developer(props) {
                     />
 
                     <Line
+                      name='x'
                       type='monotone'
                       dataKey='xAxisLeaderRightA'
                       stroke='#820000'
                       isAnimationActive={false}
                     />
                     <Line
+                      name='y'
                       type='monotone'
                       dataKey='yAxisLeaderRightA'
                       stroke='#118200'
                       isAnimationActive={false}
                     />
                     <Line
+                      name='z'
                       type='monotone'
                       dataKey='zAxisLeaderRightA'
                       stroke='#000982'
@@ -514,18 +545,21 @@ export default function Developer(props) {
                       }}
                     />
                     <Line
+                      name='x'
                       type='monotone'
                       dataKey='xAxisLeaderRightG'
                       stroke='#820000'
                       isAnimationActive={false}
                     />
                     <Line
+                      name='y'
                       type='monotone'
                       dataKey='yAxisLeaderRightG'
                       stroke='#118200'
                       isAnimationActive={false}
                     />
                     <Line
+                      name='z'
                       type='monotone'
                       dataKey='zAxisLeaderRightG'
                       stroke='#000982'
@@ -557,18 +591,21 @@ export default function Developer(props) {
                     />
 
                     <Line
+                      name='x'
                       type='monotone'
                       dataKey='xAxisMemberTwoLeftA'
                       stroke='#820000'
                       isAnimationActive={false}
                     />
                     <Line
+                      name='y'
                       type='monotone'
                       dataKey='yAxisMemberTwoLeftA'
                       stroke='#118200'
                       isAnimationActive={false}
                     />
                     <Line
+                      name='z'
                       type='monotone'
                       dataKey='zAxisMemberTwoLeftA'
                       stroke='#000982'
@@ -588,18 +625,21 @@ export default function Developer(props) {
                       }}
                     />
                     <Line
+                      name='x'
                       type='monotone'
                       dataKey='xAxisMemberTwoLeftG'
                       stroke='#820000'
                       isAnimationActive={false}
                     />
                     <Line
+                      name='y'
                       type='monotone'
                       dataKey='yAxisMemberTwoLeftG'
                       stroke='#118200'
                       isAnimationActive={false}
                     />
                     <Line
+                      name='z'
                       type='monotone'
                       dataKey='zAxisMemberTwoLeftG'
                       stroke='#000982'
@@ -625,17 +665,20 @@ export default function Developer(props) {
                     />
 
                     <Line
+                      name='x'
                       type='monotone'
                       dataKey='xAxisMemberTwoRightA'
                       stroke='#820000'
                     />
                     <Line
+                      name='y'
                       type='monotone'
                       dataKey='yAxisMemberTwoRightA'
                       stroke='#118200'
                       isAnimationActive={false}
                     />
                     <Line
+                      name='z'
                       type='monotone'
                       dataKey='zAxisMemberTwoRightA'
                       stroke='#000982'
@@ -655,18 +698,21 @@ export default function Developer(props) {
                       }}
                     />
                     <Line
+                      name='x'
                       type='monotone'
                       dataKey='xAxisMemberTwoRightG'
                       stroke='#820000'
                       isAnimationActive={false}
                     />
                     <Line
+                      name='y'
                       type='monotone'
                       dataKey='yAxisMemberTwoRightG'
                       stroke='#118200'
                       isAnimationActive={false}
                     />
                     <Line
+                      name='z'
                       type='monotone'
                       dataKey='zAxisMemberTwoRightG'
                       stroke='#000982'
@@ -692,18 +738,21 @@ export default function Developer(props) {
               }}
             />
             <Line
+              name='x'
               type='monotone'
               dataKey='xAxisEMG'
               stroke='#820000'
               isAnimationActive={false}
             />
             <Line
+              name='y'
               type='monotone'
               dataKey='yAxisEMG'
               stroke='#118200'
               isAnimationActive={false}
             />
             <Line
+              name='z'
               type='monotone'
               dataKey='zAxisEMG'
               stroke='#000982'
@@ -721,6 +770,9 @@ export default function Developer(props) {
               position2={testLog.position2}
               position3={testLog.position3}
               correctness={correctness}
+              member1Name={member1Name}
+              leaderName={leaderName}
+              member2Name={member2Name}
             />
           </Grid>
 
@@ -731,13 +783,13 @@ export default function Developer(props) {
 
             <Grid container item justify='center'>
               <Grid item>
-                <SimpleCard player='Paula' danceMove={danceMove} />
+                <SimpleCard player={member1Name} danceMove={danceMove} />
               </Grid>
               <Grid item>
-                <SimpleCard player='Robinson' danceMove={danceMove} />
+                <SimpleCard player={leaderName} danceMove={danceMove} />
               </Grid>
               <Grid item>
-                <SimpleCard player='Erik' danceMove={danceMove} />
+                <SimpleCard player={member2Name} danceMove={danceMove} />
               </Grid>
             </Grid>
           </Grid>

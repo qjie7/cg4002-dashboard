@@ -1,6 +1,7 @@
 import React from 'react'
 import './DancerCard.css'
 import { Grid } from '@material-ui/core'
+import Tooltip from '@material-ui/core/Tooltip'
 
 function DancerCard(props) {
   return (
@@ -25,7 +26,12 @@ function DancerCard(props) {
         </Grid>
 
         <div className='card-text'>
-          <h2>{props.name}</h2>
+          <Tooltip title='Edit Name'>
+            <h2 className='card-name' onClick={props.handleClickOpen}>
+              {props.name}
+            </h2>
+          </Tooltip>
+
           <div className='card-dance-name'>{props.danceMove}</div>
         </div>
         <div className='card-stats'>
