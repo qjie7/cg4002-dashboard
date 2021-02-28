@@ -40,16 +40,107 @@ const connection = mongoose.connection
 io.on('connection', (socket) => {
   console.log('socket.io: Client connected: ', socket.id)
 
+  // Simulating the transfer of data into database
+  // and update in real time of any changes to the database
+  // dbInterval = setInterval(() => {
+  //   let data = new Data({
+  //     // Member 1 Left
+  //     xAxisMemberOneLeftA: getRandomData(DummySensorData).xAxis,
+  //     yAxisMemberOneLeftA: getRandomData(DummySensorData).yAxis,
+  //     zAxisMemberOneLeftA: getRandomData(DummySensorData).zAxis,
+  //     xAxisMemberOneLeftG: getRandomData(DummySensorData).xAxis,
+  //     yAxisMemberOneLeftG: getRandomData(DummySensorData).yAxis,
+  //     zAxisMemberOneLeftG: getRandomData(DummySensorData).zAxis,
+  //     // Member 1 Right
+  //     xAxisMemberOneRightA: getRandomData(DummySensorData).xAxis,
+  //     yAxisMemberOneRightA: getRandomData(DummySensorData).yAxis,
+  //     zAxisMemberOneRightA: getRandomData(DummySensorData).zAxis,
+  //     xAxisMemberOneRightG: getRandomData(DummySensorData).xAxis,
+  //     yAxisMemberOneRightG: getRandomData(DummySensorData).yAxis,
+  //     zAxisMemberOneRightG: getRandomData(DummySensorData).zAxis,
+  //     // Leader Left
+  //     xAxisLeaderLeftA: getRandomData(DummySensorData).xAxis,
+  //     yAxisLeaderLeftA: getRandomData(DummySensorData).yAxis,
+  //     zAxisLeaderLeftA: getRandomData(DummySensorData).zAxis,
+  //     xAxisLeaderLeftG: getRandomData(DummySensorData).xAxis,
+  //     yAxisLeaderLeftG: getRandomData(DummySensorData).yAxis,
+  //     zAxisLeaderLeftG: getRandomData(DummySensorData).zAxis,
+  //     // Leader Right
+  //     xAxisLeaderRightA: getRandomData(DummySensorData).xAxis,
+  //     yAxisLeaderRightA: getRandomData(DummySensorData).yAxis,
+  //     zAxisLeaderRightA: getRandomData(DummySensorData).zAxis,
+  //     xAxisLeaderRightG: getRandomData(DummySensorData).xAxis,
+  //     yAxisLeaderRightG: getRandomData(DummySensorData).yAxis,
+  //     zAxisLeaderRightG: getRandomData(DummySensorData).zAxis,
+  //     // Member 2 Left
+  //     xAxisMemberTwoLeftA: getRandomData(DummySensorData).xAxis,
+  //     yAxisMemberTwoLeftA: getRandomData(DummySensorData).yAxis,
+  //     zAxisMemberTwoLeftA: getRandomData(DummySensorData).zAxis,
+  //     xAxisMemberTwoLeftG: getRandomData(DummySensorData).xAxis,
+  //     yAxisMemberTwoLeftG: getRandomData(DummySensorData).yAxis,
+  //     zAxisMemberTwoLeftG: getRandomData(DummySensorData).zAxis,
+  //     // Member 2 Right
+  //     xAxisMemberTwoRightA: getRandomData(DummySensorData).xAxis,
+  //     yAxisMemberTwoRightA: getRandomData(DummySensorData).yAxis,
+  //     zAxisMemberTwoRightA: getRandomData(DummySensorData).zAxis,
+  //     xAxisMemberTwoRightG: getRandomData(DummySensorData).xAxis,
+  //     yAxisMemberTwoRightG: getRandomData(DummySensorData).yAxis,
+  //     zAxisMemberTwoRightG: getRandomData(DummySensorData).zAxis,
+  //     // EMG
+  //     xAxisEMG: getRandomData(DummySensorData).xAxis,
+  //     yAxisEMG: getRandomData(DummySensorData).yAxis,
+  //     zAxisEMG: getRandomData(DummySensorData).zAxis,
+  //     // xAxis: getRandomData(DummySensorData).xAxis,
+  //     // yAxis: getRandomData(DummySensorData).yAxis,
+  //     // zAxis: getRandomData(DummySensorData).zAxis,
+  //     time: getRandomData(DummySensorData).time,
+  //     danceMove: getRandomData(DummySensorData).danceMove,
+  //     position: getRandomData(DummySensorData).position,
+  //   })
+  //   data.save((err) => {
+  //     if (err) {
+  //       console.log(err)
+  //     } else {
+  //       console.log(
+  //         `A new dummy data has been saved to Database: ${Data.db.name} | Collection:${Data.collection.collectionName}`
+  //       )
+  //     }
+  //   })
+  // }, 5000)
+
+  // Emitting events to the frontend
+  testInterval = setInterval(() => {
+    socket.emit('test_log', getTestLogData(testLogData))
+  }, 10000)
+
   socket.on('disconnect', () => {
     console.log('socket.io: Client disconnected: ', socket.id)
     clearInterval(dbInterval)
-    clearInterval(testInterval)
+    // clearInterval(testInterval)
   })
 
-  // Emitting events to the frontend
-  let testInterval = setInterval(() => {
-    socket.emit('test_log', getTestLogData(testLogData))
-  }, 10000)
+  // app.post('/api/connection', (req, res, next) => {
+  //   console.log(req.body.checked)
+  //   if (req.body.checked) {
+  //     socket.disconnect()
+  //     console.log('disconnect')
+  //   } else {
+  //     if (!socket) {
+  //       socket = io.connect('http://localhost:3000', { secure: false })
+  //       socket.on('connect', function () {
+  //         console.log('connected')
+  //       })
+  //       // socket.on('disconnect', function () {
+  //       //   console.log('disconnected')
+  //       // })
+  //     } else {
+  //       socket.socket.connect()
+  //     }
+  //     // socket.on('connection', (socket) => {
+  //     //   console.log('reconnect')
+  //     // })
+  //   }
+  // })
 
   // socket.on('video_click', (danceMove) => {
   //   //console.log(danceMove)
@@ -92,7 +183,7 @@ mongoose.connect(
 )
 // Simulating the transfer of data into database
 // and update in real time of any changes to the database
-let dbInterval = setInterval(() => {
+const dbInterval = setInterval(() => {
   let data = new Data({
     // Member 1 Left
     xAxisMemberOneLeftA: getRandomData(DummySensorData).xAxis,

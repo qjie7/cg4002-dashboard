@@ -17,7 +17,8 @@ import { Modal } from '../components/Modal/Modal'
 import Backdrop from '@material-ui/core/Backdrop'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import FormDialog from '../components/FormDialog/FormDialog'
-
+import Switch from 'react-switch'
+import axios from 'axios'
 const useStyles = makeStyles((theme) => ({
   margin: {
     margin: theme.spacing(1),
@@ -122,12 +123,37 @@ function Playground() {
     setMember2Name(localStorage.getItem('member2Name'))
   })
 
+  const [checked, setChecked] = useState(true)
+
+  function handleChange() {
+    // axios
+    //   .post('/api/connection', { checked })
+    //   .then((response) => {
+    //     console.log(response.data)
+    //   })
+    //   .catch((error) => {
+    //     console.log(error)
+    //   })
+    setChecked((prevChecked) => !checked)
+    // if (checked) {
+    //   socket.connect()
+    //   console.log('connect')
+    // } else {
+    //   socket.close()
+    //   console.log('disconnect')
+    // }
+    // console.log(checked)
+  }
+
   useEffect(() => {
     if (connection) {
+      // socket.connect()
+      // if (connection && checked) {
       socket.on('new_data', (newData) => {
         setDanceMove(newData.danceMove)
         setPosition(newData.position)
       })
+
       // socket.on('test_log', (newData) => {
       //   setTestLog(newData)
       // })
@@ -141,11 +167,47 @@ function Playground() {
       //   setPosition(newData.position)
       // })
     } else {
+      // if (!checked) {
+      //   socket.disconnect()
+      // } else {
+      //   socket.off('new_data')
+      // }
       // socket.off('new_data')
       socket.off('new_data')
       // socket.disconnect('new_data')
     }
   }, [connection])
+  // }, [connection, checked])
+
+  // useEffect(() => {
+  //   if (!checked && !connection) {
+  //     socket.off('new_data')
+
+  //     // socket.on('test_log', (newData) => {
+  //     //   setTestLog(newData)
+  //     // })
+
+  //     // socket.on('new_data', (newData) => {
+  //     //   setDanceMove(newData.danceMove)
+  //     //   setPosition(newData.position)
+  //     // })
+  //     // socket.on('new_data', (newData) => {
+  //     //   setDanceMove(newData.danceMove)
+  //     //   setPosition(newData.position)
+  //     // })
+  //   } else if (checked && connection) {
+  //     socket.on('new_data', (newData) => {
+  //       setDanceMove(newData.danceMove)
+  //       setPosition(newData.position)
+  //     })
+  //   } else if (checked && !connection) {
+  //     socket.off('new_data')
+  //   } else if (!checked) {
+  //     // socket.off('new_data')
+  //     //socket.off('new_data')
+  //     socket.disconnect('new_data')
+  //   }
+  // }, [connection])
 
   return (
     <>
@@ -227,6 +289,8 @@ function Playground() {
           >
             {connection ? <p>END</p> : <p>START</p>}
           </Button>
+          {/* <Switch type='submit' onChange={handleChange} checked={checked} /> */}
+
           <Container>
             <Modal showModal={showModal} setShowModal={setShowModal} />
           </Container>

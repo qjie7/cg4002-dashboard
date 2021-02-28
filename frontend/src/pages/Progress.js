@@ -27,7 +27,7 @@ function Progress() {
         <Grid item xs={12}>
           <Typography variant='h3' align='center' className={classes.heading}>
             {' '}
-            Dance Ground
+            Progress
           </Typography>
         </Grid>
       </Grid>

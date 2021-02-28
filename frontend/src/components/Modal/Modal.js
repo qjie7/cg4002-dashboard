@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useCallback } from 'react'
 import { useSpring, animated } from 'react-spring'
 import styled from 'styled-components'
 import { MdClose } from 'react-icons/md'
+import { Link } from 'react-router-dom'
 
 const Background = styled.div`
   width: 100%;
@@ -135,8 +136,11 @@ export const Modal = ({ showModal, setShowModal }) => {
               </ModalContentLeft>
               <ModalContentRight>
                 <h1>You are doing great! Keep it up!</h1>
-                <p></p>
-                <button>Join Now</button>
+
+                <p>Tips: Watch video tutorial to improve further!</p>
+                <Link to='/dancebase'>
+                  <button>Watch Now</button>
+                </Link>
               </ModalContentRight>
               <CloseModalButton
                 aria-label='Close modal'
