@@ -106,15 +106,16 @@ export default function Developer(props) {
 
   const [connection, setConnection] = useState(false)
 
+  const [leaderName, setLeaderName] = useState('Leader Name')
+  const [member1Name, setMember1Name] = useState('Member 1 Name')
+  const [member2Name, setMember2Name] = useState('Member 2 Name')
+
+  const [correctness, setCorrectness] = useState(false)
   const handleConnection = () => {
     connection ? setConnection(false) : setConnection(true)
 
     console.log('clicked')
   }
-
-  const [leaderName, setLeaderName] = useState('Leader Name')
-  const [member1Name, setMember1Name] = useState('Member 1 Name')
-  const [member2Name, setMember2Name] = useState('Member 2 Name')
 
   useEffect(() => {
     setLeaderName(localStorage.getItem('leaderName'))
@@ -136,10 +137,8 @@ export default function Developer(props) {
     position2: 2,
     position3: 3,
   })
-  const [correctness, setCorrectness] = useState(false)
 
   let currentDanceMove = danceMove
-
   useEffect(() => {
     if (connection) {
       socket.on('new_data', (newData) => {

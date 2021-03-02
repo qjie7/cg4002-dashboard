@@ -5,6 +5,12 @@ import { MdClose } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import Grid from '@material-ui/core/Grid'
+// import Snackbar from '@material-ui/core/Snackbar'
+// import MuiAlert from '@material-ui/lab/Alert'
+// import { makeStyles } from '@material-ui/core/styles'
+// function Alert(props) {
+//   return <MuiAlert elevation={6} variant='filled' {...props} />
+// }
 
 const Background = styled.div`
   width: 100%;
@@ -82,6 +88,13 @@ const CloseModalButton = styled(MdClose)`
   z-index: 10;
 `
 
+// const useStyles = makeStyles((theme) => ({
+//   alert: {
+//     width: '100%',
+//     marginLeft: '120px',
+//   },
+// }))
+
 export const Modal = ({
   showModal,
   setShowModal,
@@ -106,43 +119,212 @@ export const Modal = ({
 
   const closeModal = (e) => {
     if (modalRef.current === e.target) {
-      if (score === 1) {
-        increaseOneScore()
-      } else if (score === 2) {
-        increaseTwoScore()
-      } else if (score === 3) {
-        increaseThreeScore()
-      } else if (score === 4) {
-        increaseFourScore()
-      } else if (score === 5) {
-        increaseFiveScore()
-      } else if (score === 6) {
-        increaseSixScore()
-      } else if (score === 7) {
-        increaseSevenScore()
-      } else if (score === 8) {
-        increaseEightScore()
-      } else if (score === 9) {
-        increaseNineScore()
-      } else if (score === 10) {
-        increaseTenScore()
-      }
+      // setAccuracyDatas((oldDatas) => [...oldDatas, Math.floor(accuracyAvg)])
+      // localStorage.setItem('accuracyDatas', JSON.stringify(accuracyDatas))
 
-      setAccuracyDatas((oldDatas) => [...oldDatas, Math.floor(accuracyAvg)])
-      localStorage.setItem('accuracyDatas', JSON.stringify(accuracyDatas))
+      // setSyncDatas((oldDatas) => [...oldDatas, Math.floor(syncAvg)])
+      // localStorage.setItem('syncDatas', JSON.stringify(syncDatas))
 
-      setSyncDatas((oldDatas) => [...oldDatas, Math.floor(syncAvg)])
-      localStorage.setItem('syncDatas', JSON.stringify(syncDatas))
+      // setTime((oldDatas) => [...oldDatas, new Date().toLocaleTimeString()])
+      // localStorage.setItem('time', JSON.stringify(time))
 
-      setTime((oldDatas) => [...oldDatas, new Date().toLocaleTimeString()])
-      localStorage.setItem('time', JSON.stringify(time))
+      // if (score === 1) {
+      //   increaseOneScore()
+      // } else if (score === 2) {
+      //   increaseTwoScore()
+      // } else if (score === 3) {
+      //   increaseThreeScore()
+      // } else if (score === 4) {
+      //   increaseFourScore()
+      // } else if (score === 5) {
+      //   increaseFiveScore()
+      // } else if (score === 6) {
+      //   increaseSixScore()
+      // } else if (score === 7) {
+      //   increaseSevenScore()
+      // } else if (score === 8) {
+      //   increaseEightScore()
+      // } else if (score === 9) {
+      //   increaseNineScore()
+      // } else if (score === 10) {
+      //   increaseTenScore()
+      // }
 
       setScore(0)
       setShowModal(false)
+      setSaveStatus(false)
     }
   }
-
+  // const classes = useStyles()
   const closeModalWithCross = () => {
+    // setAccuracyDatas((oldDatas) => [...oldDatas, Math.floor(accuracyAvg)])
+    // localStorage.setItem('accuracyDatas', JSON.stringify(accuracyDatas))
+
+    // setSyncDatas((oldDatas) => [...oldDatas, Math.floor(syncAvg)])
+    // localStorage.setItem('syncDatas', JSON.stringify(syncDatas))
+
+    // setTime((oldDatas) => [...oldDatas, new Date().toLocaleTimeString()])
+    // localStorage.setItem('time', JSON.stringify(time))
+    // if (score === 1) {
+    //   increaseOneScore()
+    // } else if (score === 2) {
+    //   increaseTwoScore()
+    // } else if (score === 3) {
+    //   increaseThreeScore()
+    // } else if (score === 4) {
+    //   increaseFourScore()
+    // } else if (score === 5) {
+    //   increaseFiveScore()
+    // } else if (score === 6) {
+    //   increaseSixScore()
+    // } else if (score === 7) {
+    //   increaseSevenScore()
+    // } else if (score === 8) {
+    //   increaseEightScore()
+    // } else if (score === 9) {
+    //   increaseNineScore()
+    // } else if (score === 10) {
+    //   increaseTenScore()
+    // }
+    setScore(0)
+    setShowModal(false)
+    setSaveStatus(false)
+  }
+  const [saveStatus, setSaveStatus] = React.useState(false)
+  // const handleClose = (event, reason) => {
+  //   if (reason === 'clickaway') {
+  //     return
+  //   }
+
+  //   setSaveStatus(true)
+  // }
+
+  const [oneScore, setOneScore] = useState(localStorage.getItem('oneScore'))
+  const [twoScore, setTwoScore] = useState(localStorage.getItem('twoScore'))
+  const [threeScore, setThreeScore] = useState(
+    localStorage.getItem('threeScore')
+  )
+  const [fourScore, setFourScore] = useState(localStorage.getItem('fourScore'))
+  const [fiveScore, setFiveScore] = useState(localStorage.getItem('fiveScore'))
+  const [sixScore, setSixScore] = useState(localStorage.getItem('sixScore'))
+  const [sevenScore, setSevenScore] = useState(
+    localStorage.getItem('sevenScore')
+  )
+  const [eightScore, setEightScore] = useState(
+    localStorage.getItem('eightScore')
+  )
+  const [nineScore, setNineScore] = useState(localStorage.getItem('nineScore'))
+  const [tenScore, setTenScore] = useState(localStorage.getItem('tenScore'))
+
+  const [accuracyDatas, setAccuracyDatas] = useState(
+    JSON.parse(localStorage.getItem('accuracyDatas'))
+  )
+  const [syncDatas, setSyncDatas] = useState(
+    JSON.parse(localStorage.getItem('syncDatas'))
+  )
+
+  const [time, setTime] = useState(JSON.parse(localStorage.getItem('time')))
+  const [flag, setFlag] = useState(true)
+
+  const increaseOneScore = () => {
+    setOneScore((prevScore) => {
+      const newScore = Number(prevScore) + 1
+      localStorage.setItem('oneScore', newScore)
+      //eturn newScore
+    })
+  }
+
+  const increaseTwoScore = () => {
+    setTwoScore((prevScore) => {
+      const newScore = Number(prevScore) + 1
+      localStorage.setItem('twoScore', newScore)
+      //return newScore
+    })
+  }
+
+  const increaseThreeScore = () => {
+    setThreeScore((prevScore) => {
+      const newScore = Number(prevScore) + 1
+      localStorage.setItem('threeScore', newScore)
+      //return newScore
+    })
+  }
+
+  const increaseFourScore = () => {
+    setFourScore((prevScore) => {
+      const newScore = Number(prevScore) + 1
+      localStorage.setItem('fourScore', newScore)
+      //return newScore
+    })
+  }
+
+  const increaseFiveScore = () => {
+    setFiveScore((prevScore) => {
+      const newScore = Number(prevScore) + 1
+      localStorage.setItem('fiveScore', newScore)
+      //return newScore
+    })
+  }
+
+  const increaseSixScore = () => {
+    setSixScore((prevScore) => {
+      const newScore = Number(prevScore) + 1
+      localStorage.setItem('sixScore', newScore)
+      //return newScore
+    })
+  }
+
+  const increaseSevenScore = () => {
+    setSevenScore((prevScore) => {
+      const newScore = Number(prevScore) + 1
+      localStorage.setItem('sevenScore', newScore)
+      //return newScore
+    })
+  }
+
+  const increaseEightScore = () => {
+    setEightScore((prevScore) => {
+      const newScore = Number(prevScore) + 1
+      localStorage.setItem('eightScore', newScore)
+      //return newScore
+    })
+  }
+
+  const increaseNineScore = () => {
+    setNineScore((prevScore) => {
+      const newScore = Number(prevScore) + 1
+      localStorage.setItem('nineScore', newScore)
+      //return newScore
+    })
+  }
+
+  const increaseTenScore = () => {
+    setTenScore((prevScore) => {
+      const newScore = Number(prevScore) + 1
+      localStorage.setItem('tenScore', newScore)
+      //return newScore
+    })
+  }
+
+  const keyPress = useCallback(
+    (e) => {
+      if (e.key === 'Escape' && showModal) {
+        setShowModal(false)
+        setScore(0)
+        console.log('I pressed')
+      }
+    },
+    [setShowModal, showModal]
+  )
+
+  // let btnRef = useRef()
+
+  const handleSaveButton = (e) => {
+    setSaveStatus(true)
+    // if (btnRef.current) {
+    //   btnRef.current.setAttribute('disabled', 'disabled')
+    // }
+
     if (score === 1) {
       increaseOneScore()
     } else if (score === 2) {
@@ -173,132 +355,90 @@ export const Modal = ({
 
     setTime((oldDatas) => [...oldDatas, new Date().toLocaleTimeString()])
     localStorage.setItem('time', JSON.stringify(time))
-    setShowModal(false)
-    setScore(0)
   }
 
-  const [oneScore, setOneScore] = useState(localStorage.getItem('oneScore'))
-  const [twoScore, setTwoScore] = useState(localStorage.getItem('twoScore'))
-  const [threeScore, setThreeScore] = useState(
-    localStorage.getItem('threeScore')
-  )
-  const [fourScore, setFourScore] = useState(localStorage.getItem('fourScore'))
-  const [fiveScore, setFiveScore] = useState(localStorage.getItem('fiveScore'))
-  const [sixScore, setSixScore] = useState(localStorage.getItem('sixScore'))
-  const [sevenScore, setSevenScore] = useState(
-    localStorage.getItem('sevenScore')
-  )
-  const [eightScore, setEightScore] = useState(
-    localStorage.getItem('eightScore')
-  )
-  const [nineScore, setNineScore] = useState(localStorage.getItem('nineScore'))
-  const [tenScore, setTenScore] = useState(localStorage.getItem('tenScore'))
+  // useEffect(() => {
+  //   setSaveStatus(true)
+  //   if (btnRef.current) {
+  //     btnRef.current.setAttribute('disabled', 'disabled')
+  //   }
 
-  const increaseOneScore = () => {
-    setOneScore((prevScore) => {
-      const newScore = Number(prevScore) + 1
-      localStorage.setItem('oneScore', newScore)
-      return newScore
-    })
-  }
+  //   if (score === 1) {
+  //     increaseOneScore()
+  //   } else if (score === 2) {
+  //     increaseTwoScore()
+  //   } else if (score === 3) {
+  //     increaseThreeScore()
+  //   } else if (score === 4) {
+  //     increaseFourScore()
+  //   } else if (score === 5) {
+  //     increaseFiveScore()
+  //   } else if (score === 6) {
+  //     increaseSixScore()
+  //   } else if (score === 7) {
+  //     increaseSevenScore()
+  //   } else if (score === 8) {
+  //     increaseEightScore()
+  //   } else if (score === 9) {
+  //     increaseNineScore()
+  //   } else if (score === 10) {
+  //     increaseTenScore()
+  //   }
 
-  const increaseTwoScore = () => {
-    setTwoScore((prevScore) => {
-      const newScore = Number(prevScore) + 1
-      localStorage.setItem('twoScore', newScore)
-      return newScore
-    })
-  }
+  //   setAccuracyDatas((oldDatas) => [...oldDatas, Math.floor(accuracyAvg)])
+  //   localStorage.setItem('accuracyDatas', JSON.stringify(accuracyDatas))
 
-  const increaseThreeScore = () => {
-    setThreeScore((prevScore) => {
-      const newScore = Number(prevScore) + 1
-      localStorage.setItem('threeScore', newScore)
-      return newScore
-    })
-  }
+  //   setSyncDatas((oldDatas) => [...oldDatas, Math.floor(syncAvg)])
+  //   localStorage.setItem('syncDatas', JSON.stringify(syncDatas))
 
-  const increaseFourScore = () => {
-    setFourScore((prevScore) => {
-      const newScore = Number(prevScore) + 1
-      localStorage.setItem('fourScore', newScore)
-      return newScore
-    })
-  }
-
-  const increaseFiveScore = () => {
-    setFiveScore((prevScore) => {
-      const newScore = Number(prevScore) + 1
-      localStorage.setItem('fiveScore', newScore)
-      return newScore
-    })
-  }
-
-  const increaseSixScore = () => {
-    setSixScore((prevScore) => {
-      const newScore = Number(prevScore) + 1
-      localStorage.setItem('sixScore', newScore)
-      return newScore
-    })
-  }
-
-  const increaseSevenScore = () => {
-    setSevenScore((prevScore) => {
-      const newScore = Number(prevScore) + 1
-      localStorage.setItem('sevenScore', newScore)
-      return newScore
-    })
-  }
-
-  const increaseEightScore = () => {
-    setEightScore((prevScore) => {
-      const newScore = Number(prevScore) + 1
-      localStorage.setItem('eightScore', newScore)
-      return newScore
-    })
-  }
-
-  const increaseNineScore = () => {
-    setNineScore((prevScore) => {
-      const newScore = Number(prevScore) + 1
-      localStorage.setItem('nineScore', newScore)
-      return newScore
-    })
-  }
-
-  const increaseTenScore = () => {
-    setTenScore((prevScore) => {
-      const newScore = Number(prevScore) + 1
-      localStorage.setItem('tenScore', newScore)
-      return newScore
-    })
-  }
-
-  const [flag, setFlag] = useState(true)
-  const [accuracyDatas, setAccuracyDatas] = useState(
-    JSON.parse(localStorage.getItem('accuracyDatas'))
-  )
-  const [syncDatas, setSyncDatas] = useState(
-    JSON.parse(localStorage.getItem('syncDatas'))
-  )
-
-  const [time, setTime] = useState(JSON.parse(localStorage.getItem('time')))
-
-  const keyPress = useCallback(
-    (e) => {
-      if (e.key === 'Escape' && showModal) {
-        setShowModal(false)
-        setScore(0)
-        console.log('I pressed')
-      }
-    },
-    [setShowModal, showModal]
-  )
+  //   setTime((oldDatas) => [...oldDatas, new Date().toLocaleTimeString()])
+  //   localStorage.setItem('time', JSON.stringify(time))
+  // }, [saveStatus])
 
   useEffect(() => {
     document.addEventListener('keydown', keyPress)
+    // setScore(0)
+    // setShowModal(false)
+    // setSaveStatus(false)
     return () => document.removeEventListener('keydown', keyPress)
   }, [keyPress])
+
+  // const handleSaveButton = () => {
+  //   console.log(flag)
+  //   if (flag) {
+  //     if (score === 1) {
+  //       increaseOneScore()
+  //     } else if (score === 2) {
+  //       increaseTwoScore()
+  //     } else if (score === 3) {
+  //       increaseThreeScore()
+  //     } else if (score === 4) {
+  //       increaseFourScore()
+  //     } else if (score === 5) {
+  //       increaseFiveScore()
+  //     } else if (score === 6) {
+  //       increaseSixScore()
+  //     } else if (score === 7) {
+  //       increaseSevenScore()
+  //     } else if (score === 8) {
+  //       increaseEightScore()
+  //     } else if (score === 9) {
+  //       increaseNineScore()
+  //     } else if (score === 10) {
+  //       increaseTenScore()
+  //     }
+  //   }
+  //   setAccuracyDatas((oldDatas) => [...oldDatas, Math.floor(accuracyAvg)])
+  //   localStorage.setItem('accuracyDatas', JSON.stringify(accuracyDatas))
+
+  //   setSyncDatas((oldDatas) => [...oldDatas, Math.floor(syncAvg)])
+  //   localStorage.setItem('syncDatas', JSON.stringify(syncDatas))
+
+  //   setTime((oldDatas) => [...oldDatas, new Date().toLocaleTimeString()])
+  //   localStorage.setItem('time', JSON.stringify(time))
+  //   setFlag(false)
+  //   console.log(flag)
+  // }
 
   return (
     <>
@@ -323,6 +463,10 @@ export const Modal = ({
                     <p>{Math.floor(accuracyAvg)}%</p>
                   </Grid>
                 </Grid>
+
+                {/* <button ref={btnRef} onClick={handleSaveButton}> */}
+                <button onClick={handleSaveButton}>Save</button>
+                <p>{saveStatus ? 'saved!' : ''}</p>
               </ModalContentLeft>
               <ModalContentRight>
                 {score > 7 ? (
@@ -346,6 +490,16 @@ export const Modal = ({
           </animated.div>
         </Background>
       ) : null}
+
+      {/* <Snackbar
+        open={!saveStatus}
+        autoHideDuration={3000}
+        onClose={handleClose}
+      >
+        <Alert onClose={handleClose} severity='error' className={classes.alert}>
+          Saved!
+        </Alert>
+      </Snackbar> */}
     </>
   )
 }

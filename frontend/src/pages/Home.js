@@ -3,6 +3,7 @@ import { Grid, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import Cartoon from '../components/Cartoon/Cartoon'
 import SpeechBubble from '../components/SpeechBubble/SpeechBubble'
+import './Home.css'
 
 const useStyles = makeStyles((theme) => ({
   root: {},
