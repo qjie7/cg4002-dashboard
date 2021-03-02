@@ -177,9 +177,9 @@ export default function Developer(props) {
 
   useEffect(() => {
     if (
-      position1 === testLog.position1 &&
-      position2 === testLog.position2 &&
-      position3 === testLog.position3 &&
+      // position1 === testLog.position1 &&
+      // position2 === testLog.position2 &&
+      // position3 === testLog.position3 &&
       currentDanceMove === testLog.danceMove
     ) {
       setCorrectness(true)

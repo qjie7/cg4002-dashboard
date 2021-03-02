@@ -41,7 +41,7 @@ function Home() {
         </Grid>
       </Grid>
       <Grid container justify='center' className={classes.cartoon}>
-        {/* <Cartoon /> */}
+        <Cartoon />
       </Grid>
     </>
   )

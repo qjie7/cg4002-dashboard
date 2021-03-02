@@ -64,6 +64,8 @@ const DataSchema = new Schema({
   time: { type: String, required: true },
   danceMove: { type: String, required: true },
   position: [{ type: Number, required: true }],
+  accuracy: { type: Number, required: true },
+  sync: { type: Number, required: true },
 })
 
 module.exports = mongoose.model('Data', DataSchema)

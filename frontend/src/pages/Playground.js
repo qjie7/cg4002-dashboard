@@ -19,6 +19,7 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 import FormDialog from '../components/FormDialog/FormDialog'
 import Switch from 'react-switch'
 import axios from 'axios'
+import Scoreboard from '../components/Scoreboard/Scoreboard'
 const useStyles = makeStyles((theme) => ({
   margin: {
     margin: theme.spacing(1),
@@ -54,6 +55,10 @@ function Playground() {
   const classes = useStyles()
   const [danceMove, setDanceMove] = useState('Dab')
   const [position, setPosition] = useState([1, 2, 3])
+  const [accuracy, setAccuracy] = useState(0)
+  const [accuracyAvg, setAccuracyAvg] = useState(0)
+  const [sync, setSync] = useState(0)
+  const [syncAvg, setSyncAvg] = useState(0)
 
   // const [correctness, setCorrectness] = useState(false)
 
@@ -65,6 +70,16 @@ function Playground() {
   const [connection, setConnection] = useState(false)
 
   const handleConnection = () => {
+    if (connection) {
+      const accuracySum = accuracyList.reduce((a, b) => a + b, 0)
+      const accuracyAvg = accuracySum / accuracyList.length || 0
+      setAccuracyAvg(accuracyAvg)
+
+      const syncSum = syncList.reduce((a, b) => a + b, 0)
+      const syncAvg = syncSum / syncList.length || 0
+      setSyncAvg(syncAvg)
+      // console.log(accuracyAvg)
+    }
     connection ? setConnection(false) : setConnection(true)
     connection ? setShowModal(true) : setShowModal(false)
   }
@@ -124,26 +139,37 @@ function Playground() {
   })
 
   const [checked, setChecked] = useState(true)
+  const [score, setScore] = useState(0)
+  const [testLog, setTestLog] = useState({
+    danceMove: 'Dab',
+    position1: 1,
+    position2: 2,
+    position3: 3,
+  })
+  const [correctness, setCorrectness] = useState(false)
 
-  function handleChange() {
-    // axios
-    //   .post('/api/connection', { checked })
-    //   .then((response) => {
-    //     console.log(response.data)
-    //   })
-    //   .catch((error) => {
-    //     console.log(error)
-    //   })
-    setChecked((prevChecked) => !checked)
-    // if (checked) {
-    //   socket.connect()
-    //   console.log('connect')
-    // } else {
-    //   socket.close()
-    //   console.log('disconnect')
-    // }
-    // console.log(checked)
-  }
+  const [accuracyList, setAccuracyList] = useState([])
+  const [syncList, setSyncList] = useState([])
+
+  // function handleChange() {
+  //   // axios
+  //   //   .post('/api/connection', { checked })
+  //   //   .then((response) => {
+  //   //     console.log(response.data)
+  //   //   })
+  //   //   .catch((error) => {
+  //   //     console.log(error)
+  //   //   })
+  //   setChecked((prevChecked) => !checked)
+  //   // if (checked) {
+  //   //   socket.connect()
+  //   //   console.log('connect')
+  //   // } else {
+  //   //   socket.close()
+  //   //   console.log('disconnect')
+  //   // }
+  //   // console.log(checked)
+  // }
 
   useEffect(() => {
     if (connection) {
@@ -152,6 +178,13 @@ function Playground() {
       socket.on('new_data', (newData) => {
         setDanceMove(newData.danceMove)
         setPosition(newData.position)
+        setAccuracy(newData.accuracy)
+        setAccuracyList((oldList) => [...oldList, newData.accuracy])
+        setSync(newData.sync)
+        setSyncList((oldList) => [...oldList, newData.sync])
+      })
+      socket.on('test_log', (newData) => {
+        setTestLog(newData)
       })
 
       // socket.on('test_log', (newData) => {
@@ -174,9 +207,11 @@ function Playground() {
       // }
       // socket.off('new_data')
       socket.off('new_data')
+
       // socket.disconnect('new_data')
     }
   }, [connection])
+  // console.log(accuracyList)
   // }, [connection, checked])
 
   // useEffect(() => {
@@ -208,6 +243,26 @@ function Playground() {
   //     socket.disconnect('new_data')
   //   }
   // }, [connection])
+
+  useEffect(() => {
+    if (
+      // position1 === testLog.position1 &&
+      // position2 === testLog.position2 &&
+      // position3 === testLog.position3 &&
+      danceMove === testLog.danceMove
+    ) {
+      setCorrectness(true)
+      if (score < 10) {
+        setScore((prevScore) => prevScore + 1)
+      }
+      // if (!connection) {
+      //   setScore(0)
+      // }
+      console.log(score)
+    } else {
+      setCorrectness(false)
+    }
+  }, [danceMove])
 
   return (
     <>
@@ -251,6 +306,8 @@ function Playground() {
             userImage='6CgkUjUl4og'
             danceMove={danceMove}
             handleClickOpen={handleClickOpen}
+            accuracy={accuracy}
+            sync={sync}
           />
         </Grid>
 
@@ -263,6 +320,8 @@ function Playground() {
             danceMove={danceMove}
             role='Leader'
             handleClickOpen={handleClickOpen2}
+            accuracy={accuracy}
+            sync={sync}
           />
         </Grid>
 
@@ -275,12 +334,15 @@ function Playground() {
             danceMove={danceMove}
             role='Member 2'
             handleClickOpen={handleClickOpen3}
+            accuracy={accuracy}
+            sync={sync}
           />
         </Grid>
       </Grid>
 
       <Grid container justify='center'>
         <Grid item>
+          {/* <Scoreboard /> */}
           <Button
             variant='contained'
             color='secondary'
@@ -292,7 +354,18 @@ function Playground() {
           {/* <Switch type='submit' onChange={handleChange} checked={checked} /> */}
 
           <Container>
-            <Modal showModal={showModal} setShowModal={setShowModal} />
+            <Modal
+              showModal={showModal}
+              setShowModal={setShowModal}
+              score={score}
+              setScore={setScore}
+              setAccuracyList={setAccuracyList}
+              accuracyList={accuracyList}
+              accuracyAvg={accuracyAvg}
+              setSyncList={setSyncList}
+              syncList={syncList}
+              syncAvg={syncAvg}
+            />
           </Container>
           <Backdrop
             className={classes.backdrop}

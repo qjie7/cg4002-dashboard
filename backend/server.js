@@ -40,74 +40,6 @@ const connection = mongoose.connection
 io.on('connection', (socket) => {
   console.log('socket.io: Client connected: ', socket.id)
 
-  // Simulating the transfer of data into database
-  // and update in real time of any changes to the database
-  // dbInterval = setInterval(() => {
-  //   let data = new Data({
-  //     // Member 1 Left
-  //     xAxisMemberOneLeftA: getRandomData(DummySensorData).xAxis,
-  //     yAxisMemberOneLeftA: getRandomData(DummySensorData).yAxis,
-  //     zAxisMemberOneLeftA: getRandomData(DummySensorData).zAxis,
-  //     xAxisMemberOneLeftG: getRandomData(DummySensorData).xAxis,
-  //     yAxisMemberOneLeftG: getRandomData(DummySensorData).yAxis,
-  //     zAxisMemberOneLeftG: getRandomData(DummySensorData).zAxis,
-  //     // Member 1 Right
-  //     xAxisMemberOneRightA: getRandomData(DummySensorData).xAxis,
-  //     yAxisMemberOneRightA: getRandomData(DummySensorData).yAxis,
-  //     zAxisMemberOneRightA: getRandomData(DummySensorData).zAxis,
-  //     xAxisMemberOneRightG: getRandomData(DummySensorData).xAxis,
-  //     yAxisMemberOneRightG: getRandomData(DummySensorData).yAxis,
-  //     zAxisMemberOneRightG: getRandomData(DummySensorData).zAxis,
-  //     // Leader Left
-  //     xAxisLeaderLeftA: getRandomData(DummySensorData).xAxis,
-  //     yAxisLeaderLeftA: getRandomData(DummySensorData).yAxis,
-  //     zAxisLeaderLeftA: getRandomData(DummySensorData).zAxis,
-  //     xAxisLeaderLeftG: getRandomData(DummySensorData).xAxis,
-  //     yAxisLeaderLeftG: getRandomData(DummySensorData).yAxis,
-  //     zAxisLeaderLeftG: getRandomData(DummySensorData).zAxis,
-  //     // Leader Right
-  //     xAxisLeaderRightA: getRandomData(DummySensorData).xAxis,
-  //     yAxisLeaderRightA: getRandomData(DummySensorData).yAxis,
-  //     zAxisLeaderRightA: getRandomData(DummySensorData).zAxis,
-  //     xAxisLeaderRightG: getRandomData(DummySensorData).xAxis,
-  //     yAxisLeaderRightG: getRandomData(DummySensorData).yAxis,
-  //     zAxisLeaderRightG: getRandomData(DummySensorData).zAxis,
-  //     // Member 2 Left
-  //     xAxisMemberTwoLeftA: getRandomData(DummySensorData).xAxis,
-  //     yAxisMemberTwoLeftA: getRandomData(DummySensorData).yAxis,
-  //     zAxisMemberTwoLeftA: getRandomData(DummySensorData).zAxis,
-  //     xAxisMemberTwoLeftG: getRandomData(DummySensorData).xAxis,
-  //     yAxisMemberTwoLeftG: getRandomData(DummySensorData).yAxis,
-  //     zAxisMemberTwoLeftG: getRandomData(DummySensorData).zAxis,
-  //     // Member 2 Right
-  //     xAxisMemberTwoRightA: getRandomData(DummySensorData).xAxis,
-  //     yAxisMemberTwoRightA: getRandomData(DummySensorData).yAxis,
-  //     zAxisMemberTwoRightA: getRandomData(DummySensorData).zAxis,
-  //     xAxisMemberTwoRightG: getRandomData(DummySensorData).xAxis,
-  //     yAxisMemberTwoRightG: getRandomData(DummySensorData).yAxis,
-  //     zAxisMemberTwoRightG: getRandomData(DummySensorData).zAxis,
-  //     // EMG
-  //     xAxisEMG: getRandomData(DummySensorData).xAxis,
-  //     yAxisEMG: getRandomData(DummySensorData).yAxis,
-  //     zAxisEMG: getRandomData(DummySensorData).zAxis,
-  //     // xAxis: getRandomData(DummySensorData).xAxis,
-  //     // yAxis: getRandomData(DummySensorData).yAxis,
-  //     // zAxis: getRandomData(DummySensorData).zAxis,
-  //     time: getRandomData(DummySensorData).time,
-  //     danceMove: getRandomData(DummySensorData).danceMove,
-  //     position: getRandomData(DummySensorData).position,
-  //   })
-  //   data.save((err) => {
-  //     if (err) {
-  //       console.log(err)
-  //     } else {
-  //       console.log(
-  //         `A new dummy data has been saved to Database: ${Data.db.name} | Collection:${Data.collection.collectionName}`
-  //       )
-  //     }
-  //   })
-  // }, 5000)
-
   // Emitting events to the frontend
   testInterval = setInterval(() => {
     socket.emit('test_log', getTestLogData(testLogData))
@@ -249,6 +181,8 @@ const dbInterval = setInterval(() => {
     time: getRandomData(DummySensorData).time,
     danceMove: getRandomData(DummySensorData).danceMove,
     position: getRandomData(DummySensorData).position,
+    accuracy: getRandomData(DummySensorData).accuracy,
+    sync: getRandomData(DummySensorData).sync,
   })
 
   data.save((err) => {
@@ -260,65 +194,7 @@ const dbInterval = setInterval(() => {
       )
     }
   })
-}, 5000)
-
-// // Simulating the transfer of data into database
-// // and update in real time of any changes to the database
-// let dbInterval = setInterval(() => {
-//   let data = new DummyData({
-//     xAxis: getRandomData(DummySensorData).xAxis,
-//     yAxis: getRandomData(DummySensorData).yAxis,
-//     zAxis: getRandomData(DummySensorData).zAxis,
-//     danceMove: getRandomData(DummySensorData).danceMove,
-//     position: getRandomData(DummySensorData).position,
-//   })
-
-//   let data2 = new DummyData2({
-//     xAxis: getRandomData(DummySensorData).xAxis,
-//     yAxis: getRandomData(DummySensorData).yAxis,
-//     zAxis: getRandomData(DummySensorData).zAxis,
-//     danceMove: getRandomData(DummySensorData).danceMove,
-//     position: getRandomData(DummySensorData).position,
-//   })
-
-//   let data3 = new DummyData3({
-//     xAxis: getRandomData(DummySensorData).xAxis,
-//     yAxis: getRandomData(DummySensorData).yAxis,
-//     zAxis: getRandomData(DummySensorData).zAxis,
-//     danceMove: getRandomData(DummySensorData).danceMove,
-//     position: getRandomData(DummySensorData).position,
-//   })
-
-//   data.save((err) => {
-//     if (err) {
-//       console.log(err)
-//     } else {
-//       console.log(
-//         `A new dummy data has been saved to Database: ${DummyData.db.name} | Collection:${DummyData.collection.collectionName}`
-//       )
-//     }
-//   })
-
-//   data2.save((err) => {
-//     if (err) {
-//       console.log(err)
-//     } else {
-//       console.log(
-//         `A new dummy data has been saved to Database: ${DummyData2.db.name} | Collection:${DummyData2.collection.collectionName}`
-//       )
-//     }
-//   })
-
-//   data3.save((err) => {
-//     if (err) {
-//       console.log(err)
-//     } else {
-//       console.log(
-//         `A new dummy data has been saved to Database: ${DummyData3.db.name} | Collection:${DummyData3.collection.collectionName}`
-//       )
-//     }
-//   })
-// }, 5000)
+}, 1000)
 
 connection.once('open', () => {
   console.log('MongoDB database connected')
@@ -402,6 +278,8 @@ connection.once('open', () => {
           // zAxis: change.fullDocument.zAxis,
           danceMove: change.fullDocument.danceMove,
           position: change.fullDocument.position,
+          accuracy: change.fullDocument.accuracy,
+          sync: change.fullDocument.sync,
         }
 
         io.emit('new_data', data)

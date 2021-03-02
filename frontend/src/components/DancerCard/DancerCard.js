@@ -36,7 +36,7 @@ function DancerCard(props) {
         </div>
         <div className='card-stats'>
           <div className='stat'>
-            <div className='value'>100%</div>
+            <div className='value'>{props.accuracy}%</div>
             <div className='type'>Accuracy</div>
           </div>
           <div className='stat border'>
@@ -44,7 +44,7 @@ function DancerCard(props) {
             <div className='type'>Position</div>
           </div>
           <div className='stat'>
-            <div className='value'>57%</div>
+            <div className='value'>{props.sync}%</div>
             <div className='type'>Sync</div>
           </div>
         </div>
