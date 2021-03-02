@@ -49,10 +49,6 @@ const App = () => {
               )}
             </Route>
 
-            {/* <Route path='/authenticate' exact>
-              <Authenticate access={setAccess} />
-            </Route> */}
-
             <Redirect to='/' />
           </Switch>
         </Grid>

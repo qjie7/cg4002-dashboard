@@ -1,25 +1,18 @@
 import React from 'react'
-import DancerCard from '../components/DancerCard/DancerCard'
-import { Grid, Typography } from '@material-ui/core'
-import RadioButtonsGroup from '../components/RadioButtonsGroup/RadioButtonsGroup'
-import StartButton from '../components/Button/StartButton'
-import { motion, AnimateSharedLayout } from 'framer-motion'
-import { makeStyles } from '@material-ui/core/styles'
-import FlipMove from 'react-flip-move'
 import { useEffect, useState } from 'react'
-import io from 'socket.io-client'
-import Button from '@material-ui/core/Button'
-import BasicTable from '../components/BasicTable/BasicTable'
-import Snackbar from '@material-ui/core/Snackbar'
-import classNames from 'classnames'
-import styled from 'styled-components'
-import { Modal } from '../components/Modal/Modal'
-import Backdrop from '@material-ui/core/Backdrop'
+import { Grid, Typography } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
 import CircularProgress from '@material-ui/core/CircularProgress'
+import Button from '@material-ui/core/Button'
+import Backdrop from '@material-ui/core/Backdrop'
+
+import io from 'socket.io-client'
+import styled from 'styled-components'
+
+import { Modal } from '../components/Modal/Modal'
 import FormDialog from '../components/FormDialog/FormDialog'
-import Switch from 'react-switch'
-import axios from 'axios'
-import Scoreboard from '../components/Scoreboard/Scoreboard'
+import DancerCard from '../components/DancerCard/DancerCard'
+
 const useStyles = makeStyles((theme) => ({
   margin: {
     margin: theme.spacing(1),
@@ -60,8 +53,6 @@ function Playground() {
   const [sync, setSync] = useState(0)
   const [syncAvg, setSyncAvg] = useState(0)
 
-  // const [correctness, setCorrectness] = useState(false)
-
   const [showModal, setShowModal] = useState(false)
 
   const openModal = () => {
@@ -78,7 +69,6 @@ function Playground() {
       const syncSum = syncList.reduce((a, b) => a + b, 0)
       const syncAvg = syncSum / syncList.length || 0
       setSyncAvg(syncAvg)
-      // console.log(accuracyAvg)
     }
     connection ? setConnection(false) : setConnection(true)
     connection ? setShowModal(true) : setShowModal(false)
@@ -109,19 +99,16 @@ function Playground() {
   }
 
   function handleLeaderNameChange(e) {
-    // setLeader(e.target.value)
     console.log(e.target.value)
     localStorage.setItem('leaderName', e.target.value)
   }
 
   function handleMember1NameChange(e) {
-    // setLeader(e.target.value)
     console.log(e.target.value)
     localStorage.setItem('member1Name', e.target.value)
   }
 
   function handleMember2NameChange(e) {
-    // setLeader(e.target.value)
     console.log(e.target.value)
     localStorage.setItem('member2Name', e.target.value)
   }
@@ -138,7 +125,6 @@ function Playground() {
     setMember2Name(localStorage.getItem('member2Name'))
   })
 
-  const [checked, setChecked] = useState(true)
   const [score, setScore] = useState(0)
   const [testLog, setTestLog] = useState({
     danceMove: 'Dab',
@@ -150,26 +136,6 @@ function Playground() {
 
   const [accuracyList, setAccuracyList] = useState([])
   const [syncList, setSyncList] = useState([])
-
-  // function handleChange() {
-  //   // axios
-  //   //   .post('/api/connection', { checked })
-  //   //   .then((response) => {
-  //   //     console.log(response.data)
-  //   //   })
-  //   //   .catch((error) => {
-  //   //     console.log(error)
-  //   //   })
-  //   setChecked((prevChecked) => !checked)
-  //   // if (checked) {
-  //   //   socket.connect()
-  //   //   console.log('connect')
-  //   // } else {
-  //   //   socket.close()
-  //   //   console.log('disconnect')
-  //   // }
-  //   // console.log(checked)
-  // }
 
   useEffect(() => {
     if (connection) {
@@ -186,64 +152,11 @@ function Playground() {
       socket.on('test_log', (newData) => {
         setTestLog(newData)
       })
-
-      // socket.on('test_log', (newData) => {
-      //   setTestLog(newData)
-      // })
-
-      // socket.on('new_data', (newData) => {
-      //   setDanceMove(newData.danceMove)
-      //   setPosition(newData.position)
-      // })
-      // socket.on('new_data', (newData) => {
-      //   setDanceMove(newData.danceMove)
-      //   setPosition(newData.position)
-      // })
     } else {
-      // if (!checked) {
-      //   socket.disconnect()
-      // } else {
-      //   socket.off('new_data')
-      // }
-      // socket.off('new_data')
       socket.off('new_data')
       socket.off('test_log')
-
-      // socket.disconnect('new_data')
     }
   }, [connection])
-  // console.log(accuracyList)
-  // }, [connection, checked])
-
-  // useEffect(() => {
-  //   if (!checked && !connection) {
-  //     socket.off('new_data')
-
-  //     // socket.on('test_log', (newData) => {
-  //     //   setTestLog(newData)
-  //     // })
-
-  //     // socket.on('new_data', (newData) => {
-  //     //   setDanceMove(newData.danceMove)
-  //     //   setPosition(newData.position)
-  //     // })
-  //     // socket.on('new_data', (newData) => {
-  //     //   setDanceMove(newData.danceMove)
-  //     //   setPosition(newData.position)
-  //     // })
-  //   } else if (checked && connection) {
-  //     socket.on('new_data', (newData) => {
-  //       setDanceMove(newData.danceMove)
-  //       setPosition(newData.position)
-  //     })
-  //   } else if (checked && !connection) {
-  //     socket.off('new_data')
-  //   } else if (!checked) {
-  //     // socket.off('new_data')
-  //     //socket.off('new_data')
-  //     socket.disconnect('new_data')
-  //   }
-  // }, [connection])
 
   useEffect(() => {
     if (
@@ -256,9 +169,7 @@ function Playground() {
       if (score < 10) {
         setScore((prevScore) => prevScore + 1)
       }
-      // if (!connection) {
-      //   setScore(0)
-      // }
+
       console.log(score)
     } else {
       setCorrectness(false)
@@ -299,7 +210,6 @@ function Playground() {
       </Grid>
 
       <Grid container justify='center'>
-        {/* <Grid item onClick={handleClickOpen}> */}
         <Grid item>
           <DancerCard
             name={member1Name}
@@ -312,7 +222,6 @@ function Playground() {
           />
         </Grid>
 
-        {/* <Grid item onClick={handleClickOpen2}> */}
         <Grid item>
           <DancerCard
             name={leaderName}
@@ -326,7 +235,6 @@ function Playground() {
           />
         </Grid>
 
-        {/* <Grid item onClick={handleClickOpen3}> */}
         <Grid item>
           <DancerCard
             name={member2Name}
@@ -343,7 +251,6 @@ function Playground() {
 
       <Grid container justify='center'>
         <Grid item>
-          {/* <Scoreboard /> */}
           <Button
             variant='contained'
             color='secondary'
@@ -352,7 +259,6 @@ function Playground() {
           >
             {connection ? <p>END</p> : <p>START</p>}
           </Button>
-          {/* <Switch type='submit' onChange={handleChange} checked={checked} /> */}
 
           <Container>
             <Modal

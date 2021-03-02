@@ -2,22 +2,17 @@ import React from 'react'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import IconButton from '@material-ui/core/IconButton'
-import Input from '@material-ui/core/Input'
-import FilledInput from '@material-ui/core/FilledInput'
 import OutlinedInput from '@material-ui/core/OutlinedInput'
 import InputLabel from '@material-ui/core/InputLabel'
 import InputAdornment from '@material-ui/core/InputAdornment'
-import FormHelperText from '@material-ui/core/FormHelperText'
 import FormControl from '@material-ui/core/FormControl'
-import TextField from '@material-ui/core/TextField'
 import Visibility from '@material-ui/icons/Visibility'
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import Button from '@material-ui/core/Button'
 import axios from 'axios'
 import Snackbar from '@material-ui/core/Snackbar'
-
 import MuiAlert from '@material-ui/lab/Alert'
-import CustomizedSnackbars from '../CustomizedSnackbars/CustomizedSnackbars'
+
 function Alert(props) {
   return <MuiAlert elevation={6} variant='filled' {...props} />
 }
@@ -84,10 +79,6 @@ export default function InputAdornments(props) {
   }
 
   function handleSubmit(event) {
-    // event.preventDefault()
-    // console.log('Password: ', values.password)
-
-    // ..code to submit form to backend here...
     axios
       .post('/api/login', values)
       .then((response) => {
@@ -132,7 +123,6 @@ export default function InputAdornments(props) {
               labelWidth={260}
             />
           </FormControl>
-          {/* <input type='hidden' name='password' value={values.password}></input> */}
         </div>
       </div>
       <div style={{ textAlign: 'center' }} className={classes.button}>

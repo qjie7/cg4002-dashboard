@@ -4,7 +4,8 @@ import styled from 'styled-components'
 import { MdClose } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
-import { Typography, Grid } from '@material-ui/core'
+import Grid from '@material-ui/core/Grid'
+
 const Background = styled.div`
   width: 100%;
   height: 100%;
@@ -107,8 +108,6 @@ export const Modal = ({
     if (modalRef.current === e.target) {
       setShowModal(false)
 
-      // setFlag(true)
-
       if (score === 1) {
         increaseOneScore()
       } else if (score === 2) {
@@ -139,17 +138,12 @@ export const Modal = ({
 
       setTime((oldDatas) => [...oldDatas, new Date().toLocaleTimeString()])
       localStorage.setItem('time', JSON.stringify(time))
-      // setAccuracyList([])
-      // setSyncList([])
+
       setScore(0)
     }
   }
 
   const closeModalWithCross = () => {
-    setShowModal(false)
-
-    // setFlag(true)
-
     if (score === 1) {
       increaseOneScore()
     } else if (score === 2) {
@@ -180,12 +174,10 @@ export const Modal = ({
 
     setTime((oldDatas) => [...oldDatas, new Date().toLocaleTimeString()])
     localStorage.setItem('time', JSON.stringify(time))
-    // setAccuracyList([])
-    // setSyncList([])
+    setShowModal(false)
     setScore(0)
   }
 
-  // const [zeroScore, setZeroScore] = useState(localStorage.getItem('zeroScore'))
   const [oneScore, setOneScore] = useState(localStorage.getItem('oneScore'))
   const [twoScore, setTwoScore] = useState(localStorage.getItem('twoScore'))
   const [threeScore, setThreeScore] = useState(
@@ -202,14 +194,6 @@ export const Modal = ({
   )
   const [nineScore, setNineScore] = useState(localStorage.getItem('nineScore'))
   const [tenScore, setTenScore] = useState(localStorage.getItem('tenScore'))
-
-  // const increaseZeroScore = () => {
-  //   setZeroScore((prevScore) => {
-  //     const newScore = Number(prevScore) + 1
-  //     localStorage.setItem('zeroScore', newScore)
-  //     return newScore
-  //   })
-  // }
 
   const increaseOneScore = () => {
     setOneScore((prevScore) => {
@@ -300,56 +284,6 @@ export const Modal = ({
   )
 
   const [time, setTime] = useState(JSON.parse(localStorage.getItem('time')))
-  // const [highScore, setHighScore] = useState(0)
-  // const handleSaveButton = () => {
-  //   if (flag) {
-  //     // if (score === 0) {
-  //     //   increaseZeroScore()
-  //     // }
-  //     // if (score === 1) {
-  //     //   increaseOneScore()
-  //     // } else if (score === 2) {
-  //     //   increaseTwoScore()
-  //     // } else if (score === 3) {
-  //     //   increaseThreeScore()
-  //     // } else if (score === 4) {
-  //     //   increaseFourScore()
-  //     // } else if (score === 5) {
-  //     //   increaseFiveScore()
-  //     // } else if (score === 6) {
-  //     //   increaseSixScore()
-  //     // } else if (score === 7) {
-  //     //   increaseSevenScore()
-  //     // } else if (score === 8) {
-  //     //   increaseEightScore()
-  //     // } else if (score === 9) {
-  //     //   increaseNineScore()
-  //     // } else if (score === 10) {
-  //     //   increaseTenScore()
-  //     // }
-  //     // if (score > highScore) {
-  //     //   setHighScore(score)
-  //     //   localStorage.setItem('highScore', highScore)
-  //     // }
-  //   }
-
-  //   // setAccuracyDatas((oldDatas) => [...oldDatas, Math.floor(accuracyAvg)])
-  //   // localStorage.setItem('accuracyDatas', JSON.stringify(accuracyDatas))
-
-  //   // setSyncDatas((oldDatas) => [...oldDatas, Math.floor(syncAvg)])
-  //   // localStorage.setItem('syncDatas', JSON.stringify(syncDatas))
-
-  //   // setTime((oldDatas) => [...oldDatas, new Date().toLocaleTimeString()])
-  //   // localStorage.setItem('time', JSON.stringify(time))
-
-  //   // setAccuracyDatas((oldDatas) => [...oldDatas, Math.floor(accuracyAvg)])
-  //   // localStorage.setItem('accuracyDatas', JSON.stringify(accuracyDatas))
-
-  //   // setSyncDatas((oldDatas) => [...oldDatas, Math.floor(syncAvg)])
-  //   // localStorage.setItem('syncDatas', JSON.stringify(syncDatas))
-
-  //   setFlag(false)
-  // }
 
   const keyPress = useCallback(
     (e) => {
@@ -373,10 +307,6 @@ export const Modal = ({
         <Background onClick={closeModal} ref={modalRef}>
           <animated.div style={animation}>
             <ModalWrapper showModal={showModal}>
-              {/* <ModalImg
-                src={require('../../images/Claudia.png')}
-                alt='camera'
-              /> */}
               <ModalContentLeft style={{ justifyContent: 'center' }}>
                 <Grid container direction='column'>
                   <Grid item xs={12}>
@@ -394,8 +324,6 @@ export const Modal = ({
                     <p>{Math.floor(accuracyAvg)}%</p>
                   </Grid>
                 </Grid>
-
-                {/* <button onClick={handleSaveButton}>Save</button> */}
               </ModalContentLeft>
               <ModalContentRight>
                 {score > 7 ? (
@@ -413,7 +341,6 @@ export const Modal = ({
               </ModalContentRight>
               <CloseModalButton
                 aria-label='Close modal'
-                // onClick={() => setShowModal((prev) => !prev)}
                 onClick={closeModalWithCross}
               />
             </ModalWrapper>

@@ -1,23 +1,11 @@
 import React from 'react'
-import { Card, Typography, Grid } from '@material-ui/core'
+import { Typography, Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import PieChart from '../components/PieChart/PieChart'
-import OutlinedCard from '../components/OutlinedCard/OutlinedCard'
+
 import LineChart from '../components/LineChart/LineChart'
 import BarChartScore from '../components/BarChart/BarChartScore'
 import { useState, useEffect } from 'react'
-import { CardBox } from '../components/CardBox/CardBox'
-// import {
-//   BarChart,
-//   Bar,
-//   Line,
-//   LineChart,
-//   XAxis,
-//   YAxis,
-//   Tooltip,
-//   CartesianGrid,
-//   Legend,
-// } from 'recharts'
+
 const useStyles = makeStyles({
   root: {
     display: 'flex',
@@ -33,7 +21,6 @@ const useStyles = makeStyles({
 })
 
 function Progress({ borderColor }) {
-  // const [zeroScore, setZeroScore] = useState(0)
   const [oneScore, setOneScore] = useState(0)
   const [twoScore, setTwoScore] = useState(0)
   const [threeScore, setThreeScore] = useState(0)
@@ -44,15 +31,10 @@ function Progress({ borderColor }) {
   const [eightScore, setEightScore] = useState(0)
   const [nineScore, setNineScore] = useState(0)
   const [tenScore, setTenScore] = useState(0)
-  // const [accuracyDatas, setAccuracyDatas] = useState([0])
-  // const [syncDatas, setSyncDatas] = useState([0])
-  // const [time, setTime] = useState([0])
+
   const classes = useStyles()
 
   useEffect(() => {
-    // const zeroValue = localStorage.getItem('zeroScore')
-    // if (zeroValue) setZeroScore(zeroValue)
-
     const oneValue = localStorage.getItem('oneScore')
     if (oneValue) setOneScore(oneValue)
 
@@ -82,18 +64,6 @@ function Progress({ borderColor }) {
 
     const tenValue = localStorage.getItem('tenScore')
     if (tenValue) setTenScore(tenValue)
-
-    // const accuracyValue = localStorage.getItem('accuracyDatas')
-    // if (!accuracyValue) setAccuracyDatas([0])
-
-    // const syncValue = localStorage.getItem('syncDatas')
-    // if (!syncValue) setSyncDatas([0])
-
-    // const timeValue = localStorage.getItem('time')
-    // if (!timeValue) setTime([0])
-
-    // const tenValue = localStorage.getItem('tenScore')
-    // if (tenValue) setTenScore(tenValue)
   }, [])
 
   return (
@@ -111,7 +81,6 @@ function Progress({ borderColor }) {
         <Grid container item xs={12} spacing={3} marginLeft='100px'>
           <Grid item xs={12}>
             <BarChartScore
-              // zeroScore={zeroScore}
               oneScore={oneScore}
               twoScore={twoScore}
               threeScore={threeScore}
@@ -124,33 +93,13 @@ function Progress({ borderColor }) {
               tenScore={tenScore}
             />
           </Grid>
-          {/* 
-          <Grid
-            item
-            xs={3}
-            style={{ position: 'absolute', right: '10px', top: '125px' }}
-          >
-            <CardBox
-              title='High Score'
-              content={localStorage.getItem('highScore')}
-            />
-          </Grid>
-          <Grid
-            item
-            xs={3}
-            style={{ position: 'absolute', right: '20%', top: '125px' }}
-          >
-            <CardBox title='Total Practice' content='' />
-          </Grid> */}
         </Grid>
 
         <Grid container direction='column' item xs={12} spacing={3}>
           <Grid xs={6} item>
             <LineChart
               data={JSON.parse(localStorage.getItem('accuracyDatas'))}
-              // data={accuracyDatas}
               time={JSON.parse(localStorage.getItem('time'))}
-              // time={time}
               text='Accuracy Overtime'
               label='Accuracy'
               borderColor='rgba(233,42,23,52)'
@@ -159,9 +108,7 @@ function Progress({ borderColor }) {
           <Grid xs={6} item style={{ position: 'absolute', left: '800px' }}>
             <LineChart
               data={JSON.parse(localStorage.getItem('syncDatas'))}
-              // data={syncDatas}
               time={JSON.parse(localStorage.getItem('time'))}
-              // time={time}
               text='Sync Overtime'
               label='Sync'
               borderColor='rgba(23,100,111,4)'

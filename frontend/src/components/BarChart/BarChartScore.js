@@ -1,6 +1,5 @@
 import React from 'react'
 import { Bar, defaults } from 'react-chartjs-2'
-import { FaBold } from 'react-icons/fa'
 
 defaults.global.tooltips.enabled = false
 
@@ -14,7 +13,6 @@ const BarChartScore = (props) => {
             {
               label: 'Scores',
               data: [
-                // props.zeroScore,
                 props.oneScore,
                 props.twoScore,
                 props.threeScore,
@@ -52,12 +50,6 @@ const BarChartScore = (props) => {
               ],
               borderWidth: 1,
             },
-            // {
-            //   label: 'Quantity',
-            //   data: [47, 52, 67, 58, 9, 50],
-            //   backgroundColor: 'orange',
-            //   borderColor: 'red',
-            // },
           ],
         }}
         height={400}

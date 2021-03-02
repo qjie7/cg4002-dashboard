@@ -1,6 +1,6 @@
 import React from 'react'
 import { FaPlayCircle } from 'react-icons/fa'
-import { GiProgression, GiPodium } from 'react-icons/gi'
+import { GiProgression } from 'react-icons/gi'
 import { ImDatabase } from 'react-icons/im'
 import { MdDeveloperBoard } from 'react-icons/md'
 

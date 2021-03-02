@@ -7,13 +7,10 @@ import Tab from '@material-ui/core/Tab'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 import { Grid } from '@material-ui/core'
-import CustomizedSnackbars from '../components/CustomizedSnackbars/CustomizedSnackbars'
 
 import io from 'socket.io-client'
 import { useEffect, useState } from 'react'
 import {
-  BarChart,
-  Bar,
   Line,
   LineChart,
   XAxis,
@@ -102,8 +99,6 @@ export default function Developer(props) {
   const { access } = props
 
   const [data, setData] = useState([])
-  const [data2, setData2] = useState([])
-  const [data3, setData3] = useState([])
 
   const [danceMove, setDanceMove] = useState('Dab')
 
@@ -143,7 +138,6 @@ export default function Developer(props) {
   })
   const [correctness, setCorrectness] = useState(false)
 
-  let [position1, position2, position3] = position
   let currentDanceMove = danceMove
 
   useEffect(() => {
@@ -155,41 +149,23 @@ export default function Developer(props) {
         setDanceMove(newData.danceMove)
       })
 
-      // socket.on('new_data2', (newData) => {
-      //   setData2((currentData) => [...currentData, newData])
-      // })
-
-      // socket.on('new_data3', (newData) => {
-      //   setData3((currentData) => [...currentData, newData])
-      // })
-
       socket.on('test_log', (newData) => {
         setTestLog(newData)
       })
     } else {
       socket.off('new_data')
       socket.off('test_log')
-      // socket.off('new_data2')
-      // socket.off('new_data3')
-      // socket.offAny()
-      //socket.close()
     }
   }, [connection])
 
   useEffect(() => {
-    if (
-      // position1 === testLog.position1 &&
-      // position2 === testLog.position2 &&
-      // position3 === testLog.position3 &&
-      currentDanceMove === testLog.danceMove
-    ) {
+    if (currentDanceMove === testLog.danceMove) {
       setCorrectness(true)
     } else {
       setCorrectness(false)
     }
   })
 
-  // console.log(correctness)
   return (
     <>
       <Grid container justify='center' style={{ marginTop: '-10px' }}>
@@ -256,7 +232,6 @@ export default function Developer(props) {
               >
                 Log out
               </Button>
-              {/* <CustomizedSnackbars access={access} /> */}
             </Grid>
           </Tabs>
         </AppBar>
@@ -303,7 +278,6 @@ export default function Developer(props) {
                     />
                   </LineChart>
 
-                  {/* <LineChart width={500} height={300} data={data2}> */}
                   <LineChart width={500} height={300} data={data}>
                     <CartesianGrid strokeDasharray='3 3' />
                     <Tooltip />
@@ -343,7 +317,7 @@ export default function Developer(props) {
               <Grid item>
                 <div>
                   <h1>(Right) MPU </h1>
-                  {/* <LineChart width={500} height={300} data={data3}> */}
+
                   <LineChart width={500} height={300} data={data}>
                     <CartesianGrid strokeDasharray='3 3' />
                     <Tooltip />

@@ -19,7 +19,6 @@ exports.getRandomData = function (json, player) {
 
 function getSync() {
   let random = Math.floor(Math.random() * 10)
-  // console.log(random)
   if (random === 1) {
     return 10
   } else if (random === 2) {
@@ -47,7 +46,6 @@ function getSync() {
 
 function getAccuracy() {
   let random = Math.floor(Math.random() * 8)
-  // console.log(random)
   if (random === 1) {
     return 10
   } else if (random === 2) {
@@ -75,7 +73,6 @@ function getAccuracy() {
 
 function getDanceMove() {
   let random = Math.floor(Math.random() * 8)
-  // console.log(random)
   if (random === 1) {
     return 'Dab'
   } else if (random === 2) {

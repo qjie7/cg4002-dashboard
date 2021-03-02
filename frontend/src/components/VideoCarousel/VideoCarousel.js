@@ -7,11 +7,7 @@ import BarChart from '../BarChart/BarChart'
 import { useState, useEffect } from 'react'
 import Tooltip from '@material-ui/core/Tooltip'
 
-import {
-  createMuiTheme,
-  MuiThemeProvider,
-  withStyles,
-} from '@material-ui/core/styles'
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles'
 
 const defaultTheme = createMuiTheme()
 const theme = createMuiTheme({

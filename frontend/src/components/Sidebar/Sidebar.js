@@ -4,8 +4,6 @@ import { SidebarData } from './SidebarData'
 import './Sidebar.css'
 import { IconContext } from 'react-icons'
 import logo from '../../images/logo_transparent.png'
-import { Button } from '@material-ui/core'
-import classNames from 'classnames'
 
 function Sidebar() {
   // let multiClasses = classNames({

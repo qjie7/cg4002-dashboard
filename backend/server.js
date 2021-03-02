@@ -25,9 +25,6 @@ const io = require('socket.io')(server, {
 })
 
 const Data = require('./models/data')
-// const DummyData = require('./models/dummy_data')
-// const DummyData2 = require('./models/dummy_data2')
-// const DummyData3 = require('./models/dummy_data3')
 
 const DummySensorData = require('./data/dummySensor.json')
 const testLogData = require('./data/test_log.json')
@@ -50,54 +47,6 @@ io.on('connection', (socket) => {
     clearInterval(dbInterval)
     // clearInterval(testInterval)
   })
-
-  // app.post('/api/connection', (req, res, next) => {
-  //   console.log(req.body.checked)
-  //   if (req.body.checked) {
-  //     socket.disconnect()
-  //     console.log('disconnect')
-  //   } else {
-  //     if (!socket) {
-  //       socket = io.connect('http://localhost:3000', { secure: false })
-  //       socket.on('connect', function () {
-  //         console.log('connected')
-  //       })
-  //       // socket.on('disconnect', function () {
-  //       //   console.log('disconnected')
-  //       // })
-  //     } else {
-  //       socket.socket.connect()
-  //     }
-  //     // socket.on('connection', (socket) => {
-  //     //   console.log('reconnect')
-  //     // })
-  //   }
-  // })
-
-  // socket.on('video_click', (danceMove) => {
-  //   //console.log(danceMove)
-  //   switch (danceMove) {
-  //     case 'elbowkick':
-  //       // code block
-  //       const filter = { name: 'elbowkick' }
-  //       VideoCount.findOneAndUpdate(
-  //         filter,
-  //         { $inc: { count: 1 } },
-  //         { new: true, upsert: true },
-  //         function (err) {
-  //           if (err) {
-  //             console.log(err)
-  //           } else {
-  //             console.log('added elbowkick count')
-  //           }
-  //         }
-  //       )
-
-  //       break
-  //     // default:
-  //     // // code block
-  //   }
-  // })
 })
 
 //start the server
@@ -113,6 +62,7 @@ mongoose.connect(
     useFindAndModify: false,
   }
 )
+
 // Simulating the transfer of data into database
 // and update in real time of any changes to the database
 const dbInterval = setInterval(() => {
@@ -175,9 +125,7 @@ const dbInterval = setInterval(() => {
     xAxisEMG: getRandomData(DummySensorData).xAxis,
     yAxisEMG: getRandomData(DummySensorData).yAxis,
     zAxisEMG: getRandomData(DummySensorData).zAxis,
-    // xAxis: getRandomData(DummySensorData).xAxis,
-    // yAxis: getRandomData(DummySensorData).yAxis,
-    // zAxis: getRandomData(DummySensorData).zAxis,
+
     time: getRandomData(DummySensorData).time,
     danceMove: getRandomData(DummySensorData).danceMove,
     position: getRandomData(DummySensorData).position,
@@ -202,9 +150,6 @@ connection.once('open', () => {
   console.log('Setting change streams')
 
   const dataChangeStream = connection.collection('datas').watch()
-  // const dummyChangeStream = connection.collection('dummydatas').watch()
-  // const dummyChangeStream2 = connection.collection('dummydata2').watch()
-  // const dummyChangeStream3 = connection.collection('dummydata3').watch()
 
   dataChangeStream.on('change', (change) => {
     switch (change.operationType) {
@@ -269,13 +214,9 @@ connection.once('open', () => {
           xAxisEMG: change.fullDocument.xAxisEMG,
           yAxisEMG: change.fullDocument.yAxisEMG,
           zAxisEMG: change.fullDocument.zAxisEMG,
-          // xAxis: getRandomData(DummySensorData).xAxis,
-          // yAxis: getRandomData(DummySensorData).yAxis,
-          // zAxis: getRandomData(DummySensorData).zAxis,
+
           time: change.fullDocument.time,
-          // xAxis: change.fullDocument.xAxis,
-          // yAxis: change.fullDocument.yAxis,
-          // zAxis: change.fullDocument.zAxis,
+
           danceMove: change.fullDocument.danceMove,
           position: change.fullDocument.position,
           accuracy: change.fullDocument.accuracy,
@@ -284,78 +225,11 @@ connection.once('open', () => {
 
         io.emit('new_data', data)
         break
-
-      // case 'delete':
-      //   io.of('/api/socket').emit('deletedThought', change.documentKey._id)
-      //   break
     }
   })
-
-  // dummyChangeStream.on('change', (change) => {
-  //   switch (change.operationType) {
-  //     case 'insert':
-  //       const data = {
-  //         _id: change.fullDocument._id,
-  //         xAxis: change.fullDocument.xAxis,
-  //         yAxis: change.fullDocument.yAxis,
-  //         zAxis: change.fullDocument.zAxis,
-  //         danceMove: change.fullDocument.danceMove,
-  //         position: change.fullDocument.position,
-  //       }
-
-  //       io.emit('new_data', data)
-  //       break
-
-  //     // case 'delete':
-  //     //   io.of('/api/socket').emit('deletedThought', change.documentKey._id)
-  //     //   break
-  //   }
-  // })
-
-  // dummyChangeStream2.on('change', (change) => {
-  //   switch (change.operationType) {
-  //     case 'insert':
-  //       const data2 = {
-  //         _id: change.fullDocument._id,
-  //         xAxis: change.fullDocument.xAxis,
-  //         yAxis: change.fullDocument.yAxis,
-  //         zAxis: change.fullDocument.zAxis,
-  //         danceMove: change.fullDocument.danceMove,
-  //         position: change.fullDocument.position,
-  //       }
-
-  //       io.emit('new_data2', data2)
-  //       break
-
-  //     // case 'delete':
-  //     //   io.of('/api/socket').emit('deletedThought', change.documentKey._id)
-  //     //   break
-  //   }
-  // })
-
-  // dummyChangeStream3.on('change', (change) => {
-  //   switch (change.operationType) {
-  //     case 'insert':
-  //       const data3 = {
-  //         _id: change.fullDocument._id,
-  //         xAxis: change.fullDocument.xAxis,
-  //         yAxis: change.fullDocument.yAxis,
-  //         zAxis: change.fullDocument.zAxis,
-  //         danceMove: change.fullDocument.danceMove,
-  //         position: change.fullDocument.position,
-  //       }
-
-  //       io.emit('new_data3', data3)
-  //       break
-
-  //     // case 'delete':
-  //     //   io.of('/api/socket').emit('deletedThought', change.documentKey._id)
-  //     //   break
-  //   }
-  // })
 })
 
-// //schedule deletion of dummydatas at midnight
+// //schedule deletion of datas at midnight
 // cron.schedule('0 0 0 * * *', async () => {
 //   await connection.collection('dummydatas').drop()
 // })

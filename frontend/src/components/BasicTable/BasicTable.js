@@ -7,20 +7,13 @@ import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
-import greenTick from '../../images/animation_200_klda5n4f.gif'
-import redCross from '../../images/animation_200_kldactqd.gif'
 import { Typography } from '@material-ui/core'
+
 const useStyles = makeStyles({
   table: {
     width: '85vw',
   },
 })
-
-// function createData(danceMove, position1, position2, position3) {
-//   return { danceMove, position1, position2, position3 }
-// }
-
-// const rows = [createData('Frozen yoghurt', 159, 6.0, 24)]
 
 export default function BasicTable(props) {
   const classes = useStyles()
@@ -38,7 +31,6 @@ export default function BasicTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {/* {rows.map((row) => ( */}
           <TableRow>
             <TableCell align='center' component='th' scope='row'>
               {props.danceMove}
@@ -57,7 +49,6 @@ export default function BasicTable(props) {
               </Typography>
             </TableCell>
           </TableRow>
-          {/* ))} */}
         </TableBody>
       </Table>
     </TableContainer>
