@@ -207,6 +207,7 @@ function Playground() {
       // }
       // socket.off('new_data')
       socket.off('new_data')
+      socket.off('test_log')
 
       // socket.disconnect('new_data')
     }

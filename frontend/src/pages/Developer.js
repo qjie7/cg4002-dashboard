@@ -168,6 +168,7 @@ export default function Developer(props) {
       })
     } else {
       socket.off('new_data')
+      socket.off('test_log')
       // socket.off('new_data2')
       // socket.off('new_data3')
       // socket.offAny()
@@ -725,7 +726,12 @@ export default function Developer(props) {
           </>
         </TabPanel>
         <TabPanel value={value} index={3}>
-          <LineChart width={500} height={300} data={data}>
+          <LineChart
+            width={500}
+            height={300}
+            data={data}
+            style={{ marginLeft: '350px', marginTop: '120px' }}
+          >
             <CartesianGrid strokeDasharray='3 3' />
             <Tooltip />
             <Legend />
