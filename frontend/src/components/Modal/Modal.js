@@ -106,8 +106,6 @@ export const Modal = ({
 
   const closeModal = (e) => {
     if (modalRef.current === e.target) {
-      setShowModal(false)
-
       if (score === 1) {
         increaseOneScore()
       } else if (score === 2) {
@@ -140,6 +138,7 @@ export const Modal = ({
       localStorage.setItem('time', JSON.stringify(time))
 
       setScore(0)
+      setShowModal(false)
     }
   }
 
