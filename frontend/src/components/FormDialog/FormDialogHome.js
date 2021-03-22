@@ -21,7 +21,7 @@ export default function FormDialog(props) {
     localStorage.removeItem('eightScore')
     localStorage.removeItem('nineScore')
     localStorage.removeItem('tenScore')
-    localStorage.setItem('accuracyDatas', '[0]')
+    // localStorage.setItem('accuracyDatas', '[0]')
     localStorage.setItem('syncDatas', '[0]')
     localStorage.setItem('time', '[0]')
   }

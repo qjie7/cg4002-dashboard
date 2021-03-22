@@ -99,10 +99,16 @@ export default function Developer(props) {
   const { access } = props
 
   const [data, setData] = useState([])
+  const [data2, setData2] = useState([])
+  const [data3, setData3] = useState([])
 
   const [danceMove, setDanceMove] = useState('Dab')
+  const [danceMove2, setDanceMove2] = useState('Dab')
+  const [danceMove3, setDanceMove3] = useState('Dab')
 
-  const [position, setPosition] = useState([1, 2, 3])
+  // const [position, setPosition] = useState([1, 2, 3])
+  // const [position2, setPosition2] = useState([1, 2, 3])
+  // const [position3, setPosition3] = useState([1, 2, 3])
 
   const [connection, setConnection] = useState(false)
 
@@ -131,39 +137,76 @@ export default function Developer(props) {
     setValue(newValue)
   }
 
-  const [testLog, setTestLog] = useState({
-    danceMove: 'Dab',
-    position1: 1,
-    position2: 2,
-    position3: 3,
-  })
+  // const [testLog, setTestLog] = useState({
+  //   danceMove: 'Dab',
+  //   position1: 1,
+  //   position2: 2,
+  //   position3: 3,
+  // })
 
   let currentDanceMove = danceMove
   useEffect(() => {
     if (connection) {
       socket.on('new_data', (newData) => {
-        console.log(newData)
-        setData((currentData) => [...currentData, newData])
-        setPosition(newData.position)
+        // console.log(newData)
+        console.log(newData.EMG)
+        // setData((currentData) => [...currentData, newData])
+        setData((currentData) => {
+          if (currentData.length === 20) {
+            currentData = currentData.slice(1)
+          }
+          return currentData.concat(newData)
+        })
+        // setPosition(newData.position)
         setDanceMove(newData.danceMove)
       })
 
-      socket.on('test_log', (newData) => {
-        setTestLog(newData)
+      socket.on('new_data2', (newData2) => {
+        // console.log(newData)
+        console.log(newData2.EMG)
+        // setData((currentData) => [...currentData, newData])
+        setData2((currentData) => {
+          if (currentData.length === 20) {
+            currentData = currentData.slice(1)
+          }
+          return currentData.concat(newData2)
+        })
+        // setPosition2(newData2.position)
+        setDanceMove2(newData2.danceMove)
       })
+
+      socket.on('new_data3', (newData3) => {
+        // console.log(newData)
+        console.log(newData3.EMG)
+        // setData((currentData) => [...currentData, newData])
+        setData3((currentData) => {
+          if (currentData.length === 20) {
+            currentData = currentData.slice(1)
+          }
+          return currentData.concat(newData3)
+        })
+        // setPosition3(newData3.position)
+        setDanceMove3(newData3.danceMove)
+      })
+
+      // socket.on('test_log', (newData) => {
+      //   setTestLog(newData)
+      // })
     } else {
       socket.off('new_data')
-      socket.off('test_log')
+      socket.off('new_data2')
+      socket.off('new_data3')
+      // socket.off('test_log')
     }
   }, [connection])
 
-  useEffect(() => {
-    if (currentDanceMove === testLog.danceMove) {
-      setCorrectness(true)
-    } else {
-      setCorrectness(false)
-    }
-  })
+  // useEffect(() => {
+  //   if (currentDanceMove === testLog.danceMove) {
+  //     setCorrectness(true)
+  //   } else {
+  //     setCorrectness(false)
+  //   }
+  // })
 
   return (
     <>
@@ -190,7 +233,7 @@ export default function Developer(props) {
             <Tab label='Leader' {...a11yProps(1)} />
             <Tab label='Member 2' {...a11yProps(2)} />
             <Tab label='EMG' {...a11yProps(3)} />
-            <Tab label='Offline Analytics' {...a11yProps(4)} />
+            {/* <Tab label='Offline Analytics' {...a11yProps(4)} /> */}
 
             <Grid container justify='flex-end'>
               <MuiTooltip title='Connect/Disconnect'>
@@ -239,9 +282,9 @@ export default function Developer(props) {
             <Grid container justify='space-between'>
               <Grid item>
                 <div>
-                  <h1>(Left) MPU </h1>
+                  <h1 style={{ color: 'blue' }}>(Left) MPU </h1>
 
-                  <LineChart width={500} height={300} data={data}>
+                  <LineChart width={500} height={300} data={data2}>
                     <CartesianGrid strokeDasharray='3 3' />
                     <Tooltip />
                     <Legend />
@@ -252,32 +295,33 @@ export default function Developer(props) {
                         angle: -90,
                         position: 'middleLeft',
                       }}
+                      width={120}
                     />
 
                     <Line
                       name='x'
-                      type='monotone'
+                      type='linear'
                       dataKey='xAxisMemberOneLeftA'
                       stroke='#820000'
                       isAnimationActive={false}
                     />
                     <Line
                       name='y'
-                      type='monotone'
+                      type='linear'
                       dataKey='yAxisMemberOneLeftA'
                       stroke='#118200'
                       isAnimationActive={false}
                     />
                     <Line
                       name='z'
-                      type='monotone'
+                      type='linear'
                       dataKey='zAxisMemberOneLeftA'
                       stroke='#000982'
                       isAnimationActive={false}
                     />
                   </LineChart>
 
-                  <LineChart width={500} height={300} data={data}>
+                  <LineChart width={500} height={300} data={data2}>
                     <CartesianGrid strokeDasharray='3 3' />
                     <Tooltip />
                     <Legend />
@@ -288,24 +332,25 @@ export default function Developer(props) {
                         angle: -90,
                         position: 'middleLeft',
                       }}
+                      width={120}
                     />
                     <Line
                       name='x'
-                      type='monotone'
+                      type='linear'
                       dataKey='xAxisMemberOneLeftG'
                       stroke='#820000'
                       isAnimationActive={false}
                     />
                     <Line
                       name='y'
-                      type='monotone'
+                      type='linear'
                       dataKey='yAxisMemberOneLeftG'
                       stroke='#118200'
                       isAnimationActive={false}
                     />
                     <Line
                       name='z'
-                      type='monotone'
+                      type='linear'
                       dataKey='zAxisMemberOneLeftG'
                       stroke='#000982'
                       isAnimationActive={false}
@@ -315,9 +360,9 @@ export default function Developer(props) {
               </Grid>
               <Grid item>
                 <div>
-                  <h1>(Right) MPU </h1>
+                  <h1 style={{ color: 'red' }}>(Right) MPU </h1>
 
-                  <LineChart width={500} height={300} data={data}>
+                  <LineChart width={500} height={300} data={data2}>
                     <CartesianGrid strokeDasharray='3 3' />
                     <Tooltip />
                     <Legend />
@@ -328,31 +373,32 @@ export default function Developer(props) {
                         angle: -90,
                         position: 'middleLeft',
                       }}
+                      width={120}
                     />
 
                     <Line
                       name='x'
-                      type='monotone'
+                      type='linear'
                       dataKey='xAxisMemberOneRightA'
                       stroke='#820000'
                       isAnimationActive={false}
                     />
                     <Line
                       name='y'
-                      type='monotone'
+                      type='linear'
                       dataKey='yAxisMemberOneRightA'
                       stroke='#118200'
                       isAnimationActive={false}
                     />
                     <Line
                       name='z'
-                      type='monotone'
+                      type='linear'
                       dataKey='zAxisMemberOneRightA'
                       stroke='#000982'
                       isAnimationActive={false}
                     />
                   </LineChart>
-                  <LineChart width={500} height={300} data={data}>
+                  <LineChart width={500} height={300} data={data2}>
                     <CartesianGrid strokeDasharray='3 3' />
                     <Tooltip />
                     <Legend />
@@ -363,24 +409,25 @@ export default function Developer(props) {
                         angle: -90,
                         position: 'middleLeft',
                       }}
+                      width={120}
                     />
                     <Line
                       name='x'
-                      type='monotone'
+                      type='linear'
                       dataKey='xAxisMemberOneRightG'
                       stroke='#820000'
                       isAnimationActive={false}
                     />
                     <Line
                       name='y'
-                      type='monotone'
+                      type='linear'
                       dataKey='yAxisMemberOneRightG'
                       stroke='#118200'
                       isAnimationActive={false}
                     />
                     <Line
                       name='z'
-                      type='monotone'
+                      type='linear'
                       dataKey='zAxisMemberOneRightG'
                       stroke='#000982'
                       isAnimationActive={false}
@@ -396,7 +443,7 @@ export default function Developer(props) {
             <Grid container justify='space-between'>
               <Grid item>
                 <div>
-                  <h1>(Left) MPU </h1>
+                  <h1 style={{ color: 'blue' }}>(Left) MPU </h1>
                   <LineChart width={500} height={300} data={data}>
                     <CartesianGrid strokeDasharray='3 3' />
                     <Tooltip />
@@ -408,25 +455,26 @@ export default function Developer(props) {
                         angle: -90,
                         position: 'middleLeft',
                       }}
+                      width={120}
                     />
 
                     <Line
                       name='x'
-                      type='monotone'
+                      type='linear'
                       dataKey='xAxisLeaderLeftA'
                       stroke='#820000'
                       isAnimationActive={false}
                     />
                     <Line
                       name='y'
-                      type='monotone'
+                      type='linear'
                       dataKey='yAxisLeaderLeftA'
                       stroke='#118200'
                       isAnimationActive={false}
                     />
                     <Line
                       name='z'
-                      type='monotone'
+                      type='linear'
                       dataKey='zAxisLeaderLeftA'
                       stroke='#000982'
                       isAnimationActive={false}
@@ -443,24 +491,25 @@ export default function Developer(props) {
                         angle: -90,
                         position: 'middleLeft',
                       }}
+                      width={120}
                     />
                     <Line
                       name='x'
-                      type='monotone'
+                      type='linear'
                       dataKey='xAxisLeaderLeftG'
                       stroke='#820000'
                       isAnimationActive={false}
                     />
                     <Line
                       name='y'
-                      type='monotone'
+                      type='linear'
                       dataKey='yAxisLeaderLeftG'
                       stroke='#118200'
                       isAnimationActive={false}
                     />
                     <Line
                       name='z'
-                      type='monotone'
+                      type='linear'
                       dataKey='zAxisLeaderLeftG'
                       stroke='#000982'
                       isAnimationActive={false}
@@ -470,7 +519,7 @@ export default function Developer(props) {
               </Grid>
               <Grid item>
                 <div>
-                  <h1>(Right) MPU </h1>
+                  <h1 style={{ color: 'red' }}>(Right) MPU </h1>
                   <LineChart width={500} height={300} data={data}>
                     <CartesianGrid strokeDasharray='3 3' />
                     <Tooltip />
@@ -482,25 +531,26 @@ export default function Developer(props) {
                         angle: -90,
                         position: 'middleLeft',
                       }}
+                      width={120}
                     />
 
                     <Line
                       name='x'
-                      type='monotone'
+                      type='linear'
                       dataKey='xAxisLeaderRightA'
                       stroke='#820000'
                       isAnimationActive={false}
                     />
                     <Line
                       name='y'
-                      type='monotone'
+                      type='linear'
                       dataKey='yAxisLeaderRightA'
                       stroke='#118200'
                       isAnimationActive={false}
                     />
                     <Line
                       name='z'
-                      type='monotone'
+                      type='linear'
                       dataKey='zAxisLeaderRightA'
                       stroke='#000982'
                       isAnimationActive={false}
@@ -517,24 +567,25 @@ export default function Developer(props) {
                         angle: -90,
                         position: 'middleLeft',
                       }}
+                      width={120}
                     />
                     <Line
                       name='x'
-                      type='monotone'
+                      type='linear'
                       dataKey='xAxisLeaderRightG'
                       stroke='#820000'
                       isAnimationActive={false}
                     />
                     <Line
                       name='y'
-                      type='monotone'
+                      type='linear'
                       dataKey='yAxisLeaderRightG'
                       stroke='#118200'
                       isAnimationActive={false}
                     />
                     <Line
                       name='z'
-                      type='monotone'
+                      type='linear'
                       dataKey='zAxisLeaderRightG'
                       stroke='#000982'
                       isAnimationActive={false}
@@ -550,8 +601,8 @@ export default function Developer(props) {
             <Grid container justify='space-between'>
               <Grid item>
                 <div>
-                  <h1>(Left) MPU </h1>
-                  <LineChart width={500} height={300} data={data}>
+                  <h1 style={{ color: 'blue' }}>(Left) MPU </h1>
+                  <LineChart width={500} height={300} data={data3}>
                     <CartesianGrid strokeDasharray='3 3' />
                     <Tooltip />
                     <Legend />
@@ -562,31 +613,32 @@ export default function Developer(props) {
                         angle: -90,
                         position: 'middleLeft',
                       }}
+                      width={120}
                     />
 
                     <Line
                       name='x'
-                      type='monotone'
+                      type='linear'
                       dataKey='xAxisMemberTwoLeftA'
                       stroke='#820000'
                       isAnimationActive={false}
                     />
                     <Line
                       name='y'
-                      type='monotone'
+                      type='linear'
                       dataKey='yAxisMemberTwoLeftA'
                       stroke='#118200'
                       isAnimationActive={false}
                     />
                     <Line
                       name='z'
-                      type='monotone'
+                      type='linear'
                       dataKey='zAxisMemberTwoLeftA'
                       stroke='#000982'
                       isAnimationActive={false}
                     />
                   </LineChart>
-                  <LineChart width={500} height={300} data={data}>
+                  <LineChart width={500} height={300} data={data3}>
                     <CartesianGrid strokeDasharray='3 3' />
                     <Tooltip />
                     <Legend />
@@ -597,24 +649,25 @@ export default function Developer(props) {
                         angle: -90,
                         position: 'middleLeft',
                       }}
+                      width={120}
                     />
                     <Line
                       name='x'
-                      type='monotone'
+                      type='linear'
                       dataKey='xAxisMemberTwoLeftG'
                       stroke='#820000'
                       isAnimationActive={false}
                     />
                     <Line
                       name='y'
-                      type='monotone'
+                      type='linear'
                       dataKey='yAxisMemberTwoLeftG'
                       stroke='#118200'
                       isAnimationActive={false}
                     />
                     <Line
                       name='z'
-                      type='monotone'
+                      type='linear'
                       dataKey='zAxisMemberTwoLeftG'
                       stroke='#000982'
                       isAnimationActive={false}
@@ -624,8 +677,8 @@ export default function Developer(props) {
               </Grid>
               <Grid item>
                 <div>
-                  <h1>(Right) MPU </h1>
-                  <LineChart width={500} height={300} data={data}>
+                  <h1 style={{ color: 'red' }}>(Right) MPU </h1>
+                  <LineChart width={500} height={300} data={data3}>
                     <CartesianGrid strokeDasharray='3 3' />
                     <Tooltip />
                     <Legend />
@@ -636,30 +689,32 @@ export default function Developer(props) {
                         angle: -90,
                         position: 'middleLeft',
                       }}
+                      width={120}
                     />
 
                     <Line
                       name='x'
-                      type='monotone'
+                      type='linear'
                       dataKey='xAxisMemberTwoRightA'
                       stroke='#820000'
+                      isAnimationActive={false}
                     />
                     <Line
                       name='y'
-                      type='monotone'
+                      type='linear'
                       dataKey='yAxisMemberTwoRightA'
                       stroke='#118200'
                       isAnimationActive={false}
                     />
                     <Line
                       name='z'
-                      type='monotone'
+                      type='linear'
                       dataKey='zAxisMemberTwoRightA'
                       stroke='#000982'
                       isAnimationActive={false}
                     />
                   </LineChart>
-                  <LineChart width={500} height={300} data={data}>
+                  <LineChart width={500} height={300} data={data3}>
                     <CartesianGrid strokeDasharray='3 3' />
                     <Tooltip />
                     <Legend />
@@ -670,24 +725,25 @@ export default function Developer(props) {
                         angle: -90,
                         position: 'middleLeft',
                       }}
+                      width={120}
                     />
                     <Line
                       name='x'
-                      type='monotone'
+                      type='linear'
                       dataKey='xAxisMemberTwoRightG'
                       stroke='#820000'
                       isAnimationActive={false}
                     />
                     <Line
                       name='y'
-                      type='monotone'
+                      type='linear'
                       dataKey='yAxisMemberTwoRightG'
                       stroke='#118200'
                       isAnimationActive={false}
                     />
                     <Line
                       name='z'
-                      type='monotone'
+                      type='linear'
                       dataKey='zAxisMemberTwoRightG'
                       stroke='#000982'
                       isAnimationActive={false}
@@ -707,7 +763,7 @@ export default function Developer(props) {
           >
             <CartesianGrid strokeDasharray='3 3' />
             <Tooltip />
-            <Legend />
+            {/* <Legend /> */}
             <XAxis dataKey='time' />
             <YAxis
               label={{
@@ -716,31 +772,39 @@ export default function Developer(props) {
                 position: 'middleLeft',
               }}
             />
+
             <Line
+              name='EMG data'
+              type='linear'
+              dataKey='EMG'
+              stroke='#00b339'
+              isAnimationActive={false}
+            />
+            {/* <Line
               name='x'
-              type='monotone'
+              type='linear'
               dataKey='xAxisEMG'
               stroke='#820000'
               isAnimationActive={false}
             />
             <Line
               name='y'
-              type='monotone'
+              type='linear'
               dataKey='yAxisEMG'
               stroke='#118200'
               isAnimationActive={false}
             />
             <Line
               name='z'
-              type='monotone'
+              type='linear'
               dataKey='zAxisEMG'
               stroke='#000982'
               isAnimationActive={false}
-            />
+            /> */}
           </LineChart>
         </TabPanel>
         <TabPanel value={value} index={4}>
-          <Typography variant='h3'>Test Log Received</Typography>
+          {/* <Typography variant='h3'>Test Log Received</Typography>
 
           <Grid item style={{ justifyItems: 'center' }}>
             <BasicTable
@@ -762,19 +826,20 @@ export default function Developer(props) {
 
             <Grid container item justify='center'>
               <Grid item>
-                <SimpleCard player={member1Name} danceMove={danceMove} />
+                <SimpleCard player={member1Name} danceMove={danceMove2} />
               </Grid>
               <Grid item>
                 <SimpleCard player={leaderName} danceMove={danceMove} />
               </Grid>
               <Grid item>
-                <SimpleCard player={member2Name} danceMove={danceMove} />
+                <SimpleCard player={member2Name} danceMove={danceMove3} />
               </Grid>
             </Grid>
           </Grid>
 
           <Grid container style={{ marginTop: '10px' }}>
             <Grid container item justify='center'>
+              // Might need to change
               <Grid item>
                 <SimpleCard player='' position={position[0]} />
               </Grid>
@@ -785,7 +850,7 @@ export default function Developer(props) {
                 <SimpleCard player='' position={position[2]} />
               </Grid>
             </Grid>
-          </Grid>
+          </Grid> */}
         </TabPanel>
         <TabPanel value={value} index={5}>
           Item Six

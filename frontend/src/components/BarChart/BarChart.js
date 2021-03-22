@@ -74,7 +74,7 @@ const BarChart = (props) => {
             fontStyle: 'bold',
             fontSize: 16,
             padding: 30,
-            text: 'View Counts Of Each Dance move',
+            text: 'View Counts Of Each Dance Move',
           },
 
           legend: {

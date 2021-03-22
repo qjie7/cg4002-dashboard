@@ -100,8 +100,8 @@ export const Modal = ({
   setShowModal,
   score,
   setScore,
-  setAccuracyList,
-  accuracyList,
+  // setAccuracyList,
+  // accuracyList,
   accuracyAvg,
   setSyncList,
   syncList,
@@ -216,9 +216,9 @@ export const Modal = ({
   const [nineScore, setNineScore] = useState(localStorage.getItem('nineScore'))
   const [tenScore, setTenScore] = useState(localStorage.getItem('tenScore'))
 
-  const [accuracyDatas, setAccuracyDatas] = useState(
-    JSON.parse(localStorage.getItem('accuracyDatas'))
-  )
+  // const [accuracyDatas, setAccuracyDatas] = useState(
+  //   JSON.parse(localStorage.getItem('accuracyDatas'))
+  // )
   const [syncDatas, setSyncDatas] = useState(
     JSON.parse(localStorage.getItem('syncDatas'))
   )
@@ -230,7 +230,7 @@ export const Modal = ({
     setOneScore((prevScore) => {
       const newScore = Number(prevScore) + 1
       localStorage.setItem('oneScore', newScore)
-      //eturn newScore
+      return newScore
     })
   }
 
@@ -238,7 +238,7 @@ export const Modal = ({
     setTwoScore((prevScore) => {
       const newScore = Number(prevScore) + 1
       localStorage.setItem('twoScore', newScore)
-      //return newScore
+      return newScore
     })
   }
 
@@ -246,7 +246,7 @@ export const Modal = ({
     setThreeScore((prevScore) => {
       const newScore = Number(prevScore) + 1
       localStorage.setItem('threeScore', newScore)
-      //return newScore
+      return newScore
     })
   }
 
@@ -254,7 +254,7 @@ export const Modal = ({
     setFourScore((prevScore) => {
       const newScore = Number(prevScore) + 1
       localStorage.setItem('fourScore', newScore)
-      //return newScore
+      return newScore
     })
   }
 
@@ -262,7 +262,7 @@ export const Modal = ({
     setFiveScore((prevScore) => {
       const newScore = Number(prevScore) + 1
       localStorage.setItem('fiveScore', newScore)
-      //return newScore
+      return newScore
     })
   }
 
@@ -270,7 +270,7 @@ export const Modal = ({
     setSixScore((prevScore) => {
       const newScore = Number(prevScore) + 1
       localStorage.setItem('sixScore', newScore)
-      //return newScore
+      return newScore
     })
   }
 
@@ -278,7 +278,7 @@ export const Modal = ({
     setSevenScore((prevScore) => {
       const newScore = Number(prevScore) + 1
       localStorage.setItem('sevenScore', newScore)
-      //return newScore
+      return newScore
     })
   }
 
@@ -286,7 +286,7 @@ export const Modal = ({
     setEightScore((prevScore) => {
       const newScore = Number(prevScore) + 1
       localStorage.setItem('eightScore', newScore)
-      //return newScore
+      return newScore
     })
   }
 
@@ -294,7 +294,7 @@ export const Modal = ({
     setNineScore((prevScore) => {
       const newScore = Number(prevScore) + 1
       localStorage.setItem('nineScore', newScore)
-      //return newScore
+      return newScore
     })
   }
 
@@ -302,7 +302,7 @@ export const Modal = ({
     setTenScore((prevScore) => {
       const newScore = Number(prevScore) + 1
       localStorage.setItem('tenScore', newScore)
-      //return newScore
+      return newScore
     })
   }
 
@@ -329,6 +329,7 @@ export const Modal = ({
       increaseOneScore()
     } else if (score === 2) {
       increaseTwoScore()
+      // console.log(increaseTwoScore())
     } else if (score === 3) {
       increaseThreeScore()
     } else if (score === 4) {
@@ -347,10 +348,10 @@ export const Modal = ({
       increaseTenScore()
     }
 
-    setAccuracyDatas((oldDatas) => [...oldDatas, Math.floor(accuracyAvg)])
-    localStorage.setItem('accuracyDatas', JSON.stringify(accuracyDatas))
+    // setAccuracyDatas((oldDatas) => [...oldDatas, Math.floor(accuracyAvg)])
+    // localStorage.setItem('accuracyDatas', JSON.stringify(accuracyDatas))
 
-    setSyncDatas((oldDatas) => [...oldDatas, Math.floor(syncAvg)])
+    setSyncDatas((oldDatas) => [...oldDatas, syncAvg.toFixed(4)])
     localStorage.setItem('syncDatas', JSON.stringify(syncDatas))
 
     setTime((oldDatas) => [...oldDatas, new Date().toLocaleTimeString()])
@@ -455,13 +456,13 @@ export const Modal = ({
 
                   <Grid item xs={12}>
                     <h1>Overall Sync</h1>
-                    <p>{Math.floor(syncAvg)}%</p>
+                    <p>{syncAvg.toFixed(4)}%</p>
                   </Grid>
 
-                  <Grid item xs={12}>
+                  {/* <Grid item xs={12}>
                     <h1>Overall Accuracy</h1>
                     <p>{Math.floor(accuracyAvg)}%</p>
-                  </Grid>
+                  </Grid> */}
                 </Grid>
 
                 {/* <button ref={btnRef} onClick={handleSaveButton}> */}

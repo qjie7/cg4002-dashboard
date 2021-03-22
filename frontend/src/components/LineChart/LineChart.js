@@ -27,7 +27,7 @@ const LineChart = ({ data, text, label, borderColor, time }) => {
   }, [])
 
   return (
-    <div style={{ width: 600, height: 400 }}>
+    <div style={{ width: '100%' }}>
       <Line
         data={lineData}
         options={{

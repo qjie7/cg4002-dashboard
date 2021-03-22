@@ -46,11 +46,22 @@ const socket = io('http://localhost:3000', {
 
 function Playground() {
   const classes = useStyles()
-  const [danceMove, setDanceMove] = useState('Dab')
-  const [position, setPosition] = useState([1, 2, 3])
-  const [accuracy, setAccuracy] = useState(0)
-  const [accuracyAvg, setAccuracyAvg] = useState(0)
-  const [sync, setSync] = useState(0)
+  // const [danceMove, setDanceMove] = useState('Dab')
+  // const [danceMove2, setDanceMove2] = useState('Dab')
+  // const [danceMove3, setDanceMove3] = useState('Dab')
+  const [finalDanceMove, setFinalDanceMove] = useState('nothing')
+  const [finalPosition, setFinalPosition] = useState('1 2 3')
+  // const [position, setPosition] = useState([1, 2, 3])
+  // const [position2, setPosition2] = useState([1, 2, 3])
+  // const [position3, setPosition3] = useState([1, 2, 3])
+  // const [accuracy, setAccuracy] = useState(0)
+  // const [accuracy2, setAccuracy2] = useState(0)
+  // const [accuracy3, setAccuracy3] = useState(0)
+  // const [accuracyAvg, setAccuracyAvg] = useState(0)
+  const [finalSync, setFinalSync] = useState('0')
+  // const [sync, setSync] = useState(0)
+  // const [sync2, setSync2] = useState(0)
+  // const [sync3, setSync3] = useState(0)
   const [syncAvg, setSyncAvg] = useState(0)
 
   const [showModal, setShowModal] = useState(false)
@@ -62,11 +73,13 @@ function Playground() {
 
   const handleConnection = () => {
     if (connection) {
-      const accuracySum = accuracyList.reduce((a, b) => a + b, 0)
-      const accuracyAvg = accuracySum / accuracyList.length || 0
-      setAccuracyAvg(accuracyAvg)
+      // const accuracySum = accuracyList.reduce((a, b) => a + b, 0)
+      // const accuracyAvg = accuracySum / accuracyList.length || 0
+      // setAccuracyAvg(accuracyAvg)
 
-      const syncSum = syncList.reduce((a, b) => a + b, 0)
+      const syncSum = syncListFloat.reduce((a, b) => a + b, 0)
+
+      // const syncAvg = syncSum / syncList.length || 0
       const syncAvg = syncSum / syncList.length || 0
       setSyncAvg(syncAvg)
     }
@@ -134,26 +147,57 @@ function Playground() {
   })
   const [correctness, setCorrectness] = useState(false)
 
-  const [accuracyList, setAccuracyList] = useState([])
+  // const [accuracyList, setAccuracyList] = useState([])
   const [syncList, setSyncList] = useState([])
 
   useEffect(() => {
     if (connection) {
       // socket.connect()
       // if (connection && checked) {
-      socket.on('new_data', (newData) => {
-        setDanceMove(newData.danceMove)
-        setPosition(newData.position)
-        setAccuracy(newData.accuracy)
-        setAccuracyList((oldList) => [...oldList, newData.accuracy])
-        setSync(newData.sync)
-        setSyncList((oldList) => [...oldList, newData.sync])
+      // socket.on('new_data', (newData) => {
+      //   // setDanceMove(newData.danceMove)
+      //   // setPosition(newData.position)
+      //   // setAccuracy(newData.accuracy)
+      //   // setAccuracyList((oldList) => [...oldList, newData.accuracy])
+      //   setSync(newData.sync)
+      //   setSyncList((oldList) => [...oldList, newData.sync])
+      // })
+
+      // socket.on('new_data2', (newData) => {
+      //   setDanceMove2(newData.danceMove)
+      //   setPosition2(newData.position)
+      //   // setAccuracy2(newData.accuracy)
+      //   // setAccuracyList2((oldList) => [...oldList, newData.accuracy])
+      //   setSync2(newData.sync)
+      //   // setSyncList2((oldList) => [...oldList, newData.sync])
+      // })
+
+      // socket.on('new_data3', (newData) => {
+      //   setDanceMove3(newData.danceMove)
+      //   setPosition3(newData.position)
+      //   // setAccuracy3(newData.accuracy)
+      //   // setAccuracyList3((oldList) => [...oldList, newData.accuracy])
+      //   setSync3(newData.sync)
+      //   // setSyncList3((oldList) => [...oldList, newData.sync])
+      // })
+
+      socket.on('new_data4', (newData) => {
+        setFinalDanceMove(newData.finalDanceMove)
+        setFinalPosition(newData.finalPosition)
+        // setAccuracy3(newData.accuracy)
+        // setAccuracyList3((oldList) => [...oldList, newData.accuracy])
+        setFinalSync(newData.finalSync)
+        setSyncList((oldList) => [...oldList, newData.finalSync])
       })
+
       socket.on('test_log', (newData) => {
         setTestLog(newData)
       })
     } else {
-      socket.off('new_data')
+      // socket.off('new_data')
+      // socket.off('new_data2')
+      // socket.off('new_data3')
+      socket.off('new_data4')
       socket.off('test_log')
     }
   }, [connection])
@@ -163,7 +207,7 @@ function Playground() {
       // position1 === testLog.position1 &&
       // position2 === testLog.position2 &&
       // position3 === testLog.position3 &&
-      danceMove === testLog.danceMove
+      finalDanceMove === testLog.danceMove
     ) {
       setCorrectness(true)
       if (score < 10) {
@@ -174,8 +218,15 @@ function Playground() {
     } else {
       setCorrectness(false)
     }
-  }, [danceMove])
+  }, [finalDanceMove])
 
+  let syncListFloat = syncList.map(function (x) {
+    return parseFloat(x, 10)
+  })
+
+  // console.log(syncList)
+  // console.log(syncListFloat)
+  console.log(syncAvg)
   return (
     <>
       <FormDialog
@@ -213,38 +264,38 @@ function Playground() {
         <Grid item>
           <DancerCard
             name={member1Name}
-            position={position[0]}
+            position={finalPosition.substring(0, 1)}
             userImage='6CgkUjUl4og'
-            danceMove={danceMove}
+            danceMove={finalDanceMove}
             handleClickOpen={handleClickOpen}
-            accuracy={accuracy}
-            sync={sync}
+            // accuracy={accuracy2}
+            sync={finalSync}
           />
         </Grid>
 
         <Grid item>
           <DancerCard
             name={leaderName}
-            position={position[1]}
+            position={finalPosition.substring(2, 3)}
             userImage='sibVwORYqs0'
-            danceMove={danceMove}
+            danceMove={finalDanceMove}
             role='Leader'
             handleClickOpen={handleClickOpen2}
-            accuracy={accuracy}
-            sync={sync}
+            // accuracy={accuracy}
+            sync={finalSync}
           />
         </Grid>
 
         <Grid item>
           <DancerCard
             name={member2Name}
-            position={position[2]}
+            position={finalPosition.substring(4)}
             userImage='d2MSDujJl2g'
-            danceMove={danceMove}
+            danceMove={finalDanceMove}
             role='Member 2'
             handleClickOpen={handleClickOpen3}
-            accuracy={accuracy}
-            sync={sync}
+            // accuracy={accuracy3}
+            sync={finalSync}
           />
         </Grid>
       </Grid>
@@ -266,9 +317,9 @@ function Playground() {
               setShowModal={setShowModal}
               score={score}
               setScore={setScore}
-              setAccuracyList={setAccuracyList}
-              accuracyList={accuracyList}
-              accuracyAvg={accuracyAvg}
+              // setAccuracyList={setAccuracyList}
+              // accuracyList={accuracyList}
+              // accuracyAvg={accuracyAvg}
               setSyncList={setSyncList}
               syncList={syncList}
               syncAvg={syncAvg}
