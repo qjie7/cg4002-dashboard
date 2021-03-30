@@ -296,6 +296,8 @@ export default function Developer(props) {
                         position: 'middleLeft',
                       }}
                       width={120}
+                      type='number'
+                      domain={[-5000, 5000]}
                     />
 
                     <Line
@@ -333,6 +335,8 @@ export default function Developer(props) {
                         position: 'middleLeft',
                       }}
                       width={120}
+                      type='number'
+                      domain={[-5000, 5000]}
                     />
                     <Line
                       name='x'
@@ -374,6 +378,8 @@ export default function Developer(props) {
                         position: 'middleLeft',
                       }}
                       width={120}
+                      type='number'
+                      domain={[-5000, 5000]}
                     />
 
                     <Line
@@ -410,6 +416,8 @@ export default function Developer(props) {
                         position: 'middleLeft',
                       }}
                       width={120}
+                      type='number'
+                      domain={[-5000, 5000]}
                     />
                     <Line
                       name='x'
@@ -456,6 +464,8 @@ export default function Developer(props) {
                         position: 'middleLeft',
                       }}
                       width={120}
+                      type='number'
+                      domain={[-5000, 5000]}
                     />
 
                     <Line
@@ -492,6 +502,8 @@ export default function Developer(props) {
                         position: 'middleLeft',
                       }}
                       width={120}
+                      type='number'
+                      domain={[-5000, 5000]}
                     />
                     <Line
                       name='x'
@@ -532,6 +544,8 @@ export default function Developer(props) {
                         position: 'middleLeft',
                       }}
                       width={120}
+                      type='number'
+                      domain={[-5000, 5000]}
                     />
 
                     <Line
@@ -568,6 +582,8 @@ export default function Developer(props) {
                         position: 'middleLeft',
                       }}
                       width={120}
+                      type='number'
+                      domain={[-5000, 5000]}
                     />
                     <Line
                       name='x'
@@ -614,6 +630,8 @@ export default function Developer(props) {
                         position: 'middleLeft',
                       }}
                       width={120}
+                      type='number'
+                      domain={[-5000, 5000]}
                     />
 
                     <Line
@@ -650,6 +668,8 @@ export default function Developer(props) {
                         position: 'middleLeft',
                       }}
                       width={120}
+                      type='number'
+                      domain={[-5000, 5000]}
                     />
                     <Line
                       name='x'
@@ -690,6 +710,8 @@ export default function Developer(props) {
                         position: 'middleLeft',
                       }}
                       width={120}
+                      type='number'
+                      domain={[-5000, 5000]}
                     />
 
                     <Line
@@ -726,6 +748,8 @@ export default function Developer(props) {
                         position: 'middleLeft',
                       }}
                       width={120}
+                      type='number'
+                      domain={[-5000, 5000]}
                     />
                     <Line
                       name='x'
