@@ -281,7 +281,281 @@ function Playground() {
 
       <Grid container justify='center'>
         {/* Display Dancer Cards start here */}
-        <Grid item>
+        {/* 1 2 3 */}
+        {finalPosition === '1 2 3' && (
+          <>
+            {/* #1 */}
+            <Grid item>
+              <DancerCard
+                name={leaderName}
+                position={finalPosition.substring(0, 1)}
+                userImage='sibVwORYqs0'
+                danceMove={finalDanceMove}
+                role='Leader'
+                handleClickOpen={handleClickOpen2}
+                accuracy={accuracy.toFixed(1)}
+                sync={finalSync}
+              />
+            </Grid>
+
+            {/* #2 */}
+            <Grid item>
+              <DancerCard
+                name={member1Name}
+                position={finalPosition.substring(2, 3)}
+                userImage='6CgkUjUl4og'
+                danceMove={finalDanceMove}
+                handleClickOpen={handleClickOpen}
+                accuracy={accuracy.toFixed(1)}
+                sync={finalSync}
+              />
+            </Grid>
+
+            {/* #3 */}
+            <Grid item>
+              <DancerCard
+                name={member2Name}
+                position={finalPosition.substring(4)}
+                userImage='d2MSDujJl2g'
+                danceMove={finalDanceMove}
+                role='Member 2'
+                handleClickOpen={handleClickOpen3}
+                accuracy={accuracy.toFixed(1)}
+                sync={finalSync}
+              />
+            </Grid>
+          </>
+        )}
+        {/* 1 3 2 */}
+        {finalPosition === '1 3 2' && (
+          <>
+            {/* #1 */}
+            <Grid item>
+              <DancerCard
+                name={leaderName}
+                position={finalPosition.substring(0, 1)}
+                userImage='sibVwORYqs0'
+                danceMove={finalDanceMove}
+                role='Leader'
+                handleClickOpen={handleClickOpen2}
+                accuracy={accuracy.toFixed(1)}
+                sync={finalSync}
+              />
+            </Grid>
+
+            {/* #3 */}
+            <Grid item>
+              <DancerCard
+                name={member2Name}
+                position={finalPosition.substring(4)}
+                userImage='d2MSDujJl2g'
+                danceMove={finalDanceMove}
+                role='Member 2'
+                handleClickOpen={handleClickOpen3}
+                accuracy={accuracy.toFixed(1)}
+                sync={finalSync}
+              />
+            </Grid>
+
+            {/* #2 */}
+            <Grid item>
+              <DancerCard
+                name={member1Name}
+                position={finalPosition.substring(2, 3)}
+                userImage='6CgkUjUl4og'
+                danceMove={finalDanceMove}
+                handleClickOpen={handleClickOpen}
+                accuracy={accuracy.toFixed(1)}
+                sync={finalSync}
+              />
+            </Grid>
+          </>
+        )}
+
+        {/* 2 1 3 */}
+        {finalPosition === '2 1 3' && (
+          <>
+            {/* #2 */}
+            <Grid item>
+              <DancerCard
+                name={member1Name}
+                position={finalPosition.substring(2, 3)}
+                userImage='6CgkUjUl4og'
+                danceMove={finalDanceMove}
+                handleClickOpen={handleClickOpen}
+                accuracy={accuracy.toFixed(1)}
+                sync={finalSync}
+              />
+            </Grid>
+            {/* #1 */}
+            <Grid item>
+              <DancerCard
+                name={leaderName}
+                position={finalPosition.substring(0, 1)}
+                userImage='sibVwORYqs0'
+                danceMove={finalDanceMove}
+                role='Leader'
+                handleClickOpen={handleClickOpen2}
+                accuracy={accuracy.toFixed(1)}
+                sync={finalSync}
+              />
+            </Grid>
+
+            {/* #3 */}
+            <Grid item>
+              <DancerCard
+                name={member2Name}
+                position={finalPosition.substring(4)}
+                userImage='d2MSDujJl2g'
+                danceMove={finalDanceMove}
+                role='Member 2'
+                handleClickOpen={handleClickOpen3}
+                accuracy={accuracy.toFixed(1)}
+                sync={finalSync}
+              />
+            </Grid>
+          </>
+        )}
+
+        {/* 2 3 1 */}
+        {finalPosition === '2 3 1' && (
+          <>
+            {/* #2 */}
+            <Grid item>
+              <DancerCard
+                name={member1Name}
+                position={finalPosition.substring(2, 3)}
+                userImage='6CgkUjUl4og'
+                danceMove={finalDanceMove}
+                handleClickOpen={handleClickOpen}
+                accuracy={accuracy.toFixed(1)}
+                sync={finalSync}
+              />
+            </Grid>
+
+            {/* #3 */}
+            <Grid item>
+              <DancerCard
+                name={member2Name}
+                position={finalPosition.substring(4)}
+                userImage='d2MSDujJl2g'
+                danceMove={finalDanceMove}
+                role='Member 2'
+                handleClickOpen={handleClickOpen3}
+                accuracy={accuracy.toFixed(1)}
+                sync={finalSync}
+              />
+            </Grid>
+
+            {/* #1 */}
+            <Grid item>
+              <DancerCard
+                name={leaderName}
+                position={finalPosition.substring(0, 1)}
+                userImage='sibVwORYqs0'
+                danceMove={finalDanceMove}
+                role='Leader'
+                handleClickOpen={handleClickOpen2}
+                accuracy={accuracy.toFixed(1)}
+                sync={finalSync}
+              />
+            </Grid>
+          </>
+        )}
+
+        {/* 3 1 2 */}
+        {finalPosition === '3 1 2' && (
+          <>
+            {/* #3 */}
+            <Grid item>
+              <DancerCard
+                name={member2Name}
+                position={finalPosition.substring(4)}
+                userImage='d2MSDujJl2g'
+                danceMove={finalDanceMove}
+                role='Member 2'
+                handleClickOpen={handleClickOpen3}
+                accuracy={accuracy.toFixed(1)}
+                sync={finalSync}
+              />
+            </Grid>
+
+            {/* #1 */}
+            <Grid item>
+              <DancerCard
+                name={leaderName}
+                position={finalPosition.substring(0, 1)}
+                userImage='sibVwORYqs0'
+                danceMove={finalDanceMove}
+                role='Leader'
+                handleClickOpen={handleClickOpen2}
+                accuracy={accuracy.toFixed(1)}
+                sync={finalSync}
+              />
+            </Grid>
+
+            {/* #2 */}
+            <Grid item>
+              <DancerCard
+                name={member1Name}
+                position={finalPosition.substring(2, 3)}
+                userImage='6CgkUjUl4og'
+                danceMove={finalDanceMove}
+                handleClickOpen={handleClickOpen}
+                accuracy={accuracy.toFixed(1)}
+                sync={finalSync}
+              />
+            </Grid>
+          </>
+        )}
+
+        {/* 3 2 1 */}
+        {finalPosition === '3 2 1' && (
+          <>
+            {/* #3 */}
+            <Grid item>
+              <DancerCard
+                name={member2Name}
+                position={finalPosition.substring(4)}
+                userImage='d2MSDujJl2g'
+                danceMove={finalDanceMove}
+                role='Member 2'
+                handleClickOpen={handleClickOpen3}
+                accuracy={accuracy.toFixed(1)}
+                sync={finalSync}
+              />
+            </Grid>
+
+            {/* #2 */}
+            <Grid item>
+              <DancerCard
+                name={member1Name}
+                position={finalPosition.substring(2, 3)}
+                userImage='6CgkUjUl4og'
+                danceMove={finalDanceMove}
+                handleClickOpen={handleClickOpen}
+                accuracy={accuracy.toFixed(1)}
+                sync={finalSync}
+              />
+            </Grid>
+
+            {/* #1 */}
+            <Grid item>
+              <DancerCard
+                name={leaderName}
+                position={finalPosition.substring(0, 1)}
+                userImage='sibVwORYqs0'
+                danceMove={finalDanceMove}
+                role='Leader'
+                handleClickOpen={handleClickOpen2}
+                accuracy={accuracy.toFixed(1)}
+                sync={finalSync}
+              />
+            </Grid>
+          </>
+        )}
+
+        {/* <Grid item>
           <DancerCard
             name={leaderName}
             position={finalPosition.substring(0, 1)}
@@ -316,7 +590,7 @@ function Playground() {
             sync={finalSync}
           />
         </Grid>
-        {/* Display Dancer Cards end here */}
+        Display Dancer Cards end here */}
       </Grid>
 
       <Grid container justify='center'>
