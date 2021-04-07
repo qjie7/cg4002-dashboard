@@ -95,8 +95,17 @@ function Progress({ borderColor }) {
           </Grid>
         </Grid>
 
-        <Grid container item xs={12} spacing={3} width={100}>
-          <Grid item xs={12}>
+        <Grid container direction='column' item xs={12} spacing={3}>
+          <Grid xs={12} item>
+            <LineChart
+              data={JSON.parse(localStorage.getItem('accuracyDatas'))}
+              time={JSON.parse(localStorage.getItem('time'))}
+              text='Accuracy Overtime'
+              label='Accuracy'
+              borderColor='rgba(233,42,23,52)'
+            />
+          </Grid>
+          <Grid xs={12} item>
             <LineChart
               data={JSON.parse(localStorage.getItem('syncDatas'))}
               time={JSON.parse(localStorage.getItem('time'))}
@@ -106,6 +115,18 @@ function Progress({ borderColor }) {
             />
           </Grid>
         </Grid>
+
+        {/* <Grid container item xs={12} spacing={3} width={100}>
+          <Grid item xs={12}>
+            <LineChart
+              data={JSON.parse(localStorage.getItem('syncDatas'))}
+              time={JSON.parse(localStorage.getItem('time'))}
+              text='Sync Overtime'
+              label='Sync'
+              borderColor='rgba(23,100,111,4)'
+            />
+          </Grid>
+        </Grid> */}
       </Grid>
     </>
   )

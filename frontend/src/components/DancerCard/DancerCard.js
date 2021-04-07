@@ -35,15 +35,15 @@ function DancerCard(props) {
         </div>
         <div className='card-stats'>
           <div className='stat'>
-            {/* <div className='value'>{props.accuracy}%</div>
-            <div className='type'>Accuracy</div> */}
+            <div className='value'>{props.accuracy}%</div>
+            <div className='type'>Accuracy</div>
           </div>
           <div className='stat border'>
             <div className='value'>{props.position}</div>
             <div className='type'>Position</div>
           </div>
           <div className='stat'>
-            <div className='value'>{props.sync}%</div>
+            <div className='value'>{props.sync}ms</div>
             <div className='type'>Sync</div>
           </div>
         </div>

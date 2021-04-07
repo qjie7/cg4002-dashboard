@@ -795,6 +795,7 @@ export default function Developer(props) {
                 angle: -90,
                 position: 'middleLeft',
               }}
+              domain={[-1000, 1000]}
             />
 
             <Line

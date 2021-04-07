@@ -100,6 +100,9 @@ export const Modal = ({
   setShowModal,
   score,
   setScore,
+  maxScore,
+  setMaxScore,
+  accuracy,
   // setAccuracyList,
   // accuracyList,
   accuracyAvg,
@@ -151,6 +154,7 @@ export const Modal = ({
       // }
 
       setScore(0)
+      setMaxScore(0)
       setShowModal(false)
       setSaveStatus(false)
     }
@@ -187,6 +191,7 @@ export const Modal = ({
     //   increaseTenScore()
     // }
     setScore(0)
+    setMaxScore(0)
     setShowModal(false)
     setSaveStatus(false)
   }
@@ -216,9 +221,9 @@ export const Modal = ({
   const [nineScore, setNineScore] = useState(localStorage.getItem('nineScore'))
   const [tenScore, setTenScore] = useState(localStorage.getItem('tenScore'))
 
-  // const [accuracyDatas, setAccuracyDatas] = useState(
-  //   JSON.parse(localStorage.getItem('accuracyDatas'))
-  // )
+  const [accuracyDatas, setAccuracyDatas] = useState(
+    JSON.parse(localStorage.getItem('accuracyDatas'))
+  )
   const [syncDatas, setSyncDatas] = useState(
     JSON.parse(localStorage.getItem('syncDatas'))
   )
@@ -325,31 +330,54 @@ export const Modal = ({
     //   btnRef.current.setAttribute('disabled', 'disabled')
     // }
 
-    if (score === 1) {
+    // if (score === 1) {
+    //   increaseOneScore()
+    // } else if (score === 2) {
+    //   increaseTwoScore()
+    //   // console.log(increaseTwoScore())
+    // } else if (score === 3) {
+    //   increaseThreeScore()
+    // } else if (score === 4) {
+    //   increaseFourScore()
+    // } else if (score === 5) {
+    //   increaseFiveScore()
+    // } else if (score === 6) {
+    //   increaseSixScore()
+    // } else if (score === 7) {
+    //   increaseSevenScore()
+    // } else if (score === 8) {
+    //   increaseEightScore()
+    // } else if (score === 9) {
+    //   increaseNineScore()
+    // } else if (score === 10) {
+    //   increaseTenScore()
+    // }
+
+    if (Math.floor(accuracy.toFixed(0) / 10) === 1) {
       increaseOneScore()
-    } else if (score === 2) {
+    } else if (Math.floor(accuracy.toFixed(0) / 10) === 2) {
       increaseTwoScore()
       // console.log(increaseTwoScore())
-    } else if (score === 3) {
+    } else if (Math.floor(accuracy.toFixed(0) / 10) === 3) {
       increaseThreeScore()
-    } else if (score === 4) {
+    } else if (Math.floor(accuracy.toFixed(0) / 10) === 4) {
       increaseFourScore()
-    } else if (score === 5) {
+    } else if (Math.floor(accuracy.toFixed(0) / 10) === 5) {
       increaseFiveScore()
-    } else if (score === 6) {
+    } else if (Math.floor(accuracy.toFixed(0) / 10) === 6) {
       increaseSixScore()
-    } else if (score === 7) {
+    } else if (Math.floor(accuracy.toFixed(0) / 10) === 7) {
       increaseSevenScore()
-    } else if (score === 8) {
+    } else if (Math.floor(accuracy.toFixed(0) / 10) === 8) {
       increaseEightScore()
-    } else if (score === 9) {
+    } else if (Math.floor(accuracy.toFixed(0) / 10) === 9) {
       increaseNineScore()
-    } else if (score === 10) {
+    } else if (Math.floor(accuracy.toFixed(0) / 10) === 10) {
       increaseTenScore()
     }
 
-    // setAccuracyDatas((oldDatas) => [...oldDatas, Math.floor(accuracyAvg)])
-    // localStorage.setItem('accuracyDatas', JSON.stringify(accuracyDatas))
+    setAccuracyDatas((oldDatas) => [...oldDatas, Math.floor(accuracy)])
+    localStorage.setItem('accuracyDatas', JSON.stringify(accuracyDatas))
 
     setSyncDatas((oldDatas) => [...oldDatas, syncAvg.toFixed(4)])
     localStorage.setItem('syncDatas', JSON.stringify(syncDatas))
@@ -450,19 +478,26 @@ export const Modal = ({
               <ModalContentLeft style={{ justifyContent: 'center' }}>
                 <Grid container direction='column'>
                   <Grid item xs={12}>
-                    <h1>Score</h1>
-                    <p>{score}/ 10</p>
+                    <h1>Result</h1>
+                    <p>
+                      {score}/{maxScore}
+                    </p>
+                  </Grid>
+
+                  <Grid item xs={12}>
+                    <h1>Overall Accuracy</h1>
+                    <p>{Math.floor(accuracy.toFixed(1))}%</p>
                   </Grid>
 
                   <Grid item xs={12}>
                     <h1>Overall Sync</h1>
-                    <p>{syncAvg.toFixed(4)}%</p>
+                    <p>{syncAvg.toFixed(4)}ms</p>
                   </Grid>
 
-                  {/* <Grid item xs={12}>
-                    <h1>Overall Accuracy</h1>
-                    <p>{Math.floor(accuracyAvg)}%</p>
-                  </Grid> */}
+                  <Grid item xs={12}>
+                    <h1>Overall Score</h1>
+                    <p>{Math.floor(accuracy.toFixed(0) / 10)}</p>
+                  </Grid>
                 </Grid>
 
                 {/* <button ref={btnRef} onClick={handleSaveButton}> */}
@@ -470,9 +505,9 @@ export const Modal = ({
                 <p>{saveStatus ? 'saved!' : ''}</p>
               </ModalContentLeft>
               <ModalContentRight>
-                {score > 7 ? (
+                {accuracy > 80 ? (
                   <h1>You are doing great! Keep it up!</h1>
-                ) : score > 5 ? (
+                ) : accuracy > 50 ? (
                   <h1>Practice more! You can be better</h1>
                 ) : (
                   <h1>Do not give up! You can do it!</h1>

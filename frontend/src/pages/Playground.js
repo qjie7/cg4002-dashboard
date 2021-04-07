@@ -54,7 +54,7 @@ function Playground() {
   // const [position, setPosition] = useState([1, 2, 3])
   // const [position2, setPosition2] = useState([1, 2, 3])
   // const [position3, setPosition3] = useState([1, 2, 3])
-  // const [accuracy, setAccuracy] = useState(0)
+  const [accuracy, setAccuracy] = useState(0)
   // const [accuracy2, setAccuracy2] = useState(0)
   // const [accuracy3, setAccuracy3] = useState(0)
   // const [accuracyAvg, setAccuracyAvg] = useState(0)
@@ -79,7 +79,6 @@ function Playground() {
 
       const syncSum = syncListFloat.reduce((a, b) => a + b, 0)
 
-      // const syncAvg = syncSum / syncList.length || 0
       const syncAvg = syncSum / syncList.length || 0
       setSyncAvg(syncAvg)
     }
@@ -139,12 +138,13 @@ function Playground() {
   })
 
   const [score, setScore] = useState(0)
-  const [testLog, setTestLog] = useState({
-    danceMove: 'Dab',
-    position1: 1,
-    position2: 2,
-    position3: 3,
-  })
+  const [maxScore, setMaxScore] = useState(0)
+  // const [testLog, setTestLog] = useState({
+  //   danceMove: 'Dab',
+  //   position1: 1,
+  //   position2: 2,
+  //   position3: 3,
+  // })
   const [correctness, setCorrectness] = useState(false)
 
   // const [accuracyList, setAccuracyList] = useState([])
@@ -152,6 +152,9 @@ function Playground() {
 
   useEffect(() => {
     if (connection) {
+      setAccuracy(0)
+      setScore(0)
+      setMaxScore(0)
       // socket.connect()
       // if (connection && checked) {
       // socket.on('new_data', (newData) => {
@@ -184,48 +187,64 @@ function Playground() {
       socket.on('new_data4', (newData) => {
         setFinalDanceMove(newData.finalDanceMove)
         setFinalPosition(newData.finalPosition)
-        // setAccuracy3(newData.accuracy)
-        // setAccuracyList3((oldList) => [...oldList, newData.accuracy])
         setFinalSync(newData.finalSync)
         setSyncList((oldList) => [...oldList, newData.finalSync])
       })
 
-      socket.on('test_log', (newData) => {
-        setTestLog(newData)
-      })
+      // socket.on('test_log', (newData) => {
+      //   setTestLog(newData)
+      // })
     } else {
-      // socket.off('new_data')
-      // socket.off('new_data2')
-      // socket.off('new_data3')
       socket.off('new_data4')
-      socket.off('test_log')
+      // socket.off('test_log')
     }
   }, [connection])
 
-  useEffect(() => {
-    if (
-      // position1 === testLog.position1 &&
-      // position2 === testLog.position2 &&
-      // position3 === testLog.position3 &&
-      finalDanceMove === testLog.danceMove
-    ) {
-      setCorrectness(true)
-      if (score < 10) {
-        setScore((prevScore) => prevScore + 1)
-      }
+  // useEffect(() => {
+  //   if (
+  //     // position1 === testLog.position1 &&
+  //     // position2 === testLog.position2 &&
+  //     // position3 === testLog.position3 &&
 
-      console.log(score)
-    } else {
-      setCorrectness(false)
+  //     finalDanceMove === testLog.danceMove
+  //   ) {
+  //     setCorrectness(true)
+  //     if (score < 10) {
+  //       setScore((prevScore) => prevScore + 1)
+  //     }
+
+  //     console.log(score)
+  //   } else {
+  //     setCorrectness(false)
+  //   }
+  // }, [finalDanceMove])
+
+  useEffect(() => {
+    const handleKey = (event) => {
+      if (event.keyCode === 16 && connection) {
+        setCorrectness(true)
+        setScore((prevScore) => prevScore + 1)
+        setMaxScore((prevScore) => prevScore + 1)
+      } else if (event.keyCode === 88 && connection) {
+        setCorrectness(false)
+        setMaxScore((prevScore) => prevScore + 1)
+      }
     }
-  }, [finalDanceMove])
+    window.addEventListener('keydown', handleKey)
+
+    return () => {
+      window.removeEventListener('keydown', handleKey)
+    }
+  })
+
+  useEffect(() => {
+    setAccuracy(maxScore === 0 ? 0 : (score * 100) / maxScore)
+  })
 
   let syncListFloat = syncList.map(function (x) {
     return parseFloat(x, 10)
   })
 
-  // console.log(syncList)
-  // console.log(syncListFloat)
   console.log(syncAvg)
   return (
     <>
@@ -261,31 +280,30 @@ function Playground() {
       </Grid>
 
       <Grid container justify='center'>
-        <Grid item>
-          <DancerCard
-            name={member1Name}
-            position={finalPosition.substring(0, 1)}
-            userImage='6CgkUjUl4og'
-            danceMove={finalDanceMove}
-            handleClickOpen={handleClickOpen}
-            // accuracy={accuracy2}
-            sync={finalSync}
-          />
-        </Grid>
-
+        {/* Display Dancer Cards start here */}
         <Grid item>
           <DancerCard
             name={leaderName}
-            position={finalPosition.substring(2, 3)}
+            position={finalPosition.substring(0, 1)}
             userImage='sibVwORYqs0'
             danceMove={finalDanceMove}
             role='Leader'
             handleClickOpen={handleClickOpen2}
-            // accuracy={accuracy}
+            accuracy={accuracy.toFixed(1)}
             sync={finalSync}
           />
         </Grid>
-
+        <Grid item>
+          <DancerCard
+            name={member1Name}
+            position={finalPosition.substring(2, 3)}
+            userImage='6CgkUjUl4og'
+            danceMove={finalDanceMove}
+            handleClickOpen={handleClickOpen}
+            accuracy={accuracy.toFixed(1)}
+            sync={finalSync}
+          />
+        </Grid>
         <Grid item>
           <DancerCard
             name={member2Name}
@@ -294,10 +312,11 @@ function Playground() {
             danceMove={finalDanceMove}
             role='Member 2'
             handleClickOpen={handleClickOpen3}
-            // accuracy={accuracy3}
+            accuracy={accuracy.toFixed(1)}
             sync={finalSync}
           />
         </Grid>
+        {/* Display Dancer Cards end here */}
       </Grid>
 
       <Grid container justify='center'>
@@ -317,6 +336,9 @@ function Playground() {
               setShowModal={setShowModal}
               score={score}
               setScore={setScore}
+              maxScore={maxScore}
+              setMaxScore={setMaxScore}
+              accuracy={accuracy}
               // setAccuracyList={setAccuracyList}
               // accuracyList={accuracyList}
               // accuracyAvg={accuracyAvg}

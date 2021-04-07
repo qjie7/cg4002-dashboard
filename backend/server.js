@@ -24,11 +24,11 @@ const io = require('socket.io')(server, {
   transports: ['websocket', 'polling'],
 })
 
-const Data = require('./models/data')
+// const Data = require('./models/data')
 
-const DummySensorData = require('./data/dummySensor.json')
-const testLogData = require('./data/test_log.json')
-const { getRandomData, getTestLogData } = require('./data_generator')
+// const DummySensorData = require('./data/dummySensor.json')
+// const testLogData = require('./data/test_log.json')
+// const { getRandomData, getTestLogData } = require('./data_generator')
 
 const port = 3000
 const connection = mongoose.connection
@@ -37,10 +37,10 @@ const connection = mongoose.connection
 io.on('connection', (socket) => {
   console.log('socket.io: Client connected: ', socket.id)
 
-  // Emitting events to the frontend
-  testInterval = setInterval(() => {
-    socket.emit('test_log', getTestLogData(testLogData))
-  }, 10000)
+  // // Emitting events to the frontend
+  // testInterval = setInterval(() => {
+  //   socket.emit('test_log', getTestLogData(testLogData))
+  // }, 10000)
 
   socket.on('disconnect', () => {
     console.log('socket.io: Client disconnected: ', socket.id)
