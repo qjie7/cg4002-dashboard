@@ -256,7 +256,7 @@ connection.once('open', () => {
 
           time: change.fullDocument.time,
 
-          // danceMove: change.fullDocument.danceMove,
+          danceMove: change.fullDocument.danceMove,
           // position: change.fullDocument.position,
           // // accuracy: change.fullDocument.accuracy,
           // sync: change.fullDocument.sync,
@@ -334,7 +334,7 @@ connection.once('open', () => {
 
           time: change.fullDocument.time,
 
-          // danceMove: change.fullDocument.danceMove,
+          danceMove: change.fullDocument.danceMove,
           // //position: change.fullDocument.position,
           // // accuracy: change.fullDocument.accuracy,
           // sync: change.fullDocument.sync,
@@ -412,7 +412,7 @@ connection.once('open', () => {
 
           time: change.fullDocument.time,
 
-          // danceMove: change.fullDocument.danceMove,
+          danceMove: change.fullDocument.danceMove,
           // //position: change.fullDocument.position,
           // // accuracy: change.fullDocument.accuracy,
           // sync: change.fullDocument.sync,

@@ -103,12 +103,8 @@ export const Modal = ({
   maxScore,
   setMaxScore,
   accuracy,
-  // setAccuracyList,
-  // accuracyList,
-  accuracyAvg,
-  setSyncList,
-  syncList,
   syncAvg,
+  posAccuracy,
 }) => {
   const modalRef = useRef()
 
@@ -224,6 +220,19 @@ export const Modal = ({
   const [accuracyDatas, setAccuracyDatas] = useState(
     JSON.parse(localStorage.getItem('accuracyDatas'))
   )
+
+  // const [accuracyDatas2, setAccuracyDatas2] = useState(
+  //   JSON.parse(localStorage.getItem('accuracyDatas2'))
+  // )
+
+  // const [accuracyDatas3, setAccuracyDatas3] = useState(
+  //   JSON.parse(localStorage.getItem('accuracyDatas3'))
+  // )
+
+  // const [overallAccuracy, setOverallAccuracy] = useState(
+  //   JSON.parse(localStorage.getItem('overallAccuracy'))
+  // )
+
   const [syncDatas, setSyncDatas] = useState(
     JSON.parse(localStorage.getItem('syncDatas'))
   )
@@ -379,6 +388,12 @@ export const Modal = ({
     setAccuracyDatas((oldDatas) => [...oldDatas, Math.floor(accuracy)])
     localStorage.setItem('accuracyDatas', JSON.stringify(accuracyDatas))
 
+    // setAccuracyDatas2((oldDatas) => [...oldDatas, Math.floor(accuracy2)])
+    // localStorage.setItem('accuracyDatas2', JSON.stringify(accuracyDatas2))
+
+    // setAccuracyDatas3((oldDatas) => [...oldDatas, Math.floor(accuracy3)])
+    // localStorage.setItem('accuracyDatas3', JSON.stringify(accuracyDatas3))
+
     setSyncDatas((oldDatas) => [...oldDatas, syncAvg.toFixed(4)])
     localStorage.setItem('syncDatas', JSON.stringify(syncDatas))
 
@@ -478,14 +493,12 @@ export const Modal = ({
               <ModalContentLeft style={{ justifyContent: 'center' }}>
                 <Grid container direction='column'>
                   <Grid item xs={12}>
-                    <h1>Result</h1>
-                    <p>
-                      {score}/{maxScore}
-                    </p>
+                    <h1>Position Accuracy</h1>
+                    <p>{Math.floor(posAccuracy.toFixed(1))}%</p>
                   </Grid>
 
                   <Grid item xs={12}>
-                    <h1>Overall Accuracy</h1>
+                    <h1>Team Accuracy</h1>
                     <p>{Math.floor(accuracy.toFixed(1))}%</p>
                   </Grid>
 
@@ -495,7 +508,7 @@ export const Modal = ({
                   </Grid>
 
                   <Grid item xs={12}>
-                    <h1>Overall Score</h1>
+                    <h1>Team Score</h1>
                     <p>{Math.floor(accuracy.toFixed(0) / 10)}</p>
                   </Grid>
                 </Grid>
@@ -505,18 +518,19 @@ export const Modal = ({
                 <p>{saveStatus ? 'saved!' : ''}</p>
               </ModalContentLeft>
               <ModalContentRight>
-                {accuracy > 80 ? (
-                  <h1>You are doing great! Keep it up!</h1>
-                ) : accuracy > 50 ? (
-                  <h1>Practice more! You can be better</h1>
-                ) : (
-                  <h1>Do not give up! You can do it!</h1>
-                )}
-
-                <p>Tips: Watch video tutorial to improve further!</p>
-                <Link to='/dancebase'>
-                  <button>Watch Now</button>
-                </Link>
+                <div>
+                  {accuracy > 80 ? (
+                    <h1>You are doing great! Keep it up!</h1>
+                  ) : accuracy > 50 ? (
+                    <h1>Practice more! You can be better</h1>
+                  ) : (
+                    <h1>Do not give up! You can do it!</h1>
+                  )}
+                  <p>Tips: Watch video tutorial to improve further!</p>
+                  <Link to='/dancebase'>
+                    <button>Watch Now</button>
+                  </Link>
+                </div>
               </ModalContentRight>
               <CloseModalButton
                 aria-label='Close modal'

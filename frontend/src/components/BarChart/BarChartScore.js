@@ -71,7 +71,7 @@ const BarChartScore = (props) => {
             fontStyle: 'bold',
             fontSize: 16,
             padding: 30,
-            text: 'Score Frequency Table',
+            text: 'Team Score',
           },
 
           legend: {

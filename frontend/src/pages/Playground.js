@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import Button from '@material-ui/core/Button'
 import Backdrop from '@material-ui/core/Backdrop'
+import { motion } from 'framer-motion'
 
 import io from 'socket.io-client'
 import styled from 'styled-components'
@@ -12,7 +13,7 @@ import styled from 'styled-components'
 import { Modal } from '../components/Modal/Modal'
 import FormDialog from '../components/FormDialog/FormDialog'
 import DancerCard from '../components/DancerCard/DancerCard'
-
+import DancerCard2 from '../components/DancerCard/DancerCard2'
 const useStyles = makeStyles((theme) => ({
   margin: {
     margin: theme.spacing(1),
@@ -46,24 +47,18 @@ const socket = io('http://localhost:3000', {
 
 function Playground() {
   const classes = useStyles()
-  // const [danceMove, setDanceMove] = useState('Dab')
-  // const [danceMove2, setDanceMove2] = useState('Dab')
-  // const [danceMove3, setDanceMove3] = useState('Dab')
+  const [danceMove, setDanceMove] = useState('Nothing')
+  const [danceMove2, setDanceMove2] = useState('Nothing')
+  const [danceMove3, setDanceMove3] = useState('Nothing')
   const [finalDanceMove, setFinalDanceMove] = useState('nothing')
   const [finalPosition, setFinalPosition] = useState('1 2 3')
-  // const [position, setPosition] = useState([1, 2, 3])
-  // const [position2, setPosition2] = useState([1, 2, 3])
-  // const [position3, setPosition3] = useState([1, 2, 3])
   const [accuracy, setAccuracy] = useState(0)
-  // const [accuracy2, setAccuracy2] = useState(0)
-  // const [accuracy3, setAccuracy3] = useState(0)
-  // const [accuracyAvg, setAccuracyAvg] = useState(0)
+  const [accuracy2, setAccuracy2] = useState(0)
+  const [accuracy3, setAccuracy3] = useState(0)
+  const [overallAccuracy, setOverallAccuracy] = useState(0)
+  const [posAccuracy, setPosAccuracy] = useState(0)
   const [finalSync, setFinalSync] = useState('0')
-  // const [sync, setSync] = useState(0)
-  // const [sync2, setSync2] = useState(0)
-  // const [sync3, setSync3] = useState(0)
   const [syncAvg, setSyncAvg] = useState(0)
-
   const [showModal, setShowModal] = useState(false)
 
   const openModal = () => {
@@ -73,12 +68,7 @@ function Playground() {
 
   const handleConnection = () => {
     if (connection) {
-      // const accuracySum = accuracyList.reduce((a, b) => a + b, 0)
-      // const accuracyAvg = accuracySum / accuracyList.length || 0
-      // setAccuracyAvg(accuracyAvg)
-
       const syncSum = syncListFloat.reduce((a, b) => a + b, 0)
-
       const syncAvg = syncSum / syncList.length || 0
       setSyncAvg(syncAvg)
     }
@@ -139,50 +129,38 @@ function Playground() {
 
   const [score, setScore] = useState(0)
   const [maxScore, setMaxScore] = useState(0)
-  // const [testLog, setTestLog] = useState({
-  //   danceMove: 'Dab',
-  //   position1: 1,
-  //   position2: 2,
-  //   position3: 3,
-  // })
+  const [score2, setScore2] = useState(0)
+  const [maxScore2, setMaxScore2] = useState(0)
+  const [score3, setScore3] = useState(0)
+  const [maxScore3, setMaxScore3] = useState(0)
+  const [scorePos, setScorePos] = useState(0)
+  const [maxScorePos, setMaxScorePos] = useState(0)
   const [correctness, setCorrectness] = useState(false)
-
-  // const [accuracyList, setAccuracyList] = useState([])
   const [syncList, setSyncList] = useState([])
 
   useEffect(() => {
     if (connection) {
       setAccuracy(0)
       setScore(0)
+      setScore2(0)
+      setScore3(0)
+      setScorePos(0)
       setMaxScore(0)
-      // socket.connect()
-      // if (connection && checked) {
-      // socket.on('new_data', (newData) => {
-      //   // setDanceMove(newData.danceMove)
-      //   // setPosition(newData.position)
-      //   // setAccuracy(newData.accuracy)
-      //   // setAccuracyList((oldList) => [...oldList, newData.accuracy])
-      //   setSync(newData.sync)
-      //   setSyncList((oldList) => [...oldList, newData.sync])
-      // })
+      setMaxScore2(0)
+      setMaxScore3(0)
+      setMaxScorePos(0)
 
-      // socket.on('new_data2', (newData) => {
-      //   setDanceMove2(newData.danceMove)
-      //   setPosition2(newData.position)
-      //   // setAccuracy2(newData.accuracy)
-      //   // setAccuracyList2((oldList) => [...oldList, newData.accuracy])
-      //   setSync2(newData.sync)
-      //   // setSyncList2((oldList) => [...oldList, newData.sync])
-      // })
+      socket.on('new_data', (newData) => {
+        setDanceMove(newData.danceMove)
+      })
 
-      // socket.on('new_data3', (newData) => {
-      //   setDanceMove3(newData.danceMove)
-      //   setPosition3(newData.position)
-      //   // setAccuracy3(newData.accuracy)
-      //   // setAccuracyList3((oldList) => [...oldList, newData.accuracy])
-      //   setSync3(newData.sync)
-      //   // setSyncList3((oldList) => [...oldList, newData.sync])
-      // })
+      socket.on('new_data2', (newData) => {
+        setDanceMove2(newData.danceMove)
+      })
+
+      socket.on('new_data3', (newData) => {
+        setDanceMove3(newData.danceMove)
+      })
 
       socket.on('new_data4', (newData) => {
         setFinalDanceMove(newData.finalDanceMove)
@@ -190,13 +168,11 @@ function Playground() {
         setFinalSync(newData.finalSync)
         setSyncList((oldList) => [...oldList, newData.finalSync])
       })
-
-      // socket.on('test_log', (newData) => {
-      //   setTestLog(newData)
-      // })
     } else {
+      socket.off('new_data')
+      socket.off('new_data2')
+      socket.off('new_data3')
       socket.off('new_data4')
-      // socket.off('test_log')
     }
   }, [connection])
 
@@ -221,14 +197,44 @@ function Playground() {
 
   useEffect(() => {
     const handleKey = (event) => {
-      if (event.keyCode === 16 && connection) {
+      if (event.keyCode === 81 && connection) {
         setCorrectness(true)
         setScore((prevScore) => prevScore + 1)
         setMaxScore((prevScore) => prevScore + 1)
-      } else if (event.keyCode === 88 && connection) {
+      } else if (event.keyCode === 87 && connection) {
+        setCorrectness(true)
+        setScore2((prevScore) => prevScore + 1)
+        setMaxScore2((prevScore) => prevScore + 1)
+      } else if (event.keyCode === 69 && connection) {
+        setCorrectness(true)
+        setScore3((prevScore) => prevScore + 1)
+        setMaxScore3((prevScore) => prevScore + 1)
+      } else if (event.keyCode === 82 && connection) {
+        setCorrectness(true)
+        setScorePos((prevScore) => prevScore + 1)
+        setMaxScorePos((prevScore) => prevScore + 1)
+      } else if (event.keyCode === 65 && connection) {
         setCorrectness(false)
         setMaxScore((prevScore) => prevScore + 1)
+      } else if (event.keyCode === 83 && connection) {
+        setCorrectness(false)
+        setMaxScore2((prevScore) => prevScore + 1)
+      } else if (event.keyCode === 68 && connection) {
+        setCorrectness(false)
+        setMaxScore3((prevScore) => prevScore + 1)
+      } else if (event.keyCode === 70 && connection) {
+        setCorrectness(false)
+        setMaxScorePos((prevScore) => prevScore + 1)
       }
+
+      // if (event.keyCode === 16 && connection) {
+      //   setCorrectness(true)
+      //   setScore((prevScore) => prevScore + 1)
+      //   setMaxScore((prevScore) => prevScore + 1)
+      // } else if (event.keyCode === 88 && connection) {
+      //   setCorrectness(false)
+      //   setMaxScore((prevScore) => prevScore + 1)
+      // }
     }
     window.addEventListener('keydown', handleKey)
 
@@ -239,6 +245,10 @@ function Playground() {
 
   useEffect(() => {
     setAccuracy(maxScore === 0 ? 0 : (score * 100) / maxScore)
+    setAccuracy2(maxScore2 === 0 ? 0 : (score2 * 100) / maxScore2)
+    setAccuracy3(maxScore3 === 0 ? 0 : (score3 * 100) / maxScore3)
+    setOverallAccuracy((accuracy + accuracy2 + accuracy3) / 3)
+    setPosAccuracy(maxScorePos === 0 ? 0 : (scorePos * 100) / maxScorePos)
   })
 
   let syncListFloat = syncList.map(function (x) {
@@ -286,43 +296,53 @@ function Playground() {
           <>
             {/* #1 */}
             <Grid item>
-              <DancerCard
-                name={leaderName}
-                position={finalPosition.substring(0, 1)}
-                userImage='sibVwORYqs0'
-                danceMove={finalDanceMove}
-                role='Leader'
-                handleClickOpen={handleClickOpen2}
-                accuracy={accuracy.toFixed(1)}
-                sync={finalSync}
-              />
+              <motion.span>
+                <DancerCard
+                  name={leaderName}
+                  position={finalPosition.substring(0, 1)}
+                  userImage='NRfYKuSKs_o'
+                  //danceMove={finalDanceMove}
+                  danceMove={danceMove}
+                  role='Leader'
+                  handleClickOpen={handleClickOpen2}
+                  accuracy={accuracy.toFixed(1)}
+                  sync={finalSync}
+                />
+              </motion.span>
             </Grid>
 
             {/* #2 */}
             <Grid item>
-              <DancerCard
-                name={member1Name}
-                position={finalPosition.substring(2, 3)}
-                userImage='6CgkUjUl4og'
-                danceMove={finalDanceMove}
-                handleClickOpen={handleClickOpen}
-                accuracy={accuracy.toFixed(1)}
-                sync={finalSync}
-              />
+              <motion.span>
+                <DancerCard2
+                  name={member1Name}
+                  position={finalPosition.substring(2, 3)}
+                  userImage='OqQi3nCt4CA'
+                  //danceMove={finalDanceMove}
+                  danceMove={danceMove2}
+                  handleClickOpen={handleClickOpen}
+                  accuracy={accuracy2.toFixed(1)}
+                  sync={finalSync}
+                  posAccuracy={posAccuracy.toFixed(1)}
+                />
+              </motion.span>
             </Grid>
 
             {/* #3 */}
             <Grid item>
-              <DancerCard
-                name={member2Name}
-                position={finalPosition.substring(4)}
-                userImage='d2MSDujJl2g'
-                danceMove={finalDanceMove}
-                role='Member 2'
-                handleClickOpen={handleClickOpen3}
-                accuracy={accuracy.toFixed(1)}
-                sync={finalSync}
-              />
+              <motion.span>
+                <DancerCard
+                  name={member2Name}
+                  position={finalPosition.substring(4)}
+                  userImage='SFJz9q9EAZc'
+                  // danceMove={finalDanceMove}
+                  danceMove={danceMove3}
+                  role='Member 2'
+                  handleClickOpen={handleClickOpen3}
+                  accuracy={accuracy3.toFixed(1)}
+                  sync={finalSync}
+                />
+              </motion.span>
             </Grid>
           </>
         )}
@@ -331,43 +351,53 @@ function Playground() {
           <>
             {/* #1 */}
             <Grid item>
-              <DancerCard
-                name={leaderName}
-                position={finalPosition.substring(0, 1)}
-                userImage='sibVwORYqs0'
-                danceMove={finalDanceMove}
-                role='Leader'
-                handleClickOpen={handleClickOpen2}
-                accuracy={accuracy.toFixed(1)}
-                sync={finalSync}
-              />
+              <motion.span layout>
+                <DancerCard
+                  name={leaderName}
+                  position={finalPosition.substring(0, 1)}
+                  userImage='NRfYKuSKs_o'
+                  //danceMove={finalDanceMove}
+                  danceMove={danceMove}
+                  role='Leader'
+                  handleClickOpen={handleClickOpen2}
+                  accuracy={accuracy.toFixed(1)}
+                  sync={finalSync}
+                />
+              </motion.span>
             </Grid>
 
             {/* #3 */}
             <Grid item>
-              <DancerCard
-                name={member2Name}
-                position={finalPosition.substring(4)}
-                userImage='d2MSDujJl2g'
-                danceMove={finalDanceMove}
-                role='Member 2'
-                handleClickOpen={handleClickOpen3}
-                accuracy={accuracy.toFixed(1)}
-                sync={finalSync}
-              />
+              <motion.span layout>
+                <DancerCard
+                  name={member2Name}
+                  position={finalPosition.substring(4)}
+                  userImage='SFJz9q9EAZc'
+                  // danceMove={finalDanceMove}
+                  danceMove={danceMove3}
+                  role='Member 2'
+                  handleClickOpen={handleClickOpen3}
+                  accuracy={accuracy3.toFixed(1)}
+                  sync={finalSync}
+                />
+              </motion.span>
             </Grid>
 
             {/* #2 */}
             <Grid item>
-              <DancerCard
-                name={member1Name}
-                position={finalPosition.substring(2, 3)}
-                userImage='6CgkUjUl4og'
-                danceMove={finalDanceMove}
-                handleClickOpen={handleClickOpen}
-                accuracy={accuracy.toFixed(1)}
-                sync={finalSync}
-              />
+              <motion.span layout>
+                <DancerCard2
+                  name={member1Name}
+                  position={finalPosition.substring(2, 3)}
+                  userImage='OqQi3nCt4CA'
+                  // danceMove={finalDanceMove}
+                  danceMove={danceMove2}
+                  handleClickOpen={handleClickOpen}
+                  accuracy={accuracy2.toFixed(1)}
+                  sync={finalSync}
+                  posAccuracy={posAccuracy.toFixed(1)}
+                />
+              </motion.span>
             </Grid>
           </>
         )}
@@ -377,42 +407,52 @@ function Playground() {
           <>
             {/* #2 */}
             <Grid item>
-              <DancerCard
-                name={member1Name}
-                position={finalPosition.substring(2, 3)}
-                userImage='6CgkUjUl4og'
-                danceMove={finalDanceMove}
-                handleClickOpen={handleClickOpen}
-                accuracy={accuracy.toFixed(1)}
-                sync={finalSync}
-              />
+              <motion.span layout>
+                <DancerCard2
+                  name={member1Name}
+                  position={finalPosition.substring(2, 3)}
+                  userImage='OqQi3nCt4CA'
+                  // danceMove={finalDanceMove}
+                  danceMove={danceMove2}
+                  handleClickOpen={handleClickOpen}
+                  accuracy={accuracy2.toFixed(1)}
+                  sync={finalSync}
+                  posAccuracy={posAccuracy.toFixed(1)}
+                />
+              </motion.span>
             </Grid>
             {/* #1 */}
             <Grid item>
-              <DancerCard
-                name={leaderName}
-                position={finalPosition.substring(0, 1)}
-                userImage='sibVwORYqs0'
-                danceMove={finalDanceMove}
-                role='Leader'
-                handleClickOpen={handleClickOpen2}
-                accuracy={accuracy.toFixed(1)}
-                sync={finalSync}
-              />
+              <motion.span layout>
+                <DancerCard
+                  name={leaderName}
+                  position={finalPosition.substring(0, 1)}
+                  userImage='NRfYKuSKs_o'
+                  // danceMove={finalDanceMove}
+                  danceMove={danceMove}
+                  role='Leader'
+                  handleClickOpen={handleClickOpen2}
+                  accuracy={accuracy.toFixed(1)}
+                  sync={finalSync}
+                />
+              </motion.span>
             </Grid>
 
             {/* #3 */}
             <Grid item>
-              <DancerCard
-                name={member2Name}
-                position={finalPosition.substring(4)}
-                userImage='d2MSDujJl2g'
-                danceMove={finalDanceMove}
-                role='Member 2'
-                handleClickOpen={handleClickOpen3}
-                accuracy={accuracy.toFixed(1)}
-                sync={finalSync}
-              />
+              <motion.span layout>
+                <DancerCard
+                  name={member2Name}
+                  position={finalPosition.substring(4)}
+                  userImage='SFJz9q9EAZc'
+                  // danceMove={finalDanceMove}
+                  danceMove={danceMove3}
+                  role='Member 2'
+                  handleClickOpen={handleClickOpen3}
+                  accuracy={accuracy3.toFixed(1)}
+                  sync={finalSync}
+                />
+              </motion.span>
             </Grid>
           </>
         )}
@@ -422,43 +462,53 @@ function Playground() {
           <>
             {/* #2 */}
             <Grid item>
-              <DancerCard
-                name={member1Name}
-                position={finalPosition.substring(2, 3)}
-                userImage='6CgkUjUl4og'
-                danceMove={finalDanceMove}
-                handleClickOpen={handleClickOpen}
-                accuracy={accuracy.toFixed(1)}
-                sync={finalSync}
-              />
+              <motion.span layout>
+                <DancerCard2
+                  name={member1Name}
+                  position={finalPosition.substring(2, 3)}
+                  userImage='OqQi3nCt4CA'
+                  //danceMove={finalDanceMove}
+                  danceMove={danceMove2}
+                  handleClickOpen={handleClickOpen}
+                  accuracy={accuracy2.toFixed(1)}
+                  sync={finalSync}
+                  posAccuracy={posAccuracy.toFixed(1)}
+                />
+              </motion.span>
             </Grid>
 
             {/* #3 */}
             <Grid item>
-              <DancerCard
-                name={member2Name}
-                position={finalPosition.substring(4)}
-                userImage='d2MSDujJl2g'
-                danceMove={finalDanceMove}
-                role='Member 2'
-                handleClickOpen={handleClickOpen3}
-                accuracy={accuracy.toFixed(1)}
-                sync={finalSync}
-              />
+              <motion.span layout>
+                <DancerCard
+                  name={member2Name}
+                  position={finalPosition.substring(4)}
+                  userImage='SFJz9q9EAZc'
+                  //danceMove={finalDanceMove}
+                  danceMove={danceMove3}
+                  role='Member 2'
+                  handleClickOpen={handleClickOpen3}
+                  accuracy={accuracy3.toFixed(1)}
+                  sync={finalSync}
+                />
+              </motion.span>
             </Grid>
 
             {/* #1 */}
             <Grid item>
-              <DancerCard
-                name={leaderName}
-                position={finalPosition.substring(0, 1)}
-                userImage='sibVwORYqs0'
-                danceMove={finalDanceMove}
-                role='Leader'
-                handleClickOpen={handleClickOpen2}
-                accuracy={accuracy.toFixed(1)}
-                sync={finalSync}
-              />
+              <motion.span layout>
+                <DancerCard
+                  name={leaderName}
+                  position={finalPosition.substring(0, 1)}
+                  userImage='NRfYKuSKs_o'
+                  //danceMove={finalDanceMove}
+                  danceMove={danceMove}
+                  role='Leader'
+                  handleClickOpen={handleClickOpen2}
+                  accuracy={accuracy.toFixed(1)}
+                  sync={finalSync}
+                />
+              </motion.span>
             </Grid>
           </>
         )}
@@ -468,43 +518,53 @@ function Playground() {
           <>
             {/* #3 */}
             <Grid item>
-              <DancerCard
-                name={member2Name}
-                position={finalPosition.substring(4)}
-                userImage='d2MSDujJl2g'
-                danceMove={finalDanceMove}
-                role='Member 2'
-                handleClickOpen={handleClickOpen3}
-                accuracy={accuracy.toFixed(1)}
-                sync={finalSync}
-              />
+              <motion.span layout>
+                <DancerCard
+                  name={member2Name}
+                  position={finalPosition.substring(4)}
+                  userImage='SFJz9q9EAZc'
+                  //danceMove={finalDanceMove}
+                  danceMove={danceMove3}
+                  role='Member 2'
+                  handleClickOpen={handleClickOpen3}
+                  accuracy={accuracy3.toFixed(1)}
+                  sync={finalSync}
+                />
+              </motion.span>
             </Grid>
 
             {/* #1 */}
             <Grid item>
-              <DancerCard
-                name={leaderName}
-                position={finalPosition.substring(0, 1)}
-                userImage='sibVwORYqs0'
-                danceMove={finalDanceMove}
-                role='Leader'
-                handleClickOpen={handleClickOpen2}
-                accuracy={accuracy.toFixed(1)}
-                sync={finalSync}
-              />
+              <motion.span layout>
+                <DancerCard
+                  name={leaderName}
+                  position={finalPosition.substring(0, 1)}
+                  userImage='NRfYKuSKs_o'
+                  //danceMove={finalDanceMove}
+                  danceMove={danceMove}
+                  role='Leader'
+                  handleClickOpen={handleClickOpen2}
+                  accuracy={accuracy.toFixed(1)}
+                  sync={finalSync}
+                />
+              </motion.span>
             </Grid>
 
             {/* #2 */}
             <Grid item>
-              <DancerCard
-                name={member1Name}
-                position={finalPosition.substring(2, 3)}
-                userImage='6CgkUjUl4og'
-                danceMove={finalDanceMove}
-                handleClickOpen={handleClickOpen}
-                accuracy={accuracy.toFixed(1)}
-                sync={finalSync}
-              />
+              <motion.span layout>
+                <DancerCard2
+                  name={member1Name}
+                  position={finalPosition.substring(2, 3)}
+                  userImage='OqQi3nCt4CA'
+                  //danceMove={finalDanceMove}
+                  danceMove={danceMove2}
+                  handleClickOpen={handleClickOpen}
+                  accuracy={accuracy2.toFixed(1)}
+                  sync={finalSync}
+                  posAccuracy={posAccuracy.toFixed(1)}
+                />
+              </motion.span>
             </Grid>
           </>
         )}
@@ -514,43 +574,53 @@ function Playground() {
           <>
             {/* #3 */}
             <Grid item>
-              <DancerCard
-                name={member2Name}
-                position={finalPosition.substring(4)}
-                userImage='d2MSDujJl2g'
-                danceMove={finalDanceMove}
-                role='Member 2'
-                handleClickOpen={handleClickOpen3}
-                accuracy={accuracy.toFixed(1)}
-                sync={finalSync}
-              />
+              <motion.span layout>
+                <DancerCard
+                  name={member2Name}
+                  position={finalPosition.substring(4)}
+                  userImage='SFJz9q9EAZc'
+                  //danceMove={finalDanceMove}
+                  danceMove={danceMove3}
+                  role='Member 2'
+                  handleClickOpen={handleClickOpen3}
+                  accuracy={accuracy3.toFixed(1)}
+                  sync={finalSync}
+                />
+              </motion.span>
             </Grid>
 
             {/* #2 */}
             <Grid item>
-              <DancerCard
-                name={member1Name}
-                position={finalPosition.substring(2, 3)}
-                userImage='6CgkUjUl4og'
-                danceMove={finalDanceMove}
-                handleClickOpen={handleClickOpen}
-                accuracy={accuracy.toFixed(1)}
-                sync={finalSync}
-              />
+              <motion.span layout>
+                <DancerCard2
+                  name={member1Name}
+                  position={finalPosition.substring(2, 3)}
+                  userImage='OqQi3nCt4CA'
+                  //danceMove={finalDanceMove}
+                  danceMove={danceMove2}
+                  handleClickOpen={handleClickOpen}
+                  accuracy={accuracy2.toFixed(1)}
+                  sync={finalSync}
+                  posAccuracy={posAccuracy.toFixed(1)}
+                />
+              </motion.span>
             </Grid>
 
             {/* #1 */}
             <Grid item>
-              <DancerCard
-                name={leaderName}
-                position={finalPosition.substring(0, 1)}
-                userImage='sibVwORYqs0'
-                danceMove={finalDanceMove}
-                role='Leader'
-                handleClickOpen={handleClickOpen2}
-                accuracy={accuracy.toFixed(1)}
-                sync={finalSync}
-              />
+              <motion.span layout>
+                <DancerCard
+                  name={leaderName}
+                  position={finalPosition.substring(0, 1)}
+                  userImage='NRfYKuSKs_o'
+                  //danceMove={finalDanceMove}
+                  danceMove={danceMove}
+                  role='Leader'
+                  handleClickOpen={handleClickOpen2}
+                  accuracy={accuracy.toFixed(1)}
+                  sync={finalSync}
+                />
+              </motion.span>
             </Grid>
           </>
         )}
@@ -612,13 +682,11 @@ function Playground() {
               setScore={setScore}
               maxScore={maxScore}
               setMaxScore={setMaxScore}
-              accuracy={accuracy}
-              // setAccuracyList={setAccuracyList}
-              // accuracyList={accuracyList}
-              // accuracyAvg={accuracyAvg}
+              accuracy={overallAccuracy}
               setSyncList={setSyncList}
               syncList={syncList}
               syncAvg={syncAvg}
+              posAccuracy={posAccuracy}
             />
           </Container>
           <Backdrop
