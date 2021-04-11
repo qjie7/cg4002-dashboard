@@ -19,10 +19,7 @@ function DancerCard(props) {
             background: `url(https://source.unsplash.com/${props.userImage}/299x211)`,
             backgroundSize: 'cover',
           }}
-        >
-          {/* {' '}
-          <img className='card-image' src={props.userImage} alt='' /> */}
-        </Grid>
+        ></Grid>
 
         <div className='card-text'>
           <Tooltip title='Edit Name'>
@@ -34,18 +31,12 @@ function DancerCard(props) {
           <div className='card-dance-name'>{props.danceMove}</div>
         </div>
         <div className='card-stats'>
-          <div className='stat border'>
-            {/* <div className='value'>{props.position}</div>
-            <div className='type'>Position</div> */}
-          </div>
+          <div className='stat border'></div>
           <div className='stat'>
             <div className='value'>{props.accuracy}%</div>
             <div className='type'>Accuracy</div>
           </div>
-          <div className='stat'>
-            {/* <div className='value'>{props.sync}ms</div>
-            <div className='type'>Sync</div> */}
-          </div>
+          <div className='stat'></div>
         </div>
       </div>
     </>

@@ -176,25 +176,6 @@ function Playground() {
     }
   }, [connection])
 
-  // useEffect(() => {
-  //   if (
-  //     // position1 === testLog.position1 &&
-  //     // position2 === testLog.position2 &&
-  //     // position3 === testLog.position3 &&
-
-  //     finalDanceMove === testLog.danceMove
-  //   ) {
-  //     setCorrectness(true)
-  //     if (score < 10) {
-  //       setScore((prevScore) => prevScore + 1)
-  //     }
-
-  //     console.log(score)
-  //   } else {
-  //     setCorrectness(false)
-  //   }
-  // }, [finalDanceMove])
-
   useEffect(() => {
     const handleKey = (event) => {
       if (event.keyCode === 81 && connection) {
@@ -226,15 +207,6 @@ function Playground() {
         setCorrectness(false)
         setMaxScorePos((prevScore) => prevScore + 1)
       }
-
-      // if (event.keyCode === 16 && connection) {
-      //   setCorrectness(true)
-      //   setScore((prevScore) => prevScore + 1)
-      //   setMaxScore((prevScore) => prevScore + 1)
-      // } else if (event.keyCode === 88 && connection) {
-      //   setCorrectness(false)
-      //   setMaxScore((prevScore) => prevScore + 1)
-      // }
     }
     window.addEventListener('keydown', handleKey)
 
@@ -301,7 +273,6 @@ function Playground() {
                   name={leaderName}
                   position={finalPosition.substring(0, 1)}
                   userImage='NRfYKuSKs_o'
-                  //danceMove={finalDanceMove}
                   danceMove={danceMove}
                   role='Leader'
                   handleClickOpen={handleClickOpen2}
@@ -318,7 +289,6 @@ function Playground() {
                   name={member1Name}
                   position={finalPosition.substring(2, 3)}
                   userImage='OqQi3nCt4CA'
-                  //danceMove={finalDanceMove}
                   danceMove={danceMove2}
                   handleClickOpen={handleClickOpen}
                   accuracy={accuracy2.toFixed(1)}
@@ -335,7 +305,6 @@ function Playground() {
                   name={member2Name}
                   position={finalPosition.substring(4)}
                   userImage='SFJz9q9EAZc'
-                  // danceMove={finalDanceMove}
                   danceMove={danceMove3}
                   role='Member 2'
                   handleClickOpen={handleClickOpen3}
@@ -356,7 +325,6 @@ function Playground() {
                   name={leaderName}
                   position={finalPosition.substring(0, 1)}
                   userImage='NRfYKuSKs_o'
-                  //danceMove={finalDanceMove}
                   danceMove={danceMove}
                   role='Leader'
                   handleClickOpen={handleClickOpen2}
@@ -373,7 +341,6 @@ function Playground() {
                   name={member2Name}
                   position={finalPosition.substring(4)}
                   userImage='SFJz9q9EAZc'
-                  // danceMove={finalDanceMove}
                   danceMove={danceMove3}
                   role='Member 2'
                   handleClickOpen={handleClickOpen3}
@@ -390,7 +357,6 @@ function Playground() {
                   name={member1Name}
                   position={finalPosition.substring(2, 3)}
                   userImage='OqQi3nCt4CA'
-                  // danceMove={finalDanceMove}
                   danceMove={danceMove2}
                   handleClickOpen={handleClickOpen}
                   accuracy={accuracy2.toFixed(1)}
@@ -412,7 +378,6 @@ function Playground() {
                   name={member1Name}
                   position={finalPosition.substring(2, 3)}
                   userImage='OqQi3nCt4CA'
-                  // danceMove={finalDanceMove}
                   danceMove={danceMove2}
                   handleClickOpen={handleClickOpen}
                   accuracy={accuracy2.toFixed(1)}
@@ -428,7 +393,6 @@ function Playground() {
                   name={leaderName}
                   position={finalPosition.substring(0, 1)}
                   userImage='NRfYKuSKs_o'
-                  // danceMove={finalDanceMove}
                   danceMove={danceMove}
                   role='Leader'
                   handleClickOpen={handleClickOpen2}
@@ -445,7 +409,6 @@ function Playground() {
                   name={member2Name}
                   position={finalPosition.substring(4)}
                   userImage='SFJz9q9EAZc'
-                  // danceMove={finalDanceMove}
                   danceMove={danceMove3}
                   role='Member 2'
                   handleClickOpen={handleClickOpen3}
@@ -467,7 +430,6 @@ function Playground() {
                   name={member1Name}
                   position={finalPosition.substring(2, 3)}
                   userImage='OqQi3nCt4CA'
-                  //danceMove={finalDanceMove}
                   danceMove={danceMove2}
                   handleClickOpen={handleClickOpen}
                   accuracy={accuracy2.toFixed(1)}
@@ -484,7 +446,6 @@ function Playground() {
                   name={member2Name}
                   position={finalPosition.substring(4)}
                   userImage='SFJz9q9EAZc'
-                  //danceMove={finalDanceMove}
                   danceMove={danceMove3}
                   role='Member 2'
                   handleClickOpen={handleClickOpen3}
@@ -501,7 +462,6 @@ function Playground() {
                   name={leaderName}
                   position={finalPosition.substring(0, 1)}
                   userImage='NRfYKuSKs_o'
-                  //danceMove={finalDanceMove}
                   danceMove={danceMove}
                   role='Leader'
                   handleClickOpen={handleClickOpen2}
@@ -523,7 +483,6 @@ function Playground() {
                   name={member2Name}
                   position={finalPosition.substring(4)}
                   userImage='SFJz9q9EAZc'
-                  //danceMove={finalDanceMove}
                   danceMove={danceMove3}
                   role='Member 2'
                   handleClickOpen={handleClickOpen3}
@@ -540,7 +499,6 @@ function Playground() {
                   name={leaderName}
                   position={finalPosition.substring(0, 1)}
                   userImage='NRfYKuSKs_o'
-                  //danceMove={finalDanceMove}
                   danceMove={danceMove}
                   role='Leader'
                   handleClickOpen={handleClickOpen2}
@@ -557,7 +515,6 @@ function Playground() {
                   name={member1Name}
                   position={finalPosition.substring(2, 3)}
                   userImage='OqQi3nCt4CA'
-                  //danceMove={finalDanceMove}
                   danceMove={danceMove2}
                   handleClickOpen={handleClickOpen}
                   accuracy={accuracy2.toFixed(1)}
@@ -579,7 +536,6 @@ function Playground() {
                   name={member2Name}
                   position={finalPosition.substring(4)}
                   userImage='SFJz9q9EAZc'
-                  //danceMove={finalDanceMove}
                   danceMove={danceMove3}
                   role='Member 2'
                   handleClickOpen={handleClickOpen3}
@@ -596,7 +552,6 @@ function Playground() {
                   name={member1Name}
                   position={finalPosition.substring(2, 3)}
                   userImage='OqQi3nCt4CA'
-                  //danceMove={finalDanceMove}
                   danceMove={danceMove2}
                   handleClickOpen={handleClickOpen}
                   accuracy={accuracy2.toFixed(1)}
@@ -613,7 +568,6 @@ function Playground() {
                   name={leaderName}
                   position={finalPosition.substring(0, 1)}
                   userImage='NRfYKuSKs_o'
-                  //danceMove={finalDanceMove}
                   danceMove={danceMove}
                   role='Leader'
                   handleClickOpen={handleClickOpen2}
@@ -624,43 +578,6 @@ function Playground() {
             </Grid>
           </>
         )}
-
-        {/* <Grid item>
-          <DancerCard
-            name={leaderName}
-            position={finalPosition.substring(0, 1)}
-            userImage='sibVwORYqs0'
-            danceMove={finalDanceMove}
-            role='Leader'
-            handleClickOpen={handleClickOpen2}
-            accuracy={accuracy.toFixed(1)}
-            sync={finalSync}
-          />
-        </Grid>
-        <Grid item>
-          <DancerCard
-            name={member1Name}
-            position={finalPosition.substring(2, 3)}
-            userImage='6CgkUjUl4og'
-            danceMove={finalDanceMove}
-            handleClickOpen={handleClickOpen}
-            accuracy={accuracy.toFixed(1)}
-            sync={finalSync}
-          />
-        </Grid>
-        <Grid item>
-          <DancerCard
-            name={member2Name}
-            position={finalPosition.substring(4)}
-            userImage='d2MSDujJl2g'
-            danceMove={finalDanceMove}
-            role='Member 2'
-            handleClickOpen={handleClickOpen3}
-            accuracy={accuracy.toFixed(1)}
-            sync={finalSync}
-          />
-        </Grid>
-        Display Dancer Cards end here */}
       </Grid>
 
       <Grid container justify='center'>

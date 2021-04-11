@@ -24,11 +24,6 @@ function Cartoon() {
         <div className='background-circle'>
           <div className='triangle-light' />
           <div className='body' />
-          {/* <span className='shirt-text'>I</span>
-        <span className='shirt-text'>♥</span>
-        <span className='shirt-text'>N</span>
-        <span className='shirt-text'>U</span>
-        <span className='shirt-text'>S</span> */}
           <span className='shirt-text'>D</span>
           <span className='shirt-text'>♥</span>
           <span className='shirt-text'>N</span>

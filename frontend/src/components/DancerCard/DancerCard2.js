@@ -19,10 +19,7 @@ function DancerCard(props) {
             background: `url(https://source.unsplash.com/${props.userImage}/299x211)`,
             backgroundSize: 'cover',
           }}
-        >
-          {/* {' '}
-          <img className='card-image' src={props.userImage} alt='' /> */}
-        </Grid>
+        ></Grid>
 
         <div className='card-text'>
           <Tooltip title='Edit Name'>

@@ -20,8 +20,6 @@ import {
   Legend,
 } from 'recharts'
 import Button from '@material-ui/core/Button'
-import SimpleCard from '../components/SimpleCard/SimpleCard'
-import BasicTable from '../components/BasicTable/BasicTable'
 import Backdrop from '@material-ui/core/Backdrop'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
@@ -106,10 +104,6 @@ export default function Developer(props) {
   const [danceMove2, setDanceMove2] = useState('Dab')
   const [danceMove3, setDanceMove3] = useState('Dab')
 
-  // const [position, setPosition] = useState([1, 2, 3])
-  // const [position2, setPosition2] = useState([1, 2, 3])
-  // const [position3, setPosition3] = useState([1, 2, 3])
-
   const [connection, setConnection] = useState(false)
 
   const [leaderName, setLeaderName] = useState('Leader Name')
@@ -137,76 +131,50 @@ export default function Developer(props) {
     setValue(newValue)
   }
 
-  // const [testLog, setTestLog] = useState({
-  //   danceMove: 'Dab',
-  //   position1: 1,
-  //   position2: 2,
-  //   position3: 3,
-  // })
-
-  let currentDanceMove = danceMove
   useEffect(() => {
     if (connection) {
       socket.on('new_data', (newData) => {
-        // console.log(newData)
         console.log(newData.EMG)
-        // setData((currentData) => [...currentData, newData])
         setData((currentData) => {
           if (currentData.length === 20) {
             currentData = currentData.slice(1)
           }
           return currentData.concat(newData)
         })
-        // setPosition(newData.position)
         setDanceMove(newData.danceMove)
       })
 
       socket.on('new_data2', (newData2) => {
-        // console.log(newData)
         console.log(newData2.EMG)
-        // setData((currentData) => [...currentData, newData])
+
         setData2((currentData) => {
           if (currentData.length === 20) {
             currentData = currentData.slice(1)
           }
           return currentData.concat(newData2)
         })
-        // setPosition2(newData2.position)
+
         setDanceMove2(newData2.danceMove)
       })
 
       socket.on('new_data3', (newData3) => {
-        // console.log(newData)
         console.log(newData3.EMG)
-        // setData((currentData) => [...currentData, newData])
+
         setData3((currentData) => {
           if (currentData.length === 20) {
             currentData = currentData.slice(1)
           }
           return currentData.concat(newData3)
         })
-        // setPosition3(newData3.position)
+
         setDanceMove3(newData3.danceMove)
       })
-
-      // socket.on('test_log', (newData) => {
-      //   setTestLog(newData)
-      // })
     } else {
       socket.off('new_data')
       socket.off('new_data2')
       socket.off('new_data3')
-      // socket.off('test_log')
     }
   }, [connection])
-
-  // useEffect(() => {
-  //   if (currentDanceMove === testLog.danceMove) {
-  //     setCorrectness(true)
-  //   } else {
-  //     setCorrectness(false)
-  //   }
-  // })
 
   return (
     <>
@@ -233,7 +201,6 @@ export default function Developer(props) {
             <Tab label='Leader' {...a11yProps(1)} />
             <Tab label='Member 2' {...a11yProps(2)} />
             <Tab label='EMG' {...a11yProps(3)} />
-            {/* <Tab label='Offline Analytics' {...a11yProps(4)} /> */}
 
             <Grid container justify='flex-end'>
               <MuiTooltip title='Connect/Disconnect'>
@@ -805,77 +772,10 @@ export default function Developer(props) {
               stroke='#00b339'
               isAnimationActive={false}
             />
-            {/* <Line
-              name='x'
-              type='linear'
-              dataKey='xAxisEMG'
-              stroke='#820000'
-              isAnimationActive={false}
-            />
-            <Line
-              name='y'
-              type='linear'
-              dataKey='yAxisEMG'
-              stroke='#118200'
-              isAnimationActive={false}
-            />
-            <Line
-              name='z'
-              type='linear'
-              dataKey='zAxisEMG'
-              stroke='#000982'
-              isAnimationActive={false}
-            /> */}
           </LineChart>
         </TabPanel>
         <TabPanel value={value} index={4}>
-          {/* <Typography variant='h3'>Test Log Received</Typography>
-
-          <Grid item style={{ justifyItems: 'center' }}>
-            <BasicTable
-              danceMove={testLog.danceMove}
-              position1={testLog.position1}
-              position2={testLog.position2}
-              position3={testLog.position3}
-              correctness={correctness}
-              member1Name={member1Name}
-              leaderName={leaderName}
-              member2Name={member2Name}
-            />
-          </Grid>
-
-          <Grid container justify='center' style={{ marginTop: '100px' }}>
-            <Grid item style={{ marginBottom: '25px' }}>
-              <Typography variant='h3'>Simulated Data</Typography>
-            </Grid>
-
-            <Grid container item justify='center'>
-              <Grid item>
-                <SimpleCard player={member1Name} danceMove={danceMove2} />
-              </Grid>
-              <Grid item>
-                <SimpleCard player={leaderName} danceMove={danceMove} />
-              </Grid>
-              <Grid item>
-                <SimpleCard player={member2Name} danceMove={danceMove3} />
-              </Grid>
-            </Grid>
-          </Grid>
-
-          <Grid container style={{ marginTop: '10px' }}>
-            <Grid container item justify='center'>
-              // Might need to change
-              <Grid item>
-                <SimpleCard player='' position={position[0]} />
-              </Grid>
-              <Grid item>
-                <SimpleCard player='' position={position[1]} />
-              </Grid>
-              <Grid item>
-                <SimpleCard player='' position={position[2]} />
-              </Grid>
-            </Grid>
-          </Grid> */}
+          Item Five
         </TabPanel>
         <TabPanel value={value} index={5}>
           Item Six

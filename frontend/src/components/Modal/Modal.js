@@ -5,12 +5,6 @@ import { MdClose } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import Grid from '@material-ui/core/Grid'
-// import Snackbar from '@material-ui/core/Snackbar'
-// import MuiAlert from '@material-ui/lab/Alert'
-// import { makeStyles } from '@material-ui/core/styles'
-// function Alert(props) {
-//   return <MuiAlert elevation={6} variant='filled' {...props} />
-// }
 
 const Background = styled.div`
   width: 100%;
@@ -88,13 +82,6 @@ const CloseModalButton = styled(MdClose)`
   z-index: 10;
 `
 
-// const useStyles = makeStyles((theme) => ({
-//   alert: {
-//     width: '100%',
-//     marginLeft: '120px',
-//   },
-// }))
-
 export const Modal = ({
   showModal,
   setShowModal,
@@ -118,87 +105,20 @@ export const Modal = ({
 
   const closeModal = (e) => {
     if (modalRef.current === e.target) {
-      // setAccuracyDatas((oldDatas) => [...oldDatas, Math.floor(accuracyAvg)])
-      // localStorage.setItem('accuracyDatas', JSON.stringify(accuracyDatas))
-
-      // setSyncDatas((oldDatas) => [...oldDatas, Math.floor(syncAvg)])
-      // localStorage.setItem('syncDatas', JSON.stringify(syncDatas))
-
-      // setTime((oldDatas) => [...oldDatas, new Date().toLocaleTimeString()])
-      // localStorage.setItem('time', JSON.stringify(time))
-
-      // if (score === 1) {
-      //   increaseOneScore()
-      // } else if (score === 2) {
-      //   increaseTwoScore()
-      // } else if (score === 3) {
-      //   increaseThreeScore()
-      // } else if (score === 4) {
-      //   increaseFourScore()
-      // } else if (score === 5) {
-      //   increaseFiveScore()
-      // } else if (score === 6) {
-      //   increaseSixScore()
-      // } else if (score === 7) {
-      //   increaseSevenScore()
-      // } else if (score === 8) {
-      //   increaseEightScore()
-      // } else if (score === 9) {
-      //   increaseNineScore()
-      // } else if (score === 10) {
-      //   increaseTenScore()
-      // }
-
       setScore(0)
       setMaxScore(0)
       setShowModal(false)
       setSaveStatus(false)
     }
   }
-  // const classes = useStyles()
+
   const closeModalWithCross = () => {
-    // setAccuracyDatas((oldDatas) => [...oldDatas, Math.floor(accuracyAvg)])
-    // localStorage.setItem('accuracyDatas', JSON.stringify(accuracyDatas))
-
-    // setSyncDatas((oldDatas) => [...oldDatas, Math.floor(syncAvg)])
-    // localStorage.setItem('syncDatas', JSON.stringify(syncDatas))
-
-    // setTime((oldDatas) => [...oldDatas, new Date().toLocaleTimeString()])
-    // localStorage.setItem('time', JSON.stringify(time))
-    // if (score === 1) {
-    //   increaseOneScore()
-    // } else if (score === 2) {
-    //   increaseTwoScore()
-    // } else if (score === 3) {
-    //   increaseThreeScore()
-    // } else if (score === 4) {
-    //   increaseFourScore()
-    // } else if (score === 5) {
-    //   increaseFiveScore()
-    // } else if (score === 6) {
-    //   increaseSixScore()
-    // } else if (score === 7) {
-    //   increaseSevenScore()
-    // } else if (score === 8) {
-    //   increaseEightScore()
-    // } else if (score === 9) {
-    //   increaseNineScore()
-    // } else if (score === 10) {
-    //   increaseTenScore()
-    // }
     setScore(0)
     setMaxScore(0)
     setShowModal(false)
     setSaveStatus(false)
   }
   const [saveStatus, setSaveStatus] = React.useState(false)
-  // const handleClose = (event, reason) => {
-  //   if (reason === 'clickaway') {
-  //     return
-  //   }
-
-  //   setSaveStatus(true)
-  // }
 
   const [oneScore, setOneScore] = useState(localStorage.getItem('oneScore'))
   const [twoScore, setTwoScore] = useState(localStorage.getItem('twoScore'))
@@ -220,18 +140,6 @@ export const Modal = ({
   const [accuracyDatas, setAccuracyDatas] = useState(
     JSON.parse(localStorage.getItem('accuracyDatas'))
   )
-
-  // const [accuracyDatas2, setAccuracyDatas2] = useState(
-  //   JSON.parse(localStorage.getItem('accuracyDatas2'))
-  // )
-
-  // const [accuracyDatas3, setAccuracyDatas3] = useState(
-  //   JSON.parse(localStorage.getItem('accuracyDatas3'))
-  // )
-
-  // const [overallAccuracy, setOverallAccuracy] = useState(
-  //   JSON.parse(localStorage.getItem('overallAccuracy'))
-  // )
 
   const [syncDatas, setSyncDatas] = useState(
     JSON.parse(localStorage.getItem('syncDatas'))
@@ -331,42 +239,13 @@ export const Modal = ({
     [setShowModal, showModal]
   )
 
-  // let btnRef = useRef()
-
   const handleSaveButton = (e) => {
     setSaveStatus(true)
-    // if (btnRef.current) {
-    //   btnRef.current.setAttribute('disabled', 'disabled')
-    // }
-
-    // if (score === 1) {
-    //   increaseOneScore()
-    // } else if (score === 2) {
-    //   increaseTwoScore()
-    //   // console.log(increaseTwoScore())
-    // } else if (score === 3) {
-    //   increaseThreeScore()
-    // } else if (score === 4) {
-    //   increaseFourScore()
-    // } else if (score === 5) {
-    //   increaseFiveScore()
-    // } else if (score === 6) {
-    //   increaseSixScore()
-    // } else if (score === 7) {
-    //   increaseSevenScore()
-    // } else if (score === 8) {
-    //   increaseEightScore()
-    // } else if (score === 9) {
-    //   increaseNineScore()
-    // } else if (score === 10) {
-    //   increaseTenScore()
-    // }
 
     if (Math.floor(accuracy.toFixed(0) / 10) === 1) {
       increaseOneScore()
     } else if (Math.floor(accuracy.toFixed(0) / 10) === 2) {
       increaseTwoScore()
-      // console.log(increaseTwoScore())
     } else if (Math.floor(accuracy.toFixed(0) / 10) === 3) {
       increaseThreeScore()
     } else if (Math.floor(accuracy.toFixed(0) / 10) === 4) {
@@ -388,12 +267,6 @@ export const Modal = ({
     setAccuracyDatas((oldDatas) => [...oldDatas, Math.floor(accuracy)])
     localStorage.setItem('accuracyDatas', JSON.stringify(accuracyDatas))
 
-    // setAccuracyDatas2((oldDatas) => [...oldDatas, Math.floor(accuracy2)])
-    // localStorage.setItem('accuracyDatas2', JSON.stringify(accuracyDatas2))
-
-    // setAccuracyDatas3((oldDatas) => [...oldDatas, Math.floor(accuracy3)])
-    // localStorage.setItem('accuracyDatas3', JSON.stringify(accuracyDatas3))
-
     setSyncDatas((oldDatas) => [...oldDatas, syncAvg.toFixed(4)])
     localStorage.setItem('syncDatas', JSON.stringify(syncDatas))
 
@@ -401,88 +274,10 @@ export const Modal = ({
     localStorage.setItem('time', JSON.stringify(time))
   }
 
-  // useEffect(() => {
-  //   setSaveStatus(true)
-  //   if (btnRef.current) {
-  //     btnRef.current.setAttribute('disabled', 'disabled')
-  //   }
-
-  //   if (score === 1) {
-  //     increaseOneScore()
-  //   } else if (score === 2) {
-  //     increaseTwoScore()
-  //   } else if (score === 3) {
-  //     increaseThreeScore()
-  //   } else if (score === 4) {
-  //     increaseFourScore()
-  //   } else if (score === 5) {
-  //     increaseFiveScore()
-  //   } else if (score === 6) {
-  //     increaseSixScore()
-  //   } else if (score === 7) {
-  //     increaseSevenScore()
-  //   } else if (score === 8) {
-  //     increaseEightScore()
-  //   } else if (score === 9) {
-  //     increaseNineScore()
-  //   } else if (score === 10) {
-  //     increaseTenScore()
-  //   }
-
-  //   setAccuracyDatas((oldDatas) => [...oldDatas, Math.floor(accuracyAvg)])
-  //   localStorage.setItem('accuracyDatas', JSON.stringify(accuracyDatas))
-
-  //   setSyncDatas((oldDatas) => [...oldDatas, Math.floor(syncAvg)])
-  //   localStorage.setItem('syncDatas', JSON.stringify(syncDatas))
-
-  //   setTime((oldDatas) => [...oldDatas, new Date().toLocaleTimeString()])
-  //   localStorage.setItem('time', JSON.stringify(time))
-  // }, [saveStatus])
-
   useEffect(() => {
     document.addEventListener('keydown', keyPress)
-    // setScore(0)
-    // setShowModal(false)
-    // setSaveStatus(false)
     return () => document.removeEventListener('keydown', keyPress)
   }, [keyPress])
-
-  // const handleSaveButton = () => {
-  //   console.log(flag)
-  //   if (flag) {
-  //     if (score === 1) {
-  //       increaseOneScore()
-  //     } else if (score === 2) {
-  //       increaseTwoScore()
-  //     } else if (score === 3) {
-  //       increaseThreeScore()
-  //     } else if (score === 4) {
-  //       increaseFourScore()
-  //     } else if (score === 5) {
-  //       increaseFiveScore()
-  //     } else if (score === 6) {
-  //       increaseSixScore()
-  //     } else if (score === 7) {
-  //       increaseSevenScore()
-  //     } else if (score === 8) {
-  //       increaseEightScore()
-  //     } else if (score === 9) {
-  //       increaseNineScore()
-  //     } else if (score === 10) {
-  //       increaseTenScore()
-  //     }
-  //   }
-  //   setAccuracyDatas((oldDatas) => [...oldDatas, Math.floor(accuracyAvg)])
-  //   localStorage.setItem('accuracyDatas', JSON.stringify(accuracyDatas))
-
-  //   setSyncDatas((oldDatas) => [...oldDatas, Math.floor(syncAvg)])
-  //   localStorage.setItem('syncDatas', JSON.stringify(syncDatas))
-
-  //   setTime((oldDatas) => [...oldDatas, new Date().toLocaleTimeString()])
-  //   localStorage.setItem('time', JSON.stringify(time))
-  //   setFlag(false)
-  //   console.log(flag)
-  // }
 
   return (
     <>
@@ -513,7 +308,6 @@ export const Modal = ({
                   </Grid>
                 </Grid>
 
-                {/* <button ref={btnRef} onClick={handleSaveButton}> */}
                 <button onClick={handleSaveButton}>Save</button>
                 <p>{saveStatus ? 'saved!' : ''}</p>
               </ModalContentLeft>
@@ -540,16 +334,6 @@ export const Modal = ({
           </animated.div>
         </Background>
       ) : null}
-
-      {/* <Snackbar
-        open={!saveStatus}
-        autoHideDuration={3000}
-        onClose={handleClose}
-      >
-        <Alert onClose={handleClose} severity='error' className={classes.alert}>
-          Saved!
-        </Alert>
-      </Snackbar> */}
     </>
   )
 }

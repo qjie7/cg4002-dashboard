@@ -9,19 +9,6 @@ import BarChartScore from '../components/BarChart/BarChartScore'
 import { useState, useEffect } from 'react'
 import Box from '@material-ui/core/Box'
 import PropTypes from 'prop-types'
-// const useStyles = makeStyles({
-//   root: {
-//     display: 'flex',
-//     justifyContent: 'space-around',
-//     marginTop: 120,
-//   },
-//   heading: {
-//     fontSize: '4.5em',
-//     letterSpacing: '-1px',
-//     backgroundColor: '#503e9d',
-//     color: 'white',
-//   },
-// })
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props
@@ -213,79 +200,8 @@ function Progress({ borderColor }) {
           Item Seven
         </TabPanel>
       </div>
-      {/* <Grid container justify='center' style={{ marginTop: '-10px' }}>
-        <Grid item xs={12} style={{ width: '100%' }}>
-          <Typography variant='h3' align='center' className={classes.heading}>
-            {' '}
-            Progress
-          </Typography>
-        </Grid>
-      </Grid>
-
-      <Grid container spacing={3} direction='column'>
-        <Grid container item xs={12} spacing={3} marginLeft='100px'>
-          <Grid item xs={12}>
-            <BarChartScore
-              oneScore={oneScore > 0 ? oneScore - 1 : oneScore}
-              twoScore={twoScore > 0 ? twoScore - 1 : twoScore}
-              threeScore={threeScore > 0 ? threeScore - 1 : threeScore}
-              fourScore={fourScore > 0 ? fourScore - 1 : fourScore}
-              fiveScore={fiveScore > 0 ? fiveScore - 1 : fiveScore}
-              sixScore={sixScore > 0 ? sixScore - 1 : sixScore}
-              sevenScore={sevenScore > 0 ? sevenScore - 1 : sevenScore}
-              eightScore={eightScore > 0 ? eightScore - 1 : eightScore}
-              nineScore={nineScore > 0 ? nineScore - 1 : nineScore}
-              tenScore={tenScore > 0 ? tenScore - 1 : tenScore}
-            />
-          </Grid>
-        </Grid>
-
-        <Grid container direction='column' item xs={12} spacing={3}>
-          <Grid xs={12} item>
-            <LineChart
-              data={JSON.parse(localStorage.getItem('accuracyDatas'))}
-              time={JSON.parse(localStorage.getItem('time'))}
-              text='Team Accuracy'
-              label='Accuracy'
-              borderColor='rgba(233,42,23,52)'
-            />
-          </Grid>
-          <Grid xs={12} item>
-            <LineChart
-              data={JSON.parse(localStorage.getItem('syncDatas'))}
-              time={JSON.parse(localStorage.getItem('time'))}
-              text='Sync'
-              label='Sync'
-              borderColor='rgba(23,100,111,4)'
-            />
-          </Grid>
-        </Grid>
-      </Grid> */}
     </>
   )
 }
 
 export default Progress
-
-{
-  /* <Grid container direction='column' item xs={12} spacing={3}>
- <Grid xs={6} item>
-  <LineChart
-    data={JSON.parse(localStorage.getItem('accuracyDatas'))}
-    time={JSON.parse(localStorage.getItem('time'))}
-    text='Accuracy Overtime'
-    label='Accuracy'
-    borderColor='rgba(233,42,23,52)'
-  />
-</Grid>
-<Grid xs={12} item style={{ position: 'absolute' }}>
-  <LineChart
-    data={JSON.parse(localStorage.getItem('syncDatas'))}
-    time={JSON.parse(localStorage.getItem('time'))}
-    text='Sync Overtime'
-    label='Sync'
-    borderColor='rgba(23,100,111,4)'
-  />
-</Grid>
-</Grid> */
-}

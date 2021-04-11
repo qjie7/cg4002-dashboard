@@ -6,9 +6,6 @@ import { IconContext } from 'react-icons'
 import logo from '../../images/logo_transparent.png'
 
 function Sidebar() {
-  // let multiClasses = classNames({
-  //   ''
-  // })
   return (
     <>
       <IconContext.Provider value={{ color: '#fff' }}>
