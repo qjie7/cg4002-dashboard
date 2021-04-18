@@ -4,13 +4,13 @@
 
 ## Home Page
 
-![Screenshot 2021-04-18 at 3.10.50 PM](/Users/qianjie/Library/Application Support/typora-user-images/Screenshot 2021-04-18 at 3.10.50 PM.png)
+![img](https://lh5.googleusercontent.com/X0Mh5r-2grCEhb8q5pCNetuo2WKX_IGpx-bMXK3VBdLpceewz06NliQdQeboXVi2IifuilazuFqErXirGHa-cBf3gDfhaoXmUk2NpZiM_xVOJ5pOCKJ6-2JqEsLF0A)
 
 Home page is where the user will be brought to when they visit our danceboard. 
 
 ## Playground Page
 
-![Screenshot 2021-04-18 at 3.11.23 PM](/Users/qianjie/Library/Application Support/typora-user-images/Screenshot 2021-04-18 at 3.11.23 PM.png)
+![img](https://lh4.googleusercontent.com/5JoAwiG6VtMnSsmKmnUpuXdQh1TrIrAJL91uyIhyNawy8J_ss7ckel3-58wzwOxIp7XM9wPR9KoxLTRzm0v90oudedt6PPkKa0mRmytL0s6a4qBIo_bDEW1fWdpaQA)
 
 The Playground page is where the user will most interact with.
 
@@ -18,7 +18,7 @@ The Playground page is where the user will most interact with.
 
 ## Dancebase
 
-![Screenshot 2021-04-18 at 2.35.18 PM](/Users/qianjie/Desktop/Screenshot 2021-04-18 at 2.35.18 PM.png)
+![img](https://lh4.googleusercontent.com/je27bSEqas9zMbfwmCPJ6J51yAh7VfL1qPp7LLA2ydYKp3D9OYaex7sQm_BzKnWVr4fyqtOeBuL9ZXqgA82DJ6UKXjCa6MGUeQt4IO9yddFNJ-eeVVjgOb_JOWAbCg)
 
 As the name implies, Dancebase is a database of dance moves. It consists of all the dance moves available.
 
