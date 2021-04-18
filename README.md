@@ -26,7 +26,7 @@ As the name implies, Dancebase is a database of dance moves. It consists of all 
 
 ## Progress Page
 
-![Screenshot 2021-04-18 at 2.38.17 PM](/Users/qianjie/Library/Application Support/typora-user-images/Screenshot 2021-04-18 at 2.38.17 PM.png)
+![img](https://lh4.googleusercontent.com/USA6HRj9yK9May1P3sEOtx5zO7ujgeTNkPW7PV8WAuESv9CjOmjaR7JP7siybVkZaRrfnyJjkpHhbskSxfVyBvtC0AkBjjQ5WBLn7PSEntvY3h4NTyiqUFePVs5iTA)
 
 Progress page is where all the offline analytics data(Fig 5.2.2.3) will be stored and displayed in graphical form.
 
