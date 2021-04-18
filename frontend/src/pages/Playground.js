@@ -566,12 +566,65 @@ function Playground() {
               <motion.span layout>
                 <DancerCard
                   name={leaderName}
-                  position={finalPosition.substring(0, 1)}
+                  position='1 2 3'
                   userImage='NRfYKuSKs_o'
                   danceMove={danceMove}
                   role='Leader'
                   handleClickOpen={handleClickOpen2}
                   accuracy={accuracy.toFixed(1)}
+                  sync={finalSync}
+                />
+              </motion.span>
+            </Grid>
+          </>
+        )}
+
+        {/* Completed */}
+        {finalPosition === '' && (
+          <>
+            {/* #1 */}
+            <Grid item>
+              <motion.span>
+                <DancerCard
+                  name={leaderName}
+                  position='1 2 3'
+                  userImage='NRfYKuSKs_o'
+                  danceMove='Completed'
+                  role='Leader'
+                  handleClickOpen={handleClickOpen2}
+                  accuracy={accuracy.toFixed(1)}
+                  sync={finalSync}
+                />
+              </motion.span>
+            </Grid>
+
+            {/* #2 */}
+            <Grid item>
+              <motion.span>
+                <DancerCard2
+                  name={member1Name}
+                  position='1 2 3'
+                  userImage='OqQi3nCt4CA'
+                  danceMove='Completed'
+                  handleClickOpen={handleClickOpen}
+                  accuracy={accuracy2.toFixed(1)}
+                  sync={finalSync}
+                  posAccuracy={posAccuracy.toFixed(1)}
+                />
+              </motion.span>
+            </Grid>
+
+            {/* #3 */}
+            <Grid item>
+              <motion.span>
+                <DancerCard
+                  name={member2Name}
+                  position='1 2 3'
+                  userImage='SFJz9q9EAZc'
+                  danceMove='Completed'
+                  role='Member 2'
+                  handleClickOpen={handleClickOpen3}
+                  accuracy={accuracy3.toFixed(1)}
                   sync={finalSync}
                 />
               </motion.span>

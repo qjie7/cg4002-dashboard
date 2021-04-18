@@ -186,5 +186,5 @@ connection.once('open', () => {
     }
   })
 })
-
+console.log(dataSchema)
 connection.on('error', (error) => console.log('Error: ' + error))
