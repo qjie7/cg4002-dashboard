@@ -4,15 +4,13 @@
 
 ## Home Page
 
-![Alt Text](https://media.giphy.com/media/nbN3O9oBAC7XrDi8CX/source.mov)
-
-
+![Screenshot 2021-04-18 at 3.10.50 PM](/Users/qianjie/Library/Application Support/typora-user-images/Screenshot 2021-04-18 at 3.10.50 PM.png)
 
 Home page is where the user will be brought to when they visit our danceboard. 
 
 ## Playground Page
 
-![Alt Text](https://media.giphy.com/media/v1vVp89gNrlPWg3VBC/source.mp4)
+![Screenshot 2021-04-18 at 3.11.23 PM](/Users/qianjie/Library/Application Support/typora-user-images/Screenshot 2021-04-18 at 3.11.23 PM.png)
 
 The Playground page is where the user will most interact with.
 
